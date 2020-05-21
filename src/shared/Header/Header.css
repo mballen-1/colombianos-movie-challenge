@@ -1,0 +1,29 @@
+h5{
+    color:#ffe000;
+    /* font-family: FiraSans; */
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 9.4px;
+    width: 50%;
+    text-align: left;
+    padding: 10%;
+  }
+
+.header-container{
+    display: flex;
+    align-content: space-between;
+    height: 56px;
+    align-items: center;
+}
+
+.header-options-container{
+    width: 50%;
+}
+
+.material-icons.md-dark { color: white; }
+
+.material-icons.orange600 { color: #FB8C00; }
+
