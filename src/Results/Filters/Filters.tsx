@@ -30,7 +30,7 @@ function Filters() {
   return (
     <div className="filters-container">
         <h6 className="filter-h6">
-            Add Filters
+            Add Filters: 
         </h6>
         <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-label">Genre</InputLabel>

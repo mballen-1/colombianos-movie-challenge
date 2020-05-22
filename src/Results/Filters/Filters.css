@@ -4,5 +4,16 @@
 }
 
 .filter-h6 {
-    color: black; 
+    color: black;
+    text-align: end;
+    border: none;
+    font-family: FiraSans;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    padding-left: 22px;
+    padding-top: 10px;
 }
