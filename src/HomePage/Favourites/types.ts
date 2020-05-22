@@ -1,5 +1,5 @@
 import { SingleMovieProp } from "../../shared/SingleMovie/types";
 
-export interface FavouritesProps {
-    favouritesData: Array<SingleMovieProp>;
+export interface FavoritesProps {
+    favoritesData: Array<SingleMovieProp>;
 }
