@@ -1,0 +1,41 @@
+h3 {
+    color: white;
+    border-bottom: 1px solid  #ffe000;
+    width: 72%;
+    margin: auto;
+    font-family: FiraSans;
+}
+
+p {
+    margin: 0;
+}
+
+.favorite-container{
+    padding: 0 10%;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap; 
+    font-family: FiraSans;
+}
+
+.single-favorite{
+    width: 350px;
+    /*height: 700px;*/
+    margin-right: 40px;
+    margin-bottom: 37px;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.4px;
+    font-family: FiraSans;
+    
+}
+
+.fav-release{
+    all: initial;
+    width: 100%;
+    color: gray;
+    font-family: FiraSans;
+}
