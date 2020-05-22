@@ -10,9 +10,9 @@ function RecentRelease(props: MovieDataProps) {
     <div className="release-container">
         <div className="release-detail-container" style={{ backgroundImage: `url(${backgroundUrl})`}}>
             <div className="release-detail-left">
-                <h6>Recent release</h6>
+                <h6 className="release-stats">Recent release</h6>
                 <h1>{data.movieTitle}</h1>
-                <div>
+                <div className="release-stats">
                     {data.releaseDate},
                     {data.genre},
                     {data.duration}

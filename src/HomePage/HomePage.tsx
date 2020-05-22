@@ -4,17 +4,18 @@ import RecentRelease from './RecentRelease/RecentRelease';
 import background from '../assets/images/GAC_Parasite3.jpg';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
+import Header from '../shared/Header/Header';
+
+export const mockReleaseData = {
+  imgPath: background,
+  movieTitle: 'Parasite',
+  releaseDate: '11/01/2019',
+  genre: "Comedy, Thriller, Drama",
+  duration: "2h 15 min",
+  synopsis: "The Kim family—father Ki-taek, mother Chung-sook, daughter Ki-jung and son Ki-woo—live in a small semi-basement apartment (banjiha)"
+}
 
 function HomePage() {
-  
-  const mockReleaseData = {
-    imgPath: background,
-    movieTitle: 'Parasite',
-    releaseDate: '11/01/2019',
-    genre: "Comedy, Thriller, Drama",
-    duration: "2h 15 min",
-    synopsis: "The Kim family—father Ki-taek, mother Chung-sook, daughter Ki-jung and son Ki-woo—live in a small semi-basement apartment (banjiha)"
-  }
   
   const genresMockData = [
     {
@@ -85,6 +86,7 @@ function HomePage() {
 
   return (
     <div>
+      <Header></Header>
       <RecentRelease
         movieData={mockReleaseData}
       ></RecentRelease>

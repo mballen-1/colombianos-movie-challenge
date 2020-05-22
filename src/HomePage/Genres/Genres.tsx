@@ -21,12 +21,12 @@ function Genres(props: GenresProps) {
             <p style={
                { 
                 color: '#ffffff',
-                // fontFamily: 'FiraSans',
+                fontFamily: 'FiraSans',
                 fontSize: 24,
                 fontWeight: 'bold',
                 letterSpacing: 0.4,
                 position: 'relative',
-                zIndex: 1000 
+                zIndex: 1000
               }
               }>
               {genre.name}
