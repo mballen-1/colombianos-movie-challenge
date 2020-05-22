@@ -1,5 +1,5 @@
-import { SingleMovie } from "../RecentRelease/types";
+import { SingleMovieProp } from "../../shared/SingleMovie/types";
 
 export interface FavouritesProps {
-    favouritesData: Array<SingleMovie>;
+    favouritesData: Array<SingleMovieProp>;
 }

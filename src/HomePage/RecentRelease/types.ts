@@ -1,12 +1,6 @@
+import { SingleMovieProp } from "../../shared/SingleMovie/types";
+
 export interface MovieDataProps {
-    movieData: SingleMovie;
+    movieData: SingleMovieProp;
 }
 
-export interface SingleMovie {
-    imgPath: string;
-    movieTitle: string;
-    releaseDate: string;
-    genre: string;
-    duration: string;
-    synopsis: string;
-}

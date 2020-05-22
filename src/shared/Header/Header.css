@@ -1,15 +1,15 @@
-h5{
+a {
     color:#ffe000;
-    /* font-family: FiraSans; */
+    font-family: FiraSans;
     font-size: 18px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: 9.4px;
-    width: 50%;
     text-align: left;
-    padding: 10%;
+    padding-left: 20%;
+    text-decoration: none;
   }
 
 .header-container{
@@ -27,3 +27,16 @@ h5{
 
 .material-icons.orange600 { color: #FB8C00; }
 
+input {
+    font-family: 'FiraSans';
+    min-width: 203px;
+}
+
+.muviz-anchor-container {
+    width: 50%;
+    text-align: left;
+}
+
+.options-padding {
+    padding: 10%;
+}

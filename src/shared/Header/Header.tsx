@@ -8,15 +8,19 @@ function Header() {
   return (
     <div>
       <header className="header-container">
-        <h5>MUVIZ</h5>
+        <div className="muviz-anchor-container">
+          <a href="/">MUVIZ</a>
+        </div>        
         <div className="header-options-container">
-            <Button>
-              <ArrowDropDownIcon style={{ color: 'white' }}/>
-            </Button>
-            <Button>
-                <SearchIcon style={{ color: 'white' }} />
-            </Button>
-            <input type="text" placeholder="search by movie or director"></input>
+          <div className="options-padding">
+              <Button>
+                <ArrowDropDownIcon style={{ color: 'white' }}/>
+              </Button>
+              <Button>
+                  <SearchIcon style={{ color: 'white' }} />
+              </Button>
+              <input type="text" placeholder="Search by movie or director"></input>
+          </div>
         </div>
       </header>
     </div>

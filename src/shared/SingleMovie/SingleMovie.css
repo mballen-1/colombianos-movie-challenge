@@ -1,0 +1,66 @@
+.single-movie-container{
+    text-align: left;
+    padding: 32px 0 32px 410px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 1099px;
+}
+
+.single-movie-title {
+  font-family: 'FiraSans';
+  font-size: 30px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  border: none;
+  margin: 6px 0;
+}
+
+.single-movie-img {
+  width: 183px;
+  height: 139px;
+  margin-right: 18px;
+}
+
+.single-movie-detail {
+  font-family: Merriweather;
+  font-size: 12px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  color: #e8eaff;
+}
+
+.single-movie-score {
+        padding: 0;
+        display: flex;
+        align-items: center;
+}
+
+.single-movie-synopsis {
+  font-family: 'Merriweather';
+  font-size: 12px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  color: #e8eaff;
+}
+
+.single-movie-stats{
+    display: flex;
+    width: 22%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.m0 {
+    margin: 0;
+}

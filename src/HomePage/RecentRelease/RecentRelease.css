@@ -1,12 +1,21 @@
 h6 {
     border-bottom: 1px solid  #ffe000;
     width: 25%;
+    margin-bottom: 0;
+}
+
+h1 {
+    font-family: 'FiraSans';
+    font-weight: bold;
+    font-size: 60px;
+    letter-spacing: 1px;
+    margin: 6px 0;
 }
 
 .release-detail-container{
     height: 453px;
     color: white;
-    /* font-family: 'Merriweather'; */
+    font-family: 'Merriweather';
 }
 
 .release-detail-left {
@@ -18,9 +27,37 @@ h6 {
 .release-synopsis {
     width: 55%;
     margin-top: 10px;
+    font-family: 'Merriweather';
+    font-size: 16px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.27px;
+    color: #ffffff;
 }
 
-.release-score{
+.release-score {
     padding: 15px 0;
     display: flex;
+    align-items: center;
+    font-family: FiraSans;
+    font-size: 14.4px;
+    font-weight: 200;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    color: #ffffff;
+}
+
+.release-stats {
+  font-family: 'Merriweather';
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.23px;
+  color: #e8eaff;
 }
