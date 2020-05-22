@@ -1,13 +1,13 @@
 import React from 'react';
 import './FanFavourites.css';
-import { FavouritesProps } from './types';
+import { FavoritesProps } from './types';
 import { Button } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
 
-function FanFavourites(props: FavouritesProps) {
+function FanFavourites(props: FavoritesProps) {
 
-  const fanFavorites = props.favouritesData.map(
+  const fanFavorites = props.favoritesData.map(
     (movie : SingleMovieProp) => (
       <div>
         <Button className="single-favorite">
