@@ -1,23 +1,49 @@
 import React from 'react';
 import './FanFavourites.css';
 import { FavoritesProps } from './types';
-import { Button } from '@material-ui/core';
+import { Button, makeStyles, createStyles, Theme } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
 
-function FanFavourites(props: FavoritesProps) {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    favouriteButton: {
+      width: 355,
+      height: 218,
+      display: 'block'
+    }
+  }),
+);
 
+function FanFavourites(props: FavoritesProps) {
+  const classes = useStyles();
+  
   const fanFavorites = props.favoritesData.map(
     (movie : SingleMovieProp) => (
-      <div>
-        <Button className="single-favorite">
-          <img src={movie.imgPath} width='250px' height='375px'/>
+      <div className="single-fav-container" key={movie.movieId}>
+        <Button className={classes.favouriteButton} 
+          style={
+            { 
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0)), url(${movie.poster_path})`,
+              textAlign: 'left'
+            }
+          }
+        >
+          <div className="favorite-detail-container">
+            <span className="movie-title">{movie.title}</span>
+            <div className="favorite-stats favourite-detail__break favorite-detail__font">
+              <p>
+                {movie.release_date},
+              </p>
+              <p>
+                {movie.genres},
+              </p>
+              <p>
+                {movie.duration},
+              </p>
+            </div>
+          </div>
         </Button>
-        <h3>{movie.movieTitle}</h3>
-        <div className="fav-release">
-          <p>{movie.releaseDate}</p>
-          <p>{movie.genre}</p>
-        </div>
       </div>
     )
   );

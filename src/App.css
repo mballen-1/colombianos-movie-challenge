@@ -37,3 +37,14 @@
     transform: rotate(360deg);
   }
 }
+
+.movie-title {
+  font-family: FiraSans;
+  font-size: 30px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}

@@ -10,17 +10,21 @@ p {
     margin: 0;
 }
 
-.favorite-container{
-    padding: 0 10%;
+.favorite-container {
+    padding: 0 15%;
     display: flex;
     align-content: space-between;
     flex-wrap: wrap; 
-    font-family: FiraSans;
+    font-family: 'FiraSans';
 }
 
-.single-favorite{
-    width: 380px;
-    /*height: 700px;*/
+img {
+    width: 360px;
+    height: 218px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+}
+
+.single-favorite {
     margin-right: 40px;
     margin-bottom: 37px;
     font-size: 24px;
@@ -33,9 +37,39 @@ p {
     
 }
 
-.fav-release{
+.fav-release {
     all: initial;
     width: 100%;
     color: gray;
     font-family: FiraSans;
+}
+.single-fav-container {
+    margin: 40px;
+}
+
+.favorite-stats {
+    display: block;
+}
+
+.favorite-detail__font {
+  font-family: Merriweather;
+  font-size: 13px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.22px;
+  color: #e8eaff;
+}
+
+.favourite-detail__break {
+    word-break: break-all;
+}
+
+.favorite-main-container {
+    margin-left: 140px;
+}
+
+.favorite-detail-container {
+    padding-top: 24%;
 }

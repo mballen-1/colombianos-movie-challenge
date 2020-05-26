@@ -7,7 +7,7 @@ function MovieResult(movieProp: MovieDataProps) {
   const movieData = movieProp.movieData;
   return (
     <div className="single-movie-container">
-        <img src={movieData.imgPath}/>
+        <img src={movieData.poster_path}/>
         <SingleMovie movieData={movieProp.movieData}></SingleMovie>
     </div>
   );
