@@ -7,7 +7,7 @@ h4 {
 }
 
 .genres-container {
-    padding: 0 10%;
+    padding: 0 17%;
     display: flex;
     align-content: space-between;
     flex-wrap: wrap; 
@@ -33,4 +33,5 @@ button::before {
 
 .genres-main-container {
     margin-top: 60px;
+    margin-left: 140px;
 }

@@ -1,66 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import RecentRelease from './RecentRelease/RecentRelease';
 import background from '../assets/images/GAC_Parasite3.jpg';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
 import Header from '../shared/Header/Header';
+import { TMDB_API, PROXY_URL } from '../constants';
 
 export const mockReleaseData = {
-  imgPath: background,
-  movieTitle: 'Parasite',
-  releaseDate: '11/01/2019',
-  genre: "Comedy, Thriller, Drama",
+  poster_path: background,
+  title: 'Parasite',
+  release_date: '11/01/2019',
+  genres: "Comedy, Thriller, Drama",
   duration: "2h 15 min",
-  synopsis: "The Kim family—father Ki-taek, mother Chung-sook, daughter Ki-jung and son Ki-woo—live in a small semi-basement apartment (banjiha)"
+  overview: "The Kim family—father Ki-taek, mother Chung-sook, daughter Ki-jung and son Ki-woo—live in a small semi-basement apartment (banjiha)"
 }
 
 function HomePage() {
   
   const mockReleaseData = {
-    imgPath: background,
-    movieTitle: 'Parasite',
-    releaseDate: '11/01/2019',
-    genre: "Comedy, Thriller, Drama",
+    poster_path: background,
+    title: 'Parasite',
+    release_date: '11/01/2019',
+    genres: "Comedy, Thriller, Drama",
     duration: "2h 15 min",
-    synopsis: "The Kim family—father Ki-taek, mother Chung-sook, daughter Ki-jung and son Ki-woo—live in a small semi-basement apartment (banjiha)"
+    overview: "The Kim family—father Ki-taek, mother Chung-sook, daughter Ki-jung and son Ki-woo—live in a small semi-basement apartment (banjiha)",
+    budget: 30000000000000,
+    movieId: 5,
+    rating: 7.0
   }
 
-  const mockFavMovies = [
-    {
-      imgPath: 'https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg',
-      movieTitle: 'Toy Story (1995)',
-      releaseDate: '1995-10-30',
-      genre: "Adventure|Animation|Children|Comedy|Fantasy",
-      duration: "2h 15 min",
-      synopsis: "Led by Woody, Andy's toys live happily in his room until Andy's birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy's heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences."
-    },
-    {
-      imgPath: 'https://image.tmdb.org/t/p/w500/vgpXmVaVyUL7GGiDeiK1mKEKzcX.jpg',
-      movieTitle: 'Jumanji (1995)',
-      releaseDate: '1995-12-15',
-      genre: "Adventure|Children|Fantasy",
-      duration: "2h 15 min",
-      synopsis: "When siblings Judy and Peter discover an enchanted board game that opens the door to a magical world, they unwittingly invite Alan -- an adult who's been trapped inside the game for 26 years -- into their living room. Alan's only hope for freedom is to finish the game, which proves risky as all three find themselves running from giant rhinoceroses, evil monkeys and other terrifying creatures."
-    },
-    {
-      imgPath: 'https://image.tmdb.org/t/p/w500/4wjGMwPsdlvi025ZqR4rXnFDvBz.jpg',
-      movieTitle: 'Waiting to Exhale (1995)',
-      releaseDate: '1995-12-22',
-      genre: "Comedy|Drama|Romance",
-      duration: "2h 15 min",
-      synopsis: "Cheated on, mistreated and stepped on, the women are holding their breath, waiting for the elusive \"good man\" to break a string of less-than-stellar lovers. Friends and confidants Vannah, Bernie, Glo and Robin talk it all out, determined to find a better way to breathe."
-    },
-    {
-      imgPath: 'https://image.tmdb.org/t/p/w500/1FSXpj5e8l4KH6nVFO5SPUeraOt.jpg',
-      movieTitle: 'Grumpier Old Men (1995)',
-      releaseDate: '1995-12-22',
-      genre: "Comedy|Romance",
-      duration: "2h 15 min",
-      synopsis: "A family wedding reignites the ancient feud between next-door neighbors and fishing buddies John and Max. Meanwhile, a sultry Italian divorcée opens a restaurant at the local bait shop, alarming the locals who worry she'll scare the fish away. But she's less interested in seafood than she is in cooking up a hot time with Max."
-    }
-  ]
-  
   const genresMockData = [
     {
       name: 'drama',
@@ -127,16 +96,39 @@ function HomePage() {
       backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTx83lvojY3jM2CZu1zTT-fbD9klACcnKg-mp5W5kPd-EsWyurH&usqp=CAU'
     }
   ];
+  
+  // const [genres, setGenres] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  
 
+  useEffect(() => {
+    fetch(PROXY_URL + TMDB_API)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setMovies(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+  
   return (
     <div>
       <Header></Header>
-      <RecentRelease
+      { <RecentRelease
         movieData={mockReleaseData}
       ></RecentRelease>
+      }
       <Genres genresData={genresMockData}></Genres>
-      {/* <FanFavourites></FanFavourites> */}
-      <FanFavourites favoritesData={mockFavMovies}></FanFavourites>
+      { movies && 
+        <FanFavourites favoritesData={movies}></FanFavourites>
+      }
     </div>
   );
 }
