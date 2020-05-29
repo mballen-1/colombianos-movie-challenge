@@ -48,3 +48,22 @@
   letter-spacing: 0.5px;
   color: #ffffff;
 }
+
+.section-heading {
+  color: white;
+  padding: 12px;
+  text-align: left;
+  margin-left: 190px;
+  border-left: solid 9px #ffe000;
+  margin-bottom: 30px;
+}
+
+.section-heading__font {
+  font-family: 'FiraSans';
+  font-size: 24px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.4px;
+}

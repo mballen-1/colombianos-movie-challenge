@@ -11,7 +11,7 @@ p {
 }
 
 .favorite-container {
-    padding: 0 15%;
+    padding: 0px 149.5px;
     display: flex;
     align-content: space-between;
     flex-wrap: wrap; 
@@ -67,7 +67,8 @@ img {
 }
 
 .favorite-main-container {
-    margin-left: 140px;
+    margin-top: 60px;
+    margin-left: 126px;
 }
 
 .favorite-detail-container {

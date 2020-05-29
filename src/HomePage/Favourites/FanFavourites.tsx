@@ -32,15 +32,9 @@ function FanFavourites(props: FavoritesProps) {
           <div className="favorite-detail-container">
             <span className="movie-title">{movie.title}</span>
             <div className="favorite-stats favourite-detail__break favorite-detail__font">
-              <p>
-                {movie.release_date},
-              </p>
-              <p>
-                {movie.genres},
-              </p>
-              <p>
-                {movie.duration},
-              </p>
+              <p>{movie.release_date}</p>
+              <p>{movie.genres}</p>
+              <p>{movie.duration}</p>
             </div>
           </div>
         </Button>
@@ -72,7 +66,7 @@ function FanFavourites(props: FavoritesProps) {
 
   return (
     <div className="favorite-main-container">
-        <h4>Fan Favorites</h4>
+        <h4 className="section-heading section-heading__font">Fan Favorites</h4>
         <div className="favorite-container">
           {fanFavorites}
         </div>

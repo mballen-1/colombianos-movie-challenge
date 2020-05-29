@@ -19,10 +19,8 @@ h1 {
 }
 
 .release-detail-left {
-    width: 50%;
-    padding: 5% 0 0 190px;
+    padding: 5% 0 0 315px;
     text-align: left;
-    margin-left: 140px;
 }
 
 .release-synopsis {
@@ -52,7 +50,7 @@ h1 {
     color: #ffffff;
 }
 
-.release-stats {
+.release-stats__font {
   font-family: 'Merriweather';
   font-size: 14px;
   font-weight: 300;

@@ -18,26 +18,16 @@ function Genres(props: GenresProps) {
                 zIndex: 0
               }
             }>
-            <p style={
-               { 
-                color: '#ffffff',
-                fontFamily: 'FiraSans',
-                fontSize: 24,
-                fontWeight: 'bold',
-                letterSpacing: 0.4,
-                position: 'relative',
-                zIndex: 1000
-              }
-              }>
+            <span className="genre-name">
               {genre.name}
-             </p>
+             </span>
           </Button>
         </div>
       )
   );
   return (
     <div className="genres-main-container">
-      <h4>Genres</h4>
+      <h4 className="section-heading section-heading__font">Genres</h4>
       <div className="genres-container">
           {genreElements}
       </div>
