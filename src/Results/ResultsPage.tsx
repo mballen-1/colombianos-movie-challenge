@@ -1,6 +1,5 @@
 import React from 'react';
 import './ResultsPage.css';
-import Header from '../shared/Header/Header';
 import Pagination from '@material-ui/lab/Pagination';
 import Filters from './Filters/Filters';
 import background from '../assets/images/GAC_Parasite3.jpg';

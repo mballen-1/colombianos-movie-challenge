@@ -1,5 +1,8 @@
-export const GET_HOME_PAGE_MOVIES = 'GET_HOME_PAGE_MOVIES';
+export const DEFAULT_MOVIES_REQUESTED = 'DEFAULT_MOVIES_REQUESTED';
 
 interface GetHomePageMovies {
-    type: typeof GET_HOME_PAGE_MOVIES
+    type: typeof DEFAULT_MOVIES_REQUESTED
 }
+
+export type HomePageSagaTypes =
+    | GetHomePageMovies;

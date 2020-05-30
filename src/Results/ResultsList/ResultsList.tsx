@@ -1,7 +1,6 @@
 import React from 'react';
 import './ResultsList.css';
 import SingleMovie from '../../shared/SingleMovie/SingleMovie';
-import { MovieDataProps } from '../../HomePage/RecentRelease/types';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
 import { ResultsProps } from '../types';
 

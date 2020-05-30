@@ -22,7 +22,7 @@ function FanFavourites(props: FavoritesProps) {
   const fanFavorites = props.favoritesData.map(
     (movie : SingleMovieProp) => (
       <div className="single-favorite-container" key={movie.movieId}>
-        <Button className={classes.favouriteButton + ' ' + 'movie-element__opacity'} 
+        <Button className={`${classes.favouriteButton} movie-element__opacity`} 
           style={
             { 
               backgroundImage: `url(${movie.poster_path})`

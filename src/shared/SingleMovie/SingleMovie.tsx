@@ -8,7 +8,7 @@ function SingleMovie(props: MovieDataProps) {
   const backgroundUrl = data.poster_path;
   return (
             <div className="single-movie-container">
-                <img src={data.poster_path} className="single-movie-img"></img>
+                <img src={backgroundUrl} className="single-movie-img" alt='single-movie-background'></img>
                 <div className="single-movie-detail">
                     <h3 className="single-movie-title">{data.title}</h3>
                     <div className="single-movie-stats">

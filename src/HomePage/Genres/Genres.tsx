@@ -3,8 +3,6 @@ import './Genres.css';
 import { GenresProps, SingleGenreProp } from './types';
 import { Button } from '@material-ui/core';
 
-const singleGenreCustomProps = {}
-
 function Genres(props: GenresProps) {
   const genreElements = props.genresData.map(
     (genre: SingleGenreProp) => (
