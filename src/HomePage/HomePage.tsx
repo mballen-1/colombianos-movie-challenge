@@ -104,12 +104,13 @@ function HomePage() {
     setheaderInputTitle(title);
   }
 
+  // const onHeaderFormSubmit = () => {
+
+  // }
+
   const headerProps = {
       onInputTitleChange: onInputTitleChange
   }
-
-  console.log(headerInputTitle);
-  
 
   return (
     <>

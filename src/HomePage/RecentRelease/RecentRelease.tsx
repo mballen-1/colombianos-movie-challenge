@@ -9,7 +9,7 @@ function RecentRelease(props: MovieDataProps) {
   return (
     <div className="release-container">
         <div className="release-detail-container movie-element__opacity half-movie-element__opacity" style={{ backgroundImage: `url(${backgroundUrl})`}} >
-            <div className="release-detail-left">
+            <div className="release-detail__padding release-detail__text">
                 <h6 className="release-stats__font">Recent release</h6>
                 <h1>{data.title}</h1>
                 <div className="release-stats__font">
@@ -17,7 +17,7 @@ function RecentRelease(props: MovieDataProps) {
                     {data.genres},
                     {data.duration}
                 </div>
-                <div className="release-score">
+                <div className="release-user-score release-user-score__font">
                     <ScoreIcon style={{ color: '#ffe000' }}></ScoreIcon>
                     User score
                 </div>
