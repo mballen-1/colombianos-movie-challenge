@@ -21,6 +21,7 @@ h1 {
 .release-detail-left {
     padding: 5% 0 0 315px;
     text-align: left;
+    position: relative;
 }
 
 .release-synopsis {

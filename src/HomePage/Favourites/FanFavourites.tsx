@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme: Theme) =>
     favouriteButton: {
       width: 355,
       height: 218,
-      display: 'block'
+      display: 'block',
+      textAlign: 'left'
     }
   }),
 );
@@ -20,18 +21,17 @@ function FanFavourites(props: FavoritesProps) {
   
   const fanFavorites = props.favoritesData.map(
     (movie : SingleMovieProp) => (
-      <div className="single-fav-container" key={movie.movieId}>
-        <Button className={classes.favouriteButton} 
+      <div className="single-favorite-container" key={movie.movieId}>
+        <Button className={classes.favouriteButton + ' ' + 'movie-element__opacity'} 
           style={
             { 
-              backgroundImage: `linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0)), url(${movie.poster_path})`,
-              textAlign: 'left'
+              backgroundImage: `url(${movie.poster_path})`
             }
           }
         >
           <div className="favorite-detail-container">
             <span className="movie-title">{movie.title}</span>
-            <div className="favorite-stats favourite-detail__break favorite-detail__font">
+            <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
               <p>{movie.release_date}</p>
               <p>{movie.genres}</p>
               <p>{movie.duration}</p>
@@ -44,13 +44,7 @@ function FanFavourites(props: FavoritesProps) {
 
   const moreFavorites = (
     <Button className="more-buttom">
-    <p style={
-      { 
-        height: '20px',
-        color: '#ffe000',
-        position: 'relative',
-        fontFamily:'FiraSans'
-      }}>
+    <p className="favorites-see-more">
       See More
     </p>
       <ArrowDropDownIcon style={

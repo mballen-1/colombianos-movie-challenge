@@ -43,11 +43,12 @@ img {
     color: gray;
     font-family: FiraSans;
 }
-.single-fav-container {
+
+.single-favorite-container {
     margin: 40px;
 }
 
-.favorite-stats {
+.favorite-detail-data {
     display: block;
 }
 
@@ -73,4 +74,12 @@ img {
 
 .favorite-detail-container {
     padding-top: 24%;
+    position: relative;
+}
+
+.favorites-see-more {
+    height: 20px;
+    color: #ffe000;
+    position: 'relative';
+    font-family: 'FiraSans';
 }
