@@ -1,0 +1,1 @@
+export type CustomInputEvent = React.FormEvent<HTMLInputElement>;

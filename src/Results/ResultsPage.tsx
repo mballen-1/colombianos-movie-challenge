@@ -24,7 +24,6 @@ export const mockedResults = [
 function ResultsPage() {
   return (
     <div className="results-container">
-        <Header></Header>
         <Filters/>
         <ResultsList resultsData={mockedResults}></ResultsList>
         <Pagination variant="outlined" color="secondary" count={10} />

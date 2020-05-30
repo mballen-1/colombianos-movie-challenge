@@ -1,13 +1,5 @@
-h4 {
-    color: white;
-    padding: 12px;
-    text-align: left;
-    margin-left: 190px;
-    border-left: solid 9px #ffe000;
-}
-
 .genres-container {
-    padding: 0 17%;
+    padding: 0 10.7%;
     display: flex;
     align-content: space-between;
     flex-wrap: wrap; 
@@ -33,5 +25,14 @@ button::before {
 
 .genres-main-container {
     margin-top: 60px;
-    margin-left: 140px;
+    margin-left: 126px;
+}
+
+.genre-name {
+    color: #ffffff;
+    font-family: 'FiraSans';
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    position: relative;
 }
