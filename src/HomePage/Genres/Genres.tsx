@@ -8,21 +8,22 @@ const singleGenreCustomProps = {}
 function Genres(props: GenresProps) {
   const genreElements = props.genresData.map(
       (genre: SingleGenreProp) => (
-        <div key={Math.random()}>
-          <Button className="single-genre" 
-            style={
-              { backgroundImage: `linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0)), url(${genre.backgroundPath})`,
-                marginRight: 40,
-                marginBottom: 37,
-                position: 'relative',
-                zIndex: 0
-              }
-            }>
+        <>
+          <div key={Math.random()}>
+            <Button className="single-genre single-genre__font movie-element__opacity" 
+              style={
+                { 
+                  backgroundImage: `url(${genre.backgroundPath})`,
+                  marginRight: 40,
+                  marginBottom: 37
+                }
+              }>
             <span className="genre-name">
               {genre.name}
-             </span>
-          </Button>
-        </div>
+            </span>
+            </Button>
+          </div>
+        </>
       )
   );
   return (
