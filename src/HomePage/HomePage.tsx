@@ -5,7 +5,8 @@ import background from '../assets/images/GAC_Parasite3.jpg';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
 import Header from '../shared/Header/Header';
-import { TMDB_API, PROXY_URL } from '../constants';
+import { TMDB_API, GENRES_API, PROXY_URL } from '../constants';
+import {GENREIMAGES} from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
 
 export const mockReleaseData = {
@@ -19,6 +20,7 @@ export const mockReleaseData = {
 
 function HomePage() {
   
+  
   const mockReleaseData = {
     poster_path: background,
     title: 'Parasite',
@@ -31,57 +33,16 @@ function HomePage() {
     rating: 7.0
   }
 
-  const genresMockData = [
-    {
-      name: 'drama',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU'
-    },
-    {
-      name: 'animation',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTx83lvojY3jM2CZu1zTT-fbD9klACcnKg-mp5W5kPd-EsWyurH&usqp=CAU'
-    },
-    {
-      name: 'drama',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU'
-    },
-    {
-      name: 'animation',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTx83lvojY3jM2CZu1zTT-fbD9klACcnKg-mp5W5kPd-EsWyurH&usqp=CAU'
-    },
-    {
-      name: 'drama',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU'
-    },
-    {
-      name: 'animation',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTx83lvojY3jM2CZu1zTT-fbD9klACcnKg-mp5W5kPd-EsWyurH&usqp=CAU'
-    },
-    {
-      name: 'drama',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU'
-    },
-    {
-      name: 'animation',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTx83lvojY3jM2CZu1zTT-fbD9klACcnKg-mp5W5kPd-EsWyurH&usqp=CAU'
-    },
-    {
-      name: 'drama',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU'
-    },
-    {
-      name: 'animation',
-      backgroundPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTx83lvojY3jM2CZu1zTT-fbD9klACcnKg-mp5W5kPd-EsWyurH&usqp=CAU'
-    }
-  ];
-  
-  // const [genres, setGenres] = useState([]);
+  const initialValue = [{name: '', backgroundPath: ''}];
+
+  const [genresOnly, setGenresOnly] = useState([]);
+  const [genres, setGenres] = useState(initialValue);
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [displayHomeView, setdisplayHomeView ] = useState(true);
   const [headerInputTitle, setheaderInputTitle ] = useState('');
-  const [resultsLimit, setResultsLimit] = useState(27);
-  
+  const [resultsLimit, setResultsLimit] = useState(27);  
 
   useEffect(() => {
     fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}`)
@@ -97,6 +58,33 @@ function HomePage() {
         }
       )
   }, [])
+
+  useEffect(() => {
+    fetch(PROXY_URL + GENRES_API)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setGenresOnly(result.genres);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
+  useEffect(() => {
+    if(genres.length == 1)
+      genresOnly.map( (g) => setGenres( r => 
+        [ ...r,
+          {
+            name: g,
+            backgroundPath: GENREIMAGES(g)
+          }
+        ]
+      ))
+  })
 
   const renderQueryResults = false;
 
@@ -118,9 +106,9 @@ function HomePage() {
         headerData={headerProps}
       /> 
       { renderQueryResults ? <ResultsPage/> : 
-        <>
+        <>      
           <RecentRelease movieData={mockReleaseData}></RecentRelease>
-          <Genres genresData={genresMockData}></Genres> 
+          <Genres genresData={genres.filter(item => item.name != '' && item.name != '(no genres listed)' && item.name != 'IMAX')}></Genres> 
           <FanFavourites favoritesData={movies}></FanFavourites>
         </>
       }
