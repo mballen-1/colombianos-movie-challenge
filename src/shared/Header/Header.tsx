@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import './Header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -7,16 +7,18 @@ import { HeaderProps } from './types';
 import { CustomInputEvent } from '../types';
 
 function Header(props: HeaderProps) {
+  const dataProps = props.headerData;
 
   const handleInputChange  = (e : CustomInputEvent) => {
     const target = e.currentTarget;
     if(target !== null) {
-      props.headerData.onInputTitleChange(target.value);
+      dataProps.onInputTitleChange(target.value);
     }
   }
 
-  const handleInputSubmit = () => {
-      console.log('handleInputSubmit');
+  const handleInputSubmit = (e : FormEvent) => {
+      e.preventDefault();
+      dataProps.onHeaderInputSubmit();
   }
 
   return (
@@ -25,21 +27,21 @@ function Header(props: HeaderProps) {
         <div>
           <a href="/" className="muvizIcon">MUVIZ</a>
         </div>        
-        <div className="header-searchForm__display">
+        <div >
             <form onSubmit={handleInputSubmit}>
               <Button>
                 <ArrowDropDownIcon style={{ color: 'white' }}/>
               </Button>
               <Button
-                // onClick={handleInputSubmit}
+                onClick={handleInputSubmit}
               >
                 <SearchIcon style={{ color: 'white' }} />
               </Button>
               <input 
                 type="text" 
                 placeholder="Search by movie or director"
-                onChange={handleInputChange}
                 className='input__font input__background'
+                onChange={handleInputChange}
               />
             </form>              
         </div>

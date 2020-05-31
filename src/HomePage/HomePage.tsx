@@ -38,7 +38,6 @@ function HomePage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [displayHomeView, setdisplayHomeView] = useState(true);
   const [headerInputTitle, setheaderInputTitle] = useState('');
   const [resultsLimit, setResultsLimit] = useState(27);
   
@@ -46,7 +45,7 @@ function HomePage() {
   const [renderQueryResults, setRenderQueryResults] = useState(false);
 
   useEffect(() => {
-    fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}`)
+    fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}` + `&sort=title`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -58,9 +57,6 @@ function HomePage() {
           setError(error);
         }
       )
-  }, [])
-
-  useEffect(() => {
     fetch(PROXY_URL + GENRES_API)
       .then(res => res.json())
       .then(
@@ -104,7 +100,7 @@ function HomePage() {
         )
   }, [genreInput])
 
-  const onInputTitleChange = (title : string) => {
+  const onInputTitleChange = (title: string) => {
     setheaderInputTitle(title);
   }
 
@@ -116,13 +112,28 @@ function HomePage() {
     onGenreInputChange: onGenreInputChange
   }
 
-  const headerProps = {
-    onInputTitleChange: onInputTitleChange
+  const onHeaderInputSubmit = () => {
+    if(headerInputTitle){
+      fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}` + `&title=${headerInputTitle}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setMovies(result);
+          setRenderQueryResults(true)
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+    }
   }
 
-  // const onHeaderFormSubmit = () => {
-
-  // }
+  const headerProps = {
+    onInputTitleChange: onInputTitleChange,
+    onHeaderInputSubmit: onHeaderInputSubmit
+  }
 
   return (
     <>

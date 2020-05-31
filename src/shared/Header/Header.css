@@ -23,7 +23,7 @@
 
 .header-container__position {
     position: fixed;
-    width: 1400px;
+    width: 68%;
     height: 56px;
     background-color: transparent;
     z-index: 1;
@@ -72,6 +72,6 @@ input {
     background-color: #02040c;
 }
 
-.header-searchForm__display {
-    display: flex;
+input:focus {
+    outline: none;
 }
