@@ -22,7 +22,7 @@
 }
 
 .header-container__position {
-    position: absolute;
+    position: fixed;
     width: 1400px;
     height: 56px;
     background-color: transparent;
