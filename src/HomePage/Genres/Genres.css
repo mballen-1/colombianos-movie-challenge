@@ -1,8 +1,8 @@
 .genres-container {
-    padding: 0 10.7%;
+    padding: 0 190px;
     display: flex;
     align-content: space-between;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 .single-genre {
@@ -15,15 +15,10 @@
 }
 
 .single-genre__font {
-    font-family: FiraSans;
     font-size: 24px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
-}
-
-button::before {
-    opacity: 0.41;
 }
 
 .genres-main-container {
@@ -32,11 +27,16 @@ button::before {
 }
 
 .genre-name {
-    color: #ffffff;
-    font-family: 'FiraSans';
-    font-size: 24px;
+    text-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
+    font-family: Rubik;
+    font-size: 20px;
     font-weight: bold;
-    letter-spacing: 0.4px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.33px;
+    text-align: center;
+    color: #ffffff;
     position: relative;
     z-index: 1;
 }

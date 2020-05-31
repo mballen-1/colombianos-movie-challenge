@@ -8,7 +8,6 @@
 }
 
 .single-movie-title {
-  font-family: 'FiraSans';
   font-size: 30px;
   font-weight: bold;
   font-stretch: normal;
@@ -27,7 +26,6 @@
 }
 
 .single-movie-detail {
-  font-family: Merriweather;
   font-size: 12px;
   font-weight: 300;
   font-stretch: normal;
@@ -44,7 +42,6 @@
 }
 
 .single-movie-synopsis {
-  font-family: 'Merriweather';
   font-size: 12px;
   font-weight: 300;
   font-stretch: normal;

@@ -4,8 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import './assets/fonts/FiraSans-Regular.ttf'
-import './assets/fonts/Merriweather-Regular.ttf'
 
 ReactDOM.render(
   <BrowserRouter>

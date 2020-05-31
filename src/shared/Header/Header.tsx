@@ -15,19 +15,23 @@ function Header(props: HeaderProps) {
     }
   }
 
+  const handleInputSubmit = () => {
+      console.log('handleInputSubmit');
+  }
+
   return (
     <>
-      <header className="header-container">
+      <header className="header-container header-container__position">
         <div>
           <a href="/" className="muvizIcon">MUVIZ</a>
         </div>        
         <div className="header-searchForm__display">
-            <form>
+            <form onSubmit={handleInputSubmit}>
               <Button>
                 <ArrowDropDownIcon style={{ color: 'white' }}/>
               </Button>
               <Button
-                // onClick={this.handleChange}
+                // onClick={handleInputSubmit}
               >
                 <SearchIcon style={{ color: 'white' }} />
               </Button>
@@ -35,6 +39,7 @@ function Header(props: HeaderProps) {
                 type="text" 
                 placeholder="Search by movie or director"
                 onChange={handleInputChange}
+                className='input__font input__background'
               />
             </form>              
         </div>

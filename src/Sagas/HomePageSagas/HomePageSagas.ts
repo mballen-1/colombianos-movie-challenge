@@ -6,6 +6,18 @@ function* fetchDefaultMovies(action : any) {
       // const user = yield call(Api.fetchUser, action.payload.userId);
       // yield put({type: "USER_FETCH_SUCCEEDED", user: user});
       console.log('fetching movies')
+      // fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}`)
+      // .then(res => res.json())
+      // .then(
+      //   (result) => {
+      //     setIsLoaded(true);
+      //     setMovies(result);
+      //   },
+      //   (error) => {
+      //     setIsLoaded(true);
+      //     setError(error);
+      //   }
+      // )
    } catch (e) {
       yield put({type: "USER_FETCH_FAILED", message: e.message});
    }

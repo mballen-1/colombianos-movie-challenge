@@ -4,12 +4,13 @@ import { FavoritesProps } from './types';
 import { Button, makeStyles, createStyles, Theme } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
+import MovieRatingIcon from '../../shared/MovieRatingIcon/MovieRatingIcon';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     favouriteButton: {
-      width: 355,
-      height: 218,
+      width: 261,
+      height: 227,
       display: 'block',
       textAlign: 'left'
     }
@@ -18,23 +19,25 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function FanFavourites(props: FavoritesProps) {
   const classes = useStyles();
-  
   const fanFavorites = props.favoritesData.map(
-    (movie : SingleMovieProp) => (
+    (movie: SingleMovieProp) => (
       <div className="single-favorite-container" key={movie.movieId}>
-        <Button className={`${classes.favouriteButton} movie-element__opacity`} 
+        <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
           style={
-            { 
+            {
               backgroundImage: `url(${movie.poster_path})`
             }
           }
         >
           <div className="favorite-detail-container">
             <span className="movie-title">{movie.title}</span>
-            <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
-              <p>{movie.release_date}</p>
-              <p>{movie.genres}</p>
-              <p>{movie.duration}</p>
+            <div className="favorite-icon-details__container">
+              <MovieRatingIcon data={movie.rating}/>
+              <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
+                <p>{movie.release_date}</p>
+                <p>{movie.genres}</p>
+                <p>{movie.duration}</p>
+              </div>
             </div>
           </div>
         </Button>
@@ -44,8 +47,8 @@ function FanFavourites(props: FavoritesProps) {
 
   const moreFavorites = (
     <Button className="more-buttom">
-    <p className="favorites-see-more">
-      See More
+      <p className="favorites-see-more">
+        See More
     </p>
       <ArrowDropDownIcon style={
         {
@@ -53,20 +56,20 @@ function FanFavourites(props: FavoritesProps) {
           fontSize: 40,
           width: '50px',
           height: '50px',
-          fontFamily:'FiraSans'
-        }}/>
-    </Button>    
+          fontFamily: 'Rubik'
+        }} />
+    </Button>
   );
 
   return (
     <div className="favorite-main-container">
-        <h4 className="section-heading section-heading__font">Fan Favorites</h4>
-        <div className="favorite-container">
-          {fanFavorites}
-        </div>
-        <div>
-          {moreFavorites}
-        </div>
+      <h4 className="section-heading section-heading__font">Fan Favorites</h4>
+      <div className="favorite-container">
+        {fanFavorites}
+      </div>
+      <div>
+        {moreFavorites}
+      </div>
     </div>
   );
 }

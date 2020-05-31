@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: 10,
       minWidth: 259,
       backgroundColor: 'white',
-      fontFamily: 'FiraSans'
+      fontFamily: 'Rubik'
     },
     selectEmpty: {
       marginTop: 20,

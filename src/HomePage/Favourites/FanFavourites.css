@@ -1,9 +1,8 @@
 h3 {
     color: white;
-    border-bottom: 1px solid  #ffe000;
+    border-bottom: 1px solid #ffe000;
     width: 72%;
     margin: auto;
-    font-family: FiraSans;
 }
 
 p {
@@ -14,8 +13,7 @@ p {
     padding: 0px 149.5px;
     display: flex;
     align-content: space-between;
-    flex-wrap: wrap; 
-    font-family: 'FiraSans';
+    flex-wrap: wrap;
 }
 
 img {
@@ -33,15 +31,12 @@ img {
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.4px;
-    font-family: FiraSans;
-    
 }
 
 .fav-release {
     all: initial;
     width: 100%;
     color: gray;
-    font-family: FiraSans;
 }
 
 .single-favorite-container {
@@ -53,14 +48,14 @@ img {
 }
 
 .favorite-detail__font {
-  font-family: Merriweather;
-  font-size: 13px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.22px;
-  color: #e8eaff;
+    font-family: Karla;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.08;
+    letter-spacing: 0.2px;
+    color: #e8eaff;
 }
 
 .favourite-detail__break {
@@ -73,7 +68,7 @@ img {
 }
 
 .favorite-detail-container {
-    padding-top: 24%;
+    padding-top: 49%;
     position: relative;
 }
 
@@ -81,5 +76,9 @@ img {
     height: 20px;
     color: #ffe000;
     position: 'relative';
-    font-family: 'FiraSans';
+}
+
+.favorite-icon-details__container {
+    display: flex;
+    align-items: center;
 }

@@ -13,11 +13,11 @@ code {
 }
 
 @font-face {
-  font-family: 'FiraSans';
-  src: local('FiraSans'), url(./assets/fonts/FiraSans-Regular.ttf) format('truetype');
+  font-family: 'Rubik';
+  src: local('Rubik'), url(./assets/fonts/Rubik-Regular.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: 'Merriweather';
-  src: local('FiraSans'), url(./assets/fonts/Merriweather-Regular.ttf) format('truetype');
+  font-family: 'Karla';
+  src: local('Karla'), url(./assets/fonts/Karla-Regular.ttf) format('truetype');
 }

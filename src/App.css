@@ -1,84 +1,98 @@
 .App {
-  text-align: center;
-  background-color: #000;
+    text-align: center;
+    background-color: #000;
+    font-family: 'Rubik';
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .movie-title {
-  font-family: FiraSans;
-  font-size: 30px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.5px;
-  color: #ffffff;
+    font-family: 'Rubik';
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.33px;
+    color: #ffffff;
 }
 
 .section-heading {
-  color: white;
-  padding: 12px;
-  text-align: left;
-  margin-left: 190px;
-  border-left: solid 9px #ffe000;
-  margin-bottom: 30px;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    margin-left: 190px;
+    border-left: solid 9px #ffe000;
+    margin-bottom: 30px;
 }
 
 .section-heading__font {
-  font-family: 'FiraSans';
-  font-size: 24px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.4px;
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.4px;
 }
 
 .movie-element__opacity::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.55);
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.44);
 }
 
 .half-movie-element__opacity::before {
-  height: 453px;
-  margin-top: 56px;
+    height: 453px;
+    margin-top: 56px;
+}
+
+.movie-rating-icon {
+    margin-right: 16px;
+}
+
+.movie-rating-tspan {
+    stroke: #ffe000;
+}
+
+.button__opacity::before {
+    opacity: 0.68;
+    height: 50%;
+    margin-top: 44%;
 }

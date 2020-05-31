@@ -75,7 +75,7 @@ function HomePage() {
   }, [])
 
   useEffect(() => {
-    if(genres.length == 1)
+    if(genres.length === 1)
       genresOnly.map( (g) => setGenres( r => 
         [ ...r,
           {
@@ -108,7 +108,7 @@ function HomePage() {
       { renderQueryResults ? <ResultsPage/> : 
         <>      
           <RecentRelease movieData={mockReleaseData}></RecentRelease>
-          <Genres genresData={genres.filter(item => item.name != '' && item.name != '(no genres listed)' && item.name != 'IMAX')}></Genres> 
+          <Genres genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}></Genres> 
           <FanFavourites favoritesData={movies}></FanFavourites>
         </>
       }
