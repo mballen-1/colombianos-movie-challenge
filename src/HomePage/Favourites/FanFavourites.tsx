@@ -32,7 +32,7 @@ function FanFavourites(props: FavoritesProps) {
           <div className="favorite-detail-container">
             <span className="movie-title">{movie.title}</span>
             <div className="favorite-icon-details__container">
-              <MovieRatingIcon data={movie.rating/10}/>
+              <MovieRatingIcon data={movie.rating}/>
               <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
                 <p>{movie.release_date}</p>
                 <p>{movie.genres}</p>

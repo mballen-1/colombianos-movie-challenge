@@ -8,6 +8,7 @@ import Header from '../shared/Header/Header';
 import { TMDB_API, GENRES_API, PROXY_URL, MOVIES_BY_GENRE_API } from '../constants';
 import {GENREIMAGES} from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
+import { Router } from 'react-router-dom';
 
 function HomePage() {
   

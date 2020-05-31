@@ -20,7 +20,6 @@ export const mockedResults = [
   }
 ]
 
-
 function ResultsPage(props: ResultsProps) {
   return (
     <div className="results-container">
