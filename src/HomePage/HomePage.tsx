@@ -9,17 +9,7 @@ import { TMDB_API, GENRES_API, PROXY_URL } from '../constants';
 import {GENREIMAGES} from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
 
-export const mockReleaseData = {
-  poster_path: background,
-  title: 'Parasite',
-  release_date: '11/01/2019',
-  genres: "Comedy, Thriller, Drama",
-  duration: "2h 15 min",
-  overview: "The Kim family—father Ki-taek, mother Chung-sook, daughter Ki-jung and son Ki-woo—live in a small semi-basement apartment (banjiha)"
-}
-
 function HomePage() {
-  
   
   const mockReleaseData = {
     poster_path: background,
@@ -40,9 +30,11 @@ function HomePage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [displayHomeView, setdisplayHomeView ] = useState(true);
-  const [headerInputTitle, setheaderInputTitle ] = useState('');
-  const [resultsLimit, setResultsLimit] = useState(27);  
+  const [displayHomeView, setdisplayHomeView] = useState(true);
+  const [headerInputTitle, setheaderInputTitle] = useState('');
+  const [resultsLimit, setResultsLimit] = useState(27);
+  
+  const [genreInput, setGenreInput] = useState('');
 
   useEffect(() => {
     fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}`)
@@ -92,9 +84,19 @@ function HomePage() {
     setheaderInputTitle(title);
   }
 
+  const onGenreInputChange = (genre : string) => {
+    setGenreInput(genre);
+  }
+
+  const genresProps = {
+    onGenreInputChange: onGenreInputChange
+  }
+
   // const onHeaderFormSubmit = () => {
 
   // }
+
+  //genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')
 
   const headerProps = {
       onInputTitleChange: onInputTitleChange
@@ -102,13 +104,12 @@ function HomePage() {
 
   return (
     <>
-      <Header
-        headerData={headerProps}
-      /> 
+      <Header headerData={headerProps}/> 
       { renderQueryResults ? <ResultsPage/> : 
         <>      
           <RecentRelease movieData={mockReleaseData}></RecentRelease>
-          <Genres genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}></Genres> 
+          <Genres genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
+                  genreSelect={genresProps}></Genres> 
           <FanFavourites favoritesData={movies}></FanFavourites>
         </>
       }

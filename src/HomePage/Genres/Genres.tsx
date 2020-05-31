@@ -4,6 +4,11 @@ import { GenresProps, SingleGenreProp } from './types';
 import { Button } from '@material-ui/core';
 
 function Genres(props: GenresProps) {
+
+  function handleInputSubmit(genre: string) {
+    props.genreSelect.onGenreInputChange(genre);
+  }
+
   const genreElements = props.genresData.map(
     (genre: SingleGenreProp) => (
       <div key={Math.random()}>
@@ -14,10 +19,12 @@ function Genres(props: GenresProps) {
               marginRight: 40,
               marginBottom: 37
             }
-          }>
+          }
+          onClick={() => handleInputSubmit(genre.name)}
+          >
           <span className="genre-name">
             {genre.name}
-          </span>
+          </span> 
         </Button>
       </div>
     )
