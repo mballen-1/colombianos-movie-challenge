@@ -5,7 +5,7 @@ import background from '../assets/images/GAC_Parasite3.jpg';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
 import Header from '../shared/Header/Header';
-import { TMDB_API, GENRES_API, PROXY_URL } from '../constants';
+import { TMDB_API, GENRES_API, PROXY_URL, MOVIES_BY_GENRE_API } from '../constants';
 import {GENREIMAGES} from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
 
@@ -23,6 +23,13 @@ function HomePage() {
     rating: 7.0
   }
 
+  const mockGenre = [
+    {
+      name: "Comedy",
+      backgroundPath: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU"
+    }
+  ]
+
   const initialValue = [{name: '', backgroundPath: ''}];
 
   const [genresOnly, setGenresOnly] = useState([]);
@@ -35,6 +42,7 @@ function HomePage() {
   const [resultsLimit, setResultsLimit] = useState(27);
   
   const [genreInput, setGenreInput] = useState('');
+  const [renderQueryResults, setRenderQueryResults] = useState(false);
 
   useEffect(() => {
     fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}`)
@@ -67,7 +75,7 @@ function HomePage() {
   }, [])
 
   useEffect(() => {
-    if(genres.length === 1)
+    if(genres.length == 1)
       genresOnly.map( (g) => setGenres( r => 
         [ ...r,
           {
@@ -78,7 +86,22 @@ function HomePage() {
       ))
   })
 
-  const renderQueryResults = false;
+  useEffect(() => {
+    if(genreInput != '')
+      fetch(PROXY_URL + MOVIES_BY_GENRE_API + `${genreInput}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setMovies(result);
+            setRenderQueryResults(true)
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+  }, [genreInput])
 
   const onInputTitleChange = (title : string) => {
     setheaderInputTitle(title);
@@ -92,20 +115,18 @@ function HomePage() {
     onGenreInputChange: onGenreInputChange
   }
 
+  const headerProps = {
+    onInputTitleChange: onInputTitleChange
+  }
+
   // const onHeaderFormSubmit = () => {
 
   // }
 
-  //genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')
-
-  const headerProps = {
-      onInputTitleChange: onInputTitleChange
-  }
-
   return (
     <>
       <Header headerData={headerProps}/> 
-      { renderQueryResults ? <ResultsPage/> : 
+      { renderQueryResults ? <ResultsPage resultsData={movies}></ResultsPage> : 
         <>      
           <RecentRelease movieData={mockReleaseData}></RecentRelease>
           <Genres genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}

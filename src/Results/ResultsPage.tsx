@@ -4,6 +4,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import Filters from './Filters/Filters';
 import background from '../assets/images/GAC_Parasite3.jpg';
 import ResultsList from './ResultsList/ResultsList';
+import { ResultsProps } from './types';
 
 export const mockedResults = [
   {
@@ -20,11 +21,11 @@ export const mockedResults = [
 ]
 
 
-function ResultsPage() {
+function ResultsPage(props: ResultsProps) {
   return (
     <div className="results-container">
         <Filters/>
-        <ResultsList resultsData={mockedResults}></ResultsList>
+        <ResultsList resultsData={props.resultsData}></ResultsList>
         <Pagination variant="outlined" color="secondary" count={10} />
     </div>
   );
