@@ -4,8 +4,13 @@ import RecentRelease from './RecentRelease/RecentRelease';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
 import Header from '../shared/Header/Header';
+<<<<<<< HEAD
 import { TMDB_API, GENRES_API, MOVIES_BY_GENRE_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
+=======
+import { TMDB_API, GENRES_API, PROXY_URL, MOVIES_BY_GENRE_API, MOVIES_SORT_BY_API } from '../constants';
+import {GENREIMAGES} from '../constants/images';
+>>>>>>> Sorted filter
 import ResultsPage from '../Results/ResultsPage';
 
 function HomePage() {
@@ -41,7 +46,7 @@ function HomePage() {
   const [resultsLimit, setResultsLimit] = useState(27);
 
   const [genreInput, setGenreInput] = useState('');
-  const [renderQueryResults, setRenderQueryResults] = useState(false);
+  const [renderQueryResults, setRenderQueryResults] = useState(true);
 
   useEffect(() => {
     fetch(TMDB_API + `?limit=${resultsLimit}` + `&sort=title&title=2018`)
