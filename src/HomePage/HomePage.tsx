@@ -71,7 +71,7 @@ function HomePage() {
           setError(error);
         }
       )
-  }, [])
+  }, [resultsLimit])
 
   useEffect(() => {
     if (genres.length == 1)

@@ -5,6 +5,7 @@ import { Button, makeStyles, createStyles, Theme } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
 import MovieRatingIcon from '../../shared/MovieRatingIcon/MovieRatingIcon';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,27 +22,32 @@ function FanFavourites(props: FavoritesProps) {
   const classes = useStyles();
   const fanFavorites = props.favoritesData.map(
     (movie: SingleMovieProp) => (
-      <div className="single-favorite-container" key={movie.movieId}>
-        <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
-          style={
-            {
-              backgroundImage: `url(${movie.poster_path})`
-            }
-          }
-        >
-          <div className="favorite-detail-container">
-            <span className="movie-title">{movie.title}</span>
-            <div className="favorite-icon-details__container">
-              <MovieRatingIcon data={movie.rating}/>
-              <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
-                <p>{movie.release_date}</p>
-                <p>{movie.genres}</p>
-                <p>{movie.duration}</p>
-              </div>
+      <Link to={{
+        pathname: `/movie/${movie.movieId}`,
+        state: movie
+      }}>
+        <div className="single-favorite-container" key={movie.movieId}>
+          <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
+              style={
+                {
+                  backgroundImage: `url(${movie.poster_path})`
+                }
+              }
+          >
+            <div className="favorite-detail-container">
+              <span className="movie-title">{movie.title}</span>
+              <div className="favorite-icon-details__container">
+                <MovieRatingIcon data={movie.rating}/>
+                <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
+                  <p>{movie.release_date}</p>
+                  <p>{movie.genres}</p>
+                  <p>{movie.duration}</p>
+                </div>
             </div>
           </div>
         </Button>
       </div>
+    </Link>
     )
   );
 
