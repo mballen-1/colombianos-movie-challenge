@@ -1,7 +1,7 @@
 import React from 'react';
 import './Sorts.css';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
+import { MenuItem, FormControl, Select } from '@material-ui/core';
 import { SortsProps } from './types';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -10,10 +10,10 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: 10,
       minWidth: 259,
       backgroundColor: 'white',
-      fontFamily: 'Rubik'
+      fontFamily: 'Karla'
     },
     selectEmpty: {
-      marginTop: 20,
+      marginTop: theme.spacing(2),
     },
   }),
 );
@@ -24,28 +24,32 @@ function Sorts(props: SortsProps) {
   
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSort(event.target.value as string);
+    
+    console.log(sort);
+    props.sortsData.onSortInputChange(sort);
   };
 
-  function handleInputSubmit(sort: string) {
+  /*function handleInputSubmit(sort: string) {
     props.sortsData.onSortInputChange(sort);
-  }
-
-  const handleInputSubmit2 = () => {
-    console.log('handleInputSubmit');
-}
-
-function handleInputSubmit3(sort: string) {
     console.log(sort);
-  }
+  }*/
+
+  const options = [
+      { label: '', value: 'No filte'},
+      { label: 'title', value: 'A to Z'},
+      { label: 'ascending', value: 'Ascending Popularity'}
+  ]
 
   return (
     <div>
         <h6 className="filter-sort">Sort by:</h6>
         <FormControl className={classes.formControl}>
             <Select
-            value={sort}
-            onChange={handleChange}
-            onClick={() => handleInputSubmit(sort)}
+                labelId="sorted-select-label"
+                id="sorted-select"
+
+                value={sort}
+                onChange={handleChange}
             >
 
             <MenuItem value={''}>No filter</MenuItem>
@@ -60,5 +64,4 @@ function handleInputSubmit3(sort: string) {
 
 export default Sorts;
 
-//<InputLabel className='inputLabel-sort'>Sort By:</InputLabel>
 //onClick={() => handleInputSubmit(sort)}
