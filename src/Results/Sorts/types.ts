@@ -1,5 +1,5 @@
 export interface SortsProps {
     sortsData: {
-        onInputSortChange : (sort: string) => void;
+        onSortInputChange : (sort: string) => void;
     }
 }

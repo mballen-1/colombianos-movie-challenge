@@ -2,7 +2,7 @@ import React from 'react';
 import './Sorts.css';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
-import { SortsProps } from './Sorts';
+import { SortsProps } from './types';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,7 +27,15 @@ function Sorts(props: SortsProps) {
   };
 
   function handleInputSubmit(sort: string) {
-    props.sortsData.onInputSortChange(sort);
+    props.sortsData.onSortInputChange(sort);
+  }
+
+  const handleInputSubmit2 = () => {
+    console.log('handleInputSubmit');
+}
+
+function handleInputSubmit3(sort: string) {
+    console.log(sort);
   }
 
   return (
@@ -53,3 +61,4 @@ function Sorts(props: SortsProps) {
 export default Sorts;
 
 //<InputLabel className='inputLabel-sort'>Sort By:</InputLabel>
+//onClick={() => handleInputSubmit(sort)}
