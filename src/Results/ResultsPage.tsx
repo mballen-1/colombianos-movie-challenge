@@ -20,7 +20,7 @@ function ResultsPage(props: ResultsProps) {
   const [resultURL, setResultURL] = useState('');
 
   useEffect(() => {
-    fetch(PROXY_URL + props.apiUrl + '&sort=' + `${sortInput}`)
+    fetch(props.apiUrl + '&sort=' + `${sortInput}`)
       .then(res => res.json())
       .then(
         (result) => {

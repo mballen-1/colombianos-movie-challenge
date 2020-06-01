@@ -45,7 +45,11 @@ function HomePage() {
   const [resultURL, setResultURL] = useState('');
 
   useEffect(() => {
+<<<<<<< HEAD
     fetch(TMDB_API + `?limit=${resultsLimit}` + `&sort=title&title=2018`)
+=======
+    fetch(TMDB_API + `?limit=${resultsLimit}`)
+>>>>>>> Deleted PROXY_URL
       .then(res => res.json())
       .then(
         (result) => {
@@ -60,7 +64,14 @@ function HomePage() {
           setError(error);
         }
       )
+<<<<<<< HEAD
     fetch(GENRES_API)
+=======
+  }, [])
+
+  useEffect(() => {
+    fetch( GENRES_API)
+>>>>>>> Deleted PROXY_URL
       .then(res => res.json())
       .then(
         (result) => {
@@ -103,9 +114,13 @@ function HomePage() {
         )
   }, [genreInput])
 
+<<<<<<< HEAD
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
       fetch(TMDB_API + `?limit=${resultsLimit}` + `&title=${headerInputTitle}`)
+=======
+      fetch(url)
+>>>>>>> Deleted PROXY_URL
         .then(res => res.json())
         .then(
           (result) => {
