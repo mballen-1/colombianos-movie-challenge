@@ -1,63 +1,67 @@
-.single-movie-container{
+.single-movie-container {
     text-align: left;
-    padding: 32px 0 32px 410px;
+    padding: 32px 0 32px 0;
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
-    width: 1099px;
+    width: 760px;
+    margin-left: 340px;
 }
 
 .single-movie-title {
-  font-size: 30px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-  border: none;
-  margin: 6px 0;
+    font-size: 30px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    border: none;
+    margin: 6px 0;
+    font-family: 'Rubik';
 }
 
 .single-movie-img {
-  width: 183px;
-  height: 139px;
-  margin-right: 18px;
+    width: 183px;
+    height: 139px;
+    margin-right: 18px;
 }
 
-.single-movie-detail {
-  font-size: 12px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.2px;
-  color: #e8eaff;
+.single-movie-detail__font {
+    font-size: 12px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    font-family: 'Karla';
+    letter-spacing: 0.2px;
+    color: #e8eaff;
+    line-height: 1.25;
 }
 
 .single-movie-score {
-        padding: 0;
-        display: flex;
-        align-items: center;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 .single-movie-synopsis {
-  font-size: 12px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.2px;
-  color: #e8eaff;
+    font-size: 12px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    color: #e8eaff;
 }
 
-.single-movie-stats{
+.single-movie-stats {
     display: flex;
     width: 22%;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 
-.m0 {
-    margin: 0;
+.single-movie-img {
+    height: 170px;
+    background-color: #356aa1;
 }

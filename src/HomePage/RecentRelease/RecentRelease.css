@@ -1,13 +1,13 @@
 h6 {
-    border-bottom: 1px solid #ffe000;
-    width: 25%;
+    border-bottom: 4px solid #479aef;
     margin-bottom: 0;
+    width: 100px;
 }
 
 h1 {
     font-weight: bold;
     margin: 6px 0;
-    font-family: Rubik;
+    font-family: 'Rubik';
     font-size: 60px;
     font-stretch: normal;
     font-style: normal;
@@ -22,12 +22,28 @@ h1 {
 }
 
 .release-detail__padding {
-    padding: 5% 0 0 315px;
+    padding: 156px 0 0 330px;
 }
 
 .release-detail__text {
     text-align: left;
     position: relative;
+    width: 752px;
+    height: 302px;
+    z-index: 1;
+}
+
+.release-detail-container:before {
+    content: '';
+    position: absolute;
+    top: 156px;
+    right: 0;
+    left: 307px;
+    bottom: 0;
+    opacity: 0.71;
+    background-color: #060912;
+    width: 762px;
+    height: 302px;
 }
 
 .release-synopsis {
@@ -59,7 +75,7 @@ h1 {
     font-family: 'Karla';
 }
 
-.release-stats__font {
+.recent-release__font {
     font-family: Karla;
     font-size: 14px;
     font-weight: normal;
@@ -68,6 +84,7 @@ h1 {
     line-height: normal;
     letter-spacing: 0.23px;
     color: #e8eaff;
+    white-space: pre-wrap;
 }
 
 .release-overview {
@@ -79,4 +96,8 @@ h1 {
     line-height: normal;
     letter-spacing: 0.27px;
     color: #ffffff;
+}
+
+.recent-release__tag {
+    color: #a1c4e7;
 }

@@ -7,9 +7,7 @@ import { Button } from '@material-ui/core';
 
 function ResultsList(props: ResultsProps) {
   const resultsRenderList = props.resultsData.map((result:SingleMovieProp) => 
-    <Button>
       <SingleMovie movieData={result}/>
-    </Button>
   );
   return (
     <div className="results-container">

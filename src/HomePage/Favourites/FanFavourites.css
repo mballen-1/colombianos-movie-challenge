@@ -16,12 +16,6 @@ p {
     flex-wrap: wrap;
 }
 
-img {
-    width: 360px;
-    height: 218px;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-}
-
 .single-favorite {
     margin-right: 40px;
     margin-bottom: 37px;
@@ -68,7 +62,7 @@ img {
 }
 
 .favorite-detail-container {
-    padding-top: 40%;
+    padding-top: 38%;
     position: relative;
 }
 
@@ -81,4 +75,5 @@ img {
 .favorite-icon-details__container {
     display: flex;
     align-items: center;
+    padding-top: 4px;
 }

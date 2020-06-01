@@ -23,10 +23,9 @@
 
 .header-container__position {
     position: fixed;
-    width: 68%;
-    height: 56px;
-    background-color: transparent;
-    z-index: 1;
+    width: 74%;
+    height: 70px;
+    z-index: 2;
 }
 
 .header-container__position::before {

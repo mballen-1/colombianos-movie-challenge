@@ -12,7 +12,7 @@ function Genres(props: GenresProps) {
   const genreElements = props.genresData.map(
     (genre: SingleGenreProp) => (
       <div key={Math.random()}>
-        <Button className="single-genre single-genre__font movie-element__opacity"
+        <Button className="single-genre single-genre__font"
           style={
             {
               backgroundImage: `url(${genre.backgroundPath})`,

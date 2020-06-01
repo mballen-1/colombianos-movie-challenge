@@ -55,7 +55,8 @@
     padding: 12px;
     text-align: left;
     margin-left: 190px;
-    border-left: solid 9px #ffe000;
+    border-left: solid 9px #479aef;
+    height: 28px;
     margin-bottom: 30px;
 }
 
@@ -93,6 +94,10 @@
 
 .button__opacity::before {
     opacity: 0.68;
-    height: 55%;
-    margin-top: 39%;
+    height: 57%;
+    margin-top: 38%;
+}
+
+.m0 {
+    margin: 0;
 }

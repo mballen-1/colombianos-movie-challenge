@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import RecentRelease from './RecentRelease/RecentRelease';
-import background from '../assets/images/GAC_Parasite3.jpg';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
 import Header from '../shared/Header/Header';
-import { TMDB_API, GENRES_API, PROXY_URL, MOVIES_BY_GENRE_API } from '../constants';
-import {GENREIMAGES} from '../constants/images';
+import { TMDB_API, GENRES_API, MOVIES_BY_GENRE_API } from '../constants';
+import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
-import { Router } from 'react-router-dom';
 
 function HomePage() {
-  
+
   const mockReleaseData = {
-    poster_path: background,
-    title: 'Parasite',
-    release_date: '11/01/2019',
-    genres: "Comedy, Thriller, Drama",
-    duration: "2h 15 min",
-    overview: "The Kim family—father Ki-taek, mother Chung-sook, daughter Ki-jung and son Ki-woo—live in a small semi-basement apartment (banjiha)",
-    budget: 30000000000000,
-    movieId: 5,
-    rating: 7.0
+    poster_path: '',
+    title: '',
+    release_date: '',
+    genres: "",
+    duration: "",
+    overview: "",
+    budget: 0,
+    movieId: 0,
+    rating: 0
   }
 
   const mockGenre = [
@@ -31,33 +29,37 @@ function HomePage() {
     }
   ]
 
-  const initialValue = [{name: '', backgroundPath: ''}];
+  const initialValue = [{ name: '', backgroundPath: '' }];
 
   const [genresOnly, setGenresOnly] = useState([]);
   const [genres, setGenres] = useState(initialValue);
   const [movies, setMovies] = useState([]);
+  const [recentRelease, setRecentRelease] = useState(mockReleaseData);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [headerInputTitle, setheaderInputTitle] = useState('');
   const [resultsLimit, setResultsLimit] = useState(27);
-  
+
   const [genreInput, setGenreInput] = useState('');
   const [renderQueryResults, setRenderQueryResults] = useState(false);
 
   useEffect(() => {
-    fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}` + `&sort=title`)
+    fetch(TMDB_API + `?limit=${resultsLimit}` + `&sort=title&title=2018`)
       .then(res => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
           setMovies(result);
+          if(result.length > 0){
+            setRecentRelease(result[0]);
+          }
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       )
-    fetch(PROXY_URL + GENRES_API)
+    fetch(GENRES_API)
       .then(res => res.json())
       .then(
         (result) => {
@@ -72,20 +74,20 @@ function HomePage() {
   }, [])
 
   useEffect(() => {
-    if(genres.length == 1)
-      genresOnly.map( (g) => setGenres( r => 
-        [ ...r,
-          {
-            name: g,
-            backgroundPath: GENREIMAGES(g)
-          }
+    if (genres.length == 1)
+      genresOnly.map((g) => setGenres(r =>
+        [...r,
+        {
+          name: g,
+          backgroundPath: GENREIMAGES(g)
+        }
         ]
       ))
   })
 
   useEffect(() => {
-    if(genreInput != '')
-      fetch(PROXY_URL + MOVIES_BY_GENRE_API + `${genreInput}`)
+    if (genreInput != '')
+      fetch(MOVIES_BY_GENRE_API + `${genreInput}`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -100,34 +102,34 @@ function HomePage() {
         )
   }, [genreInput])
 
+  const onHeaderInputSubmit = () => {
+    if (headerInputTitle) {
+      fetch(TMDB_API + `?limit=${resultsLimit}` + `&title=${headerInputTitle}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setMovies(result);
+            setRenderQueryResults(true)
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    }
+  }
+
   const onInputTitleChange = (title: string) => {
     setheaderInputTitle(title);
   }
 
-  const onGenreInputChange = (genre : string) => {
+  const onGenreInputChange = (genre: string) => {
     setGenreInput(genre);
   }
 
   const genresProps = {
     onGenreInputChange: onGenreInputChange
-  }
-
-  const onHeaderInputSubmit = () => {
-    if(headerInputTitle){
-      fetch(PROXY_URL + TMDB_API + `?limit=${resultsLimit}` + `&title=${headerInputTitle}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setMovies(result);
-          setRenderQueryResults(true)
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }
   }
 
   const headerProps = {
@@ -137,12 +139,14 @@ function HomePage() {
 
   return (
     <>
-      <Header headerData={headerProps}/> 
-      { renderQueryResults ? <ResultsPage resultsData={movies}></ResultsPage> : 
-        <>      
-          <RecentRelease movieData={mockReleaseData}></RecentRelease>
-          <Genres genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
-                  genreSelect={genresProps}></Genres> 
+      <Header headerData={headerProps} />
+      {renderQueryResults ?
+        <ResultsPage resultsData={movies}></ResultsPage> :
+        <>
+          <RecentRelease movieData={recentRelease}></RecentRelease>
+          <Genres
+            genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
+            genreSelect={genresProps}></Genres>
           <FanFavourites favoritesData={movies}></FanFavourites>
         </>
       }
