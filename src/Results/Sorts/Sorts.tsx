@@ -48,7 +48,7 @@ function handleInputSubmit3(sort: string) {
             onClick={() => handleInputSubmit(sort)}
             >
 
-            <MenuItem value=''>None</MenuItem>
+            <MenuItem value={''}>No filter</MenuItem>
             <MenuItem value={'title'}>A to Z</MenuItem>
             <MenuItem value={'ascending-rating'}>Ascending Popularity</MenuItem>
 

@@ -20,24 +20,20 @@ function ResultsPage(props: ResultsProps) {
   const [resultURL, setResultURL] = useState('');
 
   useEffect(() => {
-    if(sortInput != ''){
-      var url = props.apiUrl + '&sort=' + `${sortInput}`
-      setResultURL(url)
-
-      fetch(PROXY_URL + url)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setMovies(result);
-            setIsSorted(true)
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
-    }
+    fetch(PROXY_URL + props.apiUrl + '&sort=' + `${sortInput}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setMovies(result);
+          setIsSorted(true)
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+    
   }, [sortInput])
 
   const onSortInputChange = (sort : string) => {
@@ -53,7 +49,7 @@ function ResultsPage(props: ResultsProps) {
         <Filters/>
         <Sorts sortsData={sortProps}></Sorts>
         <ResultsList resultsData={isSorted ? movies : props.resultsData}
-                     apiUrl={resultURL}></ResultsList>
+                     apiUrl={props.apiUrl}></ResultsList>
         <Pagination variant="outlined" color="secondary" count={10} />
     </div>
   );
