@@ -1,0 +1,103 @@
+h6 {
+    border-bottom: 4px solid #479aef;
+    margin-bottom: 0;
+    width: 100px;
+}
+
+h1 {
+    font-weight: bold;
+    margin: 6px 0;
+    font-family: 'Rubik';
+    font-size: 60px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.release-detail-container {
+    height: 512px;
+    color: white;
+}
+
+.release-detail__padding {
+    padding: 156px 0 0 330px;
+}
+
+.release-detail__text {
+    text-align: left;
+    position: relative;
+    width: 752px;
+    height: 302px;
+    z-index: 1;
+}
+
+.release-detail-container:before {
+    content: '';
+    position: absolute;
+    top: 156px;
+    right: 0;
+    left: 307px;
+    bottom: 0;
+    opacity: 0.71;
+    background-color: #060912;
+    width: 762px;
+    height: 302px;
+}
+
+.release-synopsis {
+    width: 55%;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.27px;
+    color: #ffffff;
+}
+
+.release-user-score {
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+}
+
+.release-user-score__font {
+    font-size: 14.4px;
+    font-weight: 200;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    color: #ffffff;
+    font-family: 'Karla';
+}
+
+.recent-release__font {
+    font-family: Karla;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.23px;
+    color: #e8eaff;
+    white-space: pre-wrap;
+}
+
+.release-overview {
+    font-family: Karla;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.27px;
+    color: #ffffff;
+}
+
+.recent-release__tag {
+    color: #a1c4e7;
+}

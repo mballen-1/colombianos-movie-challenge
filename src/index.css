@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Rubik';
+  src: local('Rubik'), url(./assets/fonts/Rubik-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Karla';
+  src: local('Karla'), url(./assets/fonts/Karla-Regular.ttf) format('truetype');
+}

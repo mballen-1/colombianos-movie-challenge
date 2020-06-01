@@ -1,0 +1,18 @@
+.filters-container {
+    height: 170px;
+    background-color: #356aa1;
+}
+
+.filter-h6 {
+    color: black;
+    text-align: end;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    padding-left: 22px;
+    padding-top: 10px;
+}

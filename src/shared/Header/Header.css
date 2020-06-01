@@ -1,0 +1,76 @@
+.muvizIcon {
+    color: #ffe000;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 9.4px;
+    text-align: left;
+    text-decoration: none;
+    padding-right: 33%;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 315px;
+    padding-right: 188px;
+    height: 56px;
+    align-items: center;
+    background-image: linear-gradient(to top, rgba(7, 7, 7, 0) 88%, rgba(238, 238, 238, 0));
+}
+
+.header-container__position {
+    position: fixed;
+    width: 74%;
+    height: 70px;
+    z-index: 2;
+}
+
+.header-container__position::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0.4;
+    background-color: #141414;
+    z-index: -1;
+}
+
+.material-icons.md-dark {
+    color: white;
+}
+
+.material-icons.orange600 {
+    color: #FB8C00;
+}
+
+input {
+    min-width: 317px;
+    height: 38px;
+    padding-left: 10px;
+}
+
+.input__font {
+    font-family: 'Karla';
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.27px;
+    color: #ffffff;
+}
+
+.input__background {
+    opacity: 0.59;
+    border-radius: 24.5px;
+    background-color: #02040c;
+}
+
+input:focus {
+    outline: none;
+}
