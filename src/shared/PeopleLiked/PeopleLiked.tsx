@@ -1,8 +1,8 @@
 import React from 'react';
 import PeopleLikedProps from './types';
-import './PeopleLikedIcon.css'
+import './PeopleLiked.css'
 
-function PeopleLikedIcon(props: PeopleLikedProps) {
+function PeopleLiked(props: PeopleLikedProps) {
     const finalRating = Number(props.data / 10).toPrecision(3);
     return (
         <div>
@@ -34,9 +34,12 @@ function PeopleLikedIcon(props: PeopleLikedProps) {
                     </g>
                 </g>
             </svg>
-            <p className="people-liked-p">liked this</p>
+            {
+                props.displayBottomTag ?
+                (<p className="people-liked-p">liked this</p>): <></>
+            }
         </div>
     );
 }
 
-export default PeopleLikedIcon;
+export default PeopleLiked;

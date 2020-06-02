@@ -10,7 +10,6 @@
 
 .single-movie-title {
     font-size: 30px;
-    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
@@ -18,7 +17,7 @@
     color: #ffffff;
     border: none;
     margin: 6px 0;
-    font-family: 'Rubik';
+    font-family: 'Rubik-Bold';
 }
 
 .single-movie-img {
@@ -64,4 +63,13 @@
 .single-movie-img {
     height: 170px;
     background-color: #356aa1;
+}
+
+.single-movie-basic-data__padding {
+    padding-bottom: 7px;
+}
+
+.single-movie-liked {
+    margin-right: 27px;
+    width: 83px;
 }

@@ -83,3 +83,8 @@
 .recent-release__tag {
     color: #a1c4e7;
 }
+
+.release-liked-span {
+    width: 83px;
+    margin-right: 30px;
+}
