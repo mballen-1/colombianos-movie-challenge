@@ -50,6 +50,7 @@ p {
     line-height: 1.08;
     letter-spacing: 0.2px;
     color: #e8eaff;
+    text-transform: capitalize;
 }
 
 .favourite-detail__break {
@@ -68,7 +69,7 @@ p {
 
 .favorites-see-more {
     height: 20px;
-    color: #ffe000;
+    color: #479aef;
     position: 'relative';
 }
 
