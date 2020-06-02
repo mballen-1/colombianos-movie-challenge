@@ -7,26 +7,33 @@ import { SortsProps } from './types';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
-      margin: 10,
-      minWidth: 259,
+      margin: theme.spacing(1),
+      minWidth: 230,
       backgroundColor: 'white',
-      fontFamily: 'Karla'
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
+      opacity: 0.57,
+      fontFamily: 'Karla',
+      borderRadius: 80
     },
   }),
 );
 
 function Sorts(props: SortsProps) {
   const classes = useStyles();
-  const [sort, setSort] = React.useState('');
+  const [sort, setSort] = React.useState('Sort By');
+  const [top, setTop] = React.useState('10');
   
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChangeSortBy = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSort(event.target.value as string);
     
     console.log(sort);
-    props.sortsData.onSortInputChange(sort);
+    props.sortsData.onSortInputChange(sort, top);
+  };
+
+  const handleChangeTops = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setTop(event.target.value as string);
+    
+    console.log(top);
+    props.sortsData.onSortInputChange(sort, top);
   };
 
   /*function handleInputSubmit(sort: string) {
@@ -35,22 +42,34 @@ function Sorts(props: SortsProps) {
   }*/
 
   return (
-    <div>
+    <div className="tops-filter">
+      <div>
         <FormControl className={classes.formControl}>
-          <InputLabel>Sort By</InputLabel>
+            <Select
+                labelId="top-select-label"
+                id="top-select"
+                value={top}
+                onChange={handleChangeTops}
+            >
+            <MenuItem value={'10'}>Top 10</MenuItem>
+            <MenuItem value={'100'}>Top 100</MenuItem>
+            </Select>
+        </FormControl>
+      </div>
+      <div>
+        <FormControl className={classes.formControl}>
             <Select
                 labelId="sorted-select-label"
                 id="sorted-select"
                 value={sort}
-                onChange={handleChange}
+                onChange={handleChangeSortBy}
             >
-
-            <MenuItem value={''}>No filter</MenuItem>
+            <MenuItem value={'Sort By'}>Sort By</MenuItem>
             <MenuItem value={'title'}>Title (A-Z)</MenuItem>
             <MenuItem value={'descending-rating'}>Rating Descending</MenuItem>
-
             </Select>
         </FormControl>
+      </div>
     </div>
   );
 }

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Tops(props: TopsProps) {
   const classes = useStyles();
-  const [top, setTop] = React.useState('');
+  const [top, setTop] = React.useState('10');
   
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setTop(event.target.value as string);
@@ -40,9 +40,8 @@ function Tops(props: TopsProps) {
                 onChange={handleChange}
             >
 
-            <MenuItem value={''}>No filter</MenuItem>
-            <MenuItem value={'top10'}>Top 10</MenuItem>
-            <MenuItem value={'top100'}>Top 100</MenuItem>
+            <MenuItem value={'10'}>Top 10</MenuItem>
+            <MenuItem value={'100'}>Top 100</MenuItem>
 
             </Select>
         </FormControl>
@@ -51,5 +50,3 @@ function Tops(props: TopsProps) {
 }
 
 export default Tops;
-
-//onClick={() => handleInputSubmit(sort)}

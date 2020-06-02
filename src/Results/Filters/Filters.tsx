@@ -10,6 +10,7 @@ import Tops from './Tops/Tops';
 function Filters(props: FiltersProps) {
   const [movies, setMovies] = useState([]);
   const [sortInput, setSortInput] = React.useState('');
+  const [topInput, setTopInput] = React.useState('10');
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -18,7 +19,7 @@ function Filters(props: FiltersProps) {
   }
 
   useEffect(() => {
-    fetch(props.apiUrl + '&sort=' + `${sortInput}`)
+    fetch(props.apiUrl + '&sort=' + `${sortInput}` + '&limit=' + `${topInput}`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -30,11 +31,11 @@ function Filters(props: FiltersProps) {
             setError(error);
           }
         )
-    
-  }, [sortInput])
+  }, [sortInput, topInput])
 
-  const onSortInputChange = (sort : string) => {
+  const onSortInputChange = (sort : string, tops : string) => {
     handleInputSubmit(movies);
+    setTopInput(tops);
     setSortInput(sort);
   }
 
@@ -42,15 +43,19 @@ function Filters(props: FiltersProps) {
     onSortInputChange: onSortInputChange
   }
 
-  const topsProps = {
-    onTopsInputChange: onSortInputChange
+  /*const onTopsInputChange = (tops : string) => {
+    handleInputSubmit(movies);
+    setTopInput(tops);
   }
+
+  const topsProps = {
+    onTopsInputChange: onTopsInputChange
+  }*/
 
   return (
     <div className="filters-container">
       <h6 className="filter-h6">Display options:</h6>
-      <div className="tops-filter">
-        <Tops topsData={topsProps}></Tops>
+      <div>
         <Sorts sortsData={sortProps}></Sorts>
       </div>
     </div>
@@ -58,6 +63,9 @@ function Filters(props: FiltersProps) {
 }
 
 export default Filters;
+
+
+//<Tops topsData={topsProps}></Tops> 
 
 /*const useStyles = makeStyles((theme: Theme) =>
   createStyles({

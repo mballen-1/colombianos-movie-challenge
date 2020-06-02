@@ -82,7 +82,7 @@ function HomePage() {
 
   useEffect(() => {
     if (genreInput != ''){
-      setResultURL(TMDB_API + `?limit=${resultsLimit}` + `&genres=` + `${genreInput}`)
+      setResultURL(TMDB_API + `?genres=` + `${genreInput}`)
       fetch(resultURL)
         .then(res => res.json())
         .then(
