@@ -20,11 +20,17 @@ function MovieResult(props) {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result.ratings)
-          const data = result.ratings.reduce((acc, curr) => (
+          let data = result.ratings.reduce((acc, curr) => (
             [...acc, { x: curr.year, y: curr.rating/10}]
           ), [])
-          console.log(result.ratings)
+        
+        const finish = data[0].x
+          if( Object.keys(data).length < 5){
+            for (let year = data[0].x; year > finish-5; year--) {
+              data = [ { x: year-1, y: 0},...data]
+            }
+          }
+
           setData({
             id: title,
             data,
