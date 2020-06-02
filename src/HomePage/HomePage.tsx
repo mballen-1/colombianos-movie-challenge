@@ -4,7 +4,7 @@ import RecentRelease from './RecentRelease/RecentRelease';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
 import Header from '../shared/Header/Header';
-import { TMDB_API, GENRES_API, MOVIES_BY_GENRE_API } from '../constants';
+import { TMDB_API, GENRES_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
 
@@ -22,13 +22,6 @@ function HomePage() {
     rating: 0
   }
 
-  const mockGenre = [
-    {
-      name: "Comedy",
-      backgroundPath: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU"
-    }
-  ]
-
   const initialValue = [{ name: '', backgroundPath: '' }];
 
   const [genresOnly, setGenresOnly] = useState([]);
@@ -45,11 +38,7 @@ function HomePage() {
   const [resultURL, setResultURL] = useState('');
 
   useEffect(() => {
-<<<<<<< HEAD
     fetch(TMDB_API + `?limit=${resultsLimit}` + `&sort=title&title=2018`)
-=======
-    fetch(TMDB_API + `?limit=${resultsLimit}`)
->>>>>>> Deleted PROXY_URL
       .then(res => res.json())
       .then(
         (result) => {
@@ -64,14 +53,8 @@ function HomePage() {
           setError(error);
         }
       )
-<<<<<<< HEAD
-    fetch(GENRES_API)
-=======
-  }, [])
 
-  useEffect(() => {
-    fetch( GENRES_API)
->>>>>>> Deleted PROXY_URL
+    fetch(GENRES_API)
       .then(res => res.json())
       .then(
         (result) => {
@@ -98,8 +81,9 @@ function HomePage() {
   })
 
   useEffect(() => {
-    if (genreInput != '')
-      fetch(MOVIES_BY_GENRE_API + `${genreInput}`)
+    if (genreInput != ''){
+      setResultURL(TMDB_API + `?limit=${resultsLimit}` + `&genres=` + `${genreInput}`)
+      fetch(resultURL)
         .then(res => res.json())
         .then(
           (result) => {
@@ -112,15 +96,12 @@ function HomePage() {
             setError(error);
           }
         )
-  }, [genreInput])
+    }
+  }, [genreInput, resultURL])
 
-<<<<<<< HEAD
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
       fetch(TMDB_API + `?limit=${resultsLimit}` + `&title=${headerInputTitle}`)
-=======
-      fetch(url)
->>>>>>> Deleted PROXY_URL
         .then(res => res.json())
         .then(
           (result) => {

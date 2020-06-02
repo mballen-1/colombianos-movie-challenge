@@ -2,14 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './ResultsPage.css';
 import Pagination from '@material-ui/lab/Pagination';
 import Filters from './Filters/Filters';
-<<<<<<< HEAD
-=======
 import Sorts from './Sorts/Sorts';
-import background from '../assets/images/GAC_Parasite3.jpg';
->>>>>>> sorted by title
 import ResultsList from './ResultsList/ResultsList';
 import { ResultsProps } from './types';
-import { PROXY_URL } from '../constants';
 
 function ResultsPage(props: ResultsProps) {
   const [movies, setMovies] = useState([]);
@@ -17,22 +12,21 @@ function ResultsPage(props: ResultsProps) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isSorted, setIsSorted] = useState(false);
-  const [resultURL, setResultURL] = useState('');
 
   useEffect(() => {
     fetch(props.apiUrl + '&sort=' + `${sortInput}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setMovies(result);
-          setIsSorted(true)
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setMovies(result);
+            setIsSorted(true)
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
     
   }, [sortInput])
 
