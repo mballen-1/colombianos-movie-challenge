@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Sorts.css';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { MenuItem, FormControl, Select } from '@material-ui/core';
+import { MenuItem, FormControl, Select, InputLabel } from '@material-ui/core';
 import { SortsProps } from './types';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,19 +36,18 @@ function Sorts(props: SortsProps) {
 
   return (
     <div>
-        <h6 className="filter-sort">Sort by:</h6>
         <FormControl className={classes.formControl}>
+          <InputLabel>Sort By</InputLabel>
             <Select
                 labelId="sorted-select-label"
                 id="sorted-select"
-
                 value={sort}
                 onChange={handleChange}
             >
 
             <MenuItem value={''}>No filter</MenuItem>
-            <MenuItem value={'title'}>A to Z</MenuItem>
-            <MenuItem value={'ascending-rating'}>Ascending Popularity</MenuItem>
+            <MenuItem value={'title'}>Title (A-Z)</MenuItem>
+            <MenuItem value={'descending-rating'}>Rating Descending</MenuItem>
 
             </Select>
         </FormControl>

@@ -1,10 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Filters.css';
 import FormControl from '@material-ui/core/FormControl';
 import { InputLabel, Select, MenuItem, Theme, createStyles } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import Sorts from './Sorts/Sorts';
+import { FiltersProps } from './type';
+import Tops from './Tops/Tops';
 
-const useStyles = makeStyles((theme: Theme) =>
+function Filters(props: FiltersProps) {
+  const [movies, setMovies] = useState([]);
+  const [sortInput, setSortInput] = React.useState('');
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  function handleInputSubmit(moviesArr : never[]) {
+    props.filtersData.onFiltersInputChange(moviesArr)
+  }
+
+  useEffect(() => {
+    fetch(props.apiUrl + '&sort=' + `${sortInput}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setMovies(result);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    
+  }, [sortInput])
+
+  const onSortInputChange = (sort : string) => {
+    handleInputSubmit(movies);
+    setSortInput(sort);
+  }
+
+  const sortProps = {
+    onSortInputChange: onSortInputChange
+  }
+
+  const topsProps = {
+    onTopsInputChange: onSortInputChange
+  }
+
+  return (
+    <div className="filters-container">
+      <h6 className="filter-h6">Display options:</h6>
+      <div className="tops-filter">
+        <Tops topsData={topsProps}></Tops>
+        <Sorts sortsData={sortProps}></Sorts>
+      </div>
+    </div>
+  )
+}
+
+export default Filters;
+
+/*const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
       margin: 10,
@@ -86,6 +141,5 @@ function Filters() {
         </FormControl>
     </div>
   );
-}
+}*/
 
-export default Filters;
