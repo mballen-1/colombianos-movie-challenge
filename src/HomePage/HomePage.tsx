@@ -78,7 +78,7 @@ function HomePage() {
         }
         ]
       ))
-  })
+  }, [genresOnly])
 
   useEffect(() => {
     if (genreInput != ''){

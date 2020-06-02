@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Sorts.css';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MenuItem, FormControl, Select } from '@material-ui/core';
@@ -33,12 +33,6 @@ function Sorts(props: SortsProps) {
     props.sortsData.onSortInputChange(sort);
     console.log(sort);
   }*/
-
-  const options = [
-      { label: '', value: 'No filte'},
-      { label: 'title', value: 'A to Z'},
-      { label: 'ascending', value: 'Ascending Popularity'}
-  ]
 
   return (
     <div>
