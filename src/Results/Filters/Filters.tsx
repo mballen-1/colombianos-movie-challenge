@@ -1,10 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Filters.css';
-import FormControl from '@material-ui/core/FormControl';
-import { InputLabel, Select, MenuItem, Theme, createStyles } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import Sorts from './Sorts/Sorts';
+import { FiltersProps } from './type';
+import Tops from './Tops/Tops';
+import { SingleMovieProp } from '../../shared/SingleMovie/types';
 
-const useStyles = makeStyles((theme: Theme) =>
+function Filters(props: FiltersProps) {
+  const [movies, setMovies] = useState([]);
+  const [sortInput, setSortInput] = React.useState('');
+  const [topInput, setTopInput] = React.useState('10');
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  function handleInputSubmit(moviesArr : Array<SingleMovieProp>) {
+    props.filtersData.onFiltersInputChange(moviesArr)
+  }
+
+  useEffect(() => {
+    fetch(props.apiUrl + '&sort=' + `${sortInput}` + '&limit=' + `${topInput}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setMovies(result);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+  }, [sortInput, topInput])
+
+  const onSortInputChange = (sort : string, tops : string) => {
+    handleInputSubmit(movies);
+    setTopInput(tops);
+    setSortInput(sort);
+  }
+
+  const sortProps = {
+    onSortInputChange: onSortInputChange
+  }
+
+  /*const onTopsInputChange = (tops : string) => {
+    handleInputSubmit(movies);
+    setTopInput(tops);
+  }
+
+  const topsProps = {
+    onTopsInputChange: onTopsInputChange
+  }*/
+
+  return (
+    <div className="filters-container">
+      <h6 className="filter-h6">Display options:</h6>
+      <div>
+        <Sorts sortsData={sortProps}></Sorts>
+      </div>
+    </div>
+  )
+}
+
+export default Filters;
+
+
+//<Tops topsData={topsProps}></Tops> 
+
+/*const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
       margin: 10,
@@ -86,6 +147,5 @@ function Filters() {
         </FormControl>
     </div>
   );
-}
+}*/
 
-export default Filters;

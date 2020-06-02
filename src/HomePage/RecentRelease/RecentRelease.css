@@ -1,28 +1,10 @@
-h6 {
-    border-bottom: 4px solid #479aef;
-    margin-bottom: 0;
-    width: 100px;
-}
-
-h1 {
-    font-weight: bold;
-    margin: 6px 0;
-    font-family: 'Rubik';
-    font-size: 60px;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 1px;
-    color: #ffffff;
-}
-
 .release-detail-container {
     height: 512px;
     color: white;
 }
 
 .release-detail__padding {
-    padding: 156px 0 0 330px;
+    padding: 169px 0 0 323px;
 }
 
 .release-detail__text {
@@ -100,4 +82,9 @@ h1 {
 
 .recent-release__tag {
     color: #a1c4e7;
+}
+
+.release-liked-span {
+    width: 83px;
+    margin-right: 30px;
 }

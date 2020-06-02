@@ -4,7 +4,7 @@ import RecentRelease from './RecentRelease/RecentRelease';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
 import Header from '../shared/Header/Header';
-import { TMDB_API, GENRES_API, MOVIES_BY_GENRE_API } from '../constants';
+import { TMDB_API, GENRES_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
 
@@ -22,13 +22,6 @@ function HomePage() {
     rating: 0
   }
 
-  const mockGenre = [
-    {
-      name: "Comedy",
-      backgroundPath: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU"
-    }
-  ]
-
   const initialValue = [{ name: '', backgroundPath: '' }];
 
   const [genresOnly, setGenresOnly] = useState([]);
@@ -42,6 +35,7 @@ function HomePage() {
 
   const [genreInput, setGenreInput] = useState('');
   const [renderQueryResults, setRenderQueryResults] = useState(false);
+  const [resultURL, setResultURL] = useState('');
 
   useEffect(() => {
     fetch(TMDB_API + `?limit=${resultsLimit}` + `&sort=title&title=2018`)
@@ -59,6 +53,7 @@ function HomePage() {
           setError(error);
         }
       )
+
     fetch(GENRES_API)
       .then(res => res.json())
       .then(
@@ -83,11 +78,12 @@ function HomePage() {
         }
         ]
       ))
-  })
+  }, [genresOnly])
 
   useEffect(() => {
-    if (genreInput != '')
-      fetch(MOVIES_BY_GENRE_API + `${genreInput}`)
+    if (genreInput != ''){
+      setResultURL(TMDB_API + `?genres=` + `${genreInput}`)
+      fetch(resultURL)
         .then(res => res.json())
         .then(
           (result) => {
@@ -100,7 +96,8 @@ function HomePage() {
             setError(error);
           }
         )
-  }, [genreInput])
+    }
+  }, [genreInput, resultURL])
 
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
@@ -141,7 +138,7 @@ function HomePage() {
     <>
       <Header headerData={headerProps} />
       {renderQueryResults ?
-        <ResultsPage resultsData={movies}></ResultsPage> :
+        <ResultsPage resultsData={movies} apiUrl={resultURL}></ResultsPage> :
         <>
           <RecentRelease movieData={recentRelease}></RecentRelease>
           <Genres

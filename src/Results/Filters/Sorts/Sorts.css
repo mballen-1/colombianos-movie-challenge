@@ -1,0 +1,6 @@
+.tops-filter{
+    padding-left: 330px;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+}

@@ -28,9 +28,8 @@
 
 .genre-name {
     text-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
-    font-family: Rubik;
+    font-family: 'Rubik-Bold';
     font-size: 20px;
-    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
@@ -39,4 +38,16 @@
     color: #ffffff;
     position: relative;
     z-index: 1;
+}
+
+.genre-name::before {
+    opacity: 0.47;
+    background-color: #030303;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
 }

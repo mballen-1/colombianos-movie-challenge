@@ -1,11 +1,13 @@
 import React from 'react';
 import './RecentRelease.css';
 import { MovieDataProps } from './types';
-import MovieRatingIcon from '../../shared/MovieRatingIcon/MovieRatingIcon';
+import PeopleLiked from '../../shared/PeopleLiked/PeopleLiked';
+import AverageRating from '../../shared/AverageRating/AverageRating';
 
 function RecentRelease(props: MovieDataProps) {
     const data = props.movieData;
     const backgroundUrl = data.poster_path;
+    const finalGenres = data.genres.replace(/\|/gi, ', ');
     return (
         <div className="release-detail-container" style={{ backgroundImage: `url(${backgroundUrl})` }} >
             <div className="release-detail__padding release-detail__text">
@@ -13,12 +15,13 @@ function RecentRelease(props: MovieDataProps) {
                 <h1>{data.title}</h1>
                 <div className="recent-release__font">
                     {data.release_date + '  | '}
-                    {data.genres + '  | '}
+                    {finalGenres + '  | '}
                     {data.duration}
                 </div>
                 <div className="release-user-score release-user-score__font">
-                    <MovieRatingIcon data={data.rating} />
-                    User score
+                    <PeopleLiked data={data.rating} displayBottomTag={false} />
+                    <span className="release-liked-span recent-release-score__font">Users liked this movie</span>
+                    <AverageRating data={data.rating} recentRelease={true}/>
                 </div>
                 <div className="release-overview">
                     {data.overview}

@@ -4,14 +4,15 @@ import { FavoritesProps } from './types';
 import { Button, makeStyles, createStyles, Theme } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
-import MovieRatingIcon from '../../shared/MovieRatingIcon/MovieRatingIcon';
 import { Link } from 'react-router-dom';
+import PeopleLiked from '../../shared/PeopleLiked/PeopleLiked';
+import AverageRating from '../../shared/AverageRating/AverageRating';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     favouriteButton: {
       width: 261,
-      height: 227,
+      height: 267,
       display: 'block',
       textAlign: 'left'
     }
@@ -21,34 +22,38 @@ const useStyles = makeStyles((theme: Theme) =>
 function FanFavourites(props: FavoritesProps) {
   const classes = useStyles();
   const fanFavorites = props.favoritesData.map(
-    (movie: SingleMovieProp) => (
-      <Link to={{
-        pathname: `/movie/${movie.movieId}`,
-        state: movie
-      }}>
-        <div className="single-favorite-container" key={movie.movieId}>
-          <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
+    (movie: SingleMovieProp) => {
+      const finalGenres = movie.genres.replace(/\|/gi, ', ');
+      return (
+        <Link to={{
+          pathname: `/movie/${movie.movieId}`,
+          state: movie
+        }}>
+          <div className="single-favorite-container" key={movie.movieId}>
+            <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
               style={
                 {
                   backgroundImage: `url(${movie.poster_path})`
                 }
               }
-          >
-            <div className="favorite-detail-container">
-              <span className="movie-title">{movie.title}</span>
-              <div className="favorite-icon-details__container">
-                <MovieRatingIcon data={movie.rating}/>
-                <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
-                  <p>{movie.release_date}</p>
-                  <p>{movie.genres}</p>
-                  <p>{movie.duration}</p>
+            >
+              <div className="favorite-detail-container">
+                <p className="movie-title">{movie.title}</p>
+                <div className="favorite-icon-details__container">
+                  <PeopleLiked data={movie.rating} displayBottomTag={true}/>
+                  <AverageRating data={movie.rating} recentRelease={false}/>
+                  <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
+                    <p>{movie.release_date}</p>
+                    <p>{finalGenres}</p>
+                    <p>{movie.duration}</p>
+                  </div>
                 </div>
-            </div>
+              </div>
+            </Button>
           </div>
-        </Button>
-      </div>
-    </Link>
-    )
+        </Link>
+      )
+    }
   );
 
   const moreFavorites = (

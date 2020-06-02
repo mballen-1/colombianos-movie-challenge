@@ -40,14 +40,14 @@
 }
 
 .movie-title {
-    font-family: 'Rubik';
+    font-family: 'Rubik-Bold';
     font-size: 20px;
-    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.33px;
     color: #ffffff;
+    text-transform: capitalize;
 }
 
 .section-heading {
@@ -62,11 +62,11 @@
 
 .section-heading__font {
     font-size: 24px;
-    font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.4px;
+    font-family: 'Rubik-Bold';
 }
 
 .movie-element__opacity::before {
@@ -76,7 +76,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.44);
+    background: rgba(0, 0, 0, 0.64);
 }
 
 .half-movie-element__opacity::before {
@@ -95,9 +95,30 @@
 .button__opacity::before {
     opacity: 0.68;
     height: 57%;
-    margin-top: 38%;
+    margin-top: 49%;
 }
 
 .m0 {
     margin: 0;
+}
+
+.m-l3 {
+    margin-left: 3px;
+}
+
+h6 {
+    border-bottom: 4px solid #479aef;
+    margin: 0;
+    width: 100px;
+}
+
+h1 {
+    margin: 6px 0;
+    font-family: 'Rubik-Bold';
+    font-size: 60px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1px;
+    color: #ffffff;
 }

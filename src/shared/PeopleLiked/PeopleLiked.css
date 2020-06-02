@@ -1,0 +1,13 @@
+.people-liked-p {
+    font-family: 'Karla';
+    font-size: 8px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: 0.13px;
+    text-align: center;
+    color: #ffffff;
+    margin-right: 15px;
+    text-transform: lowercase;
+}

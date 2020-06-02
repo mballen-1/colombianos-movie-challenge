@@ -1,10 +1,11 @@
 import React from 'react';
 import describeArc from './svgUtils.js'
+import PeopleLikedProps from "./types"
 
-function MovieRatingIcon(props: any) {
-    const { data: rating } = props;
+function PeopleLiked(props: PeopleLikedProps) {
+    const finalRating = Number(props.data / 10).toPrecision(3);
     return (
-        <>
+        <div>
             <svg width="45px" height="44px" viewBox="0 0 45 44" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink" className='movie-rating-icon'>
                 <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                     <g id="Desktop-HD" transform="translate(-162.000000, -306.000000)">
@@ -16,11 +17,11 @@ function MovieRatingIcon(props: any) {
                                         <use xlinkHref="#path-1"></use>
                                     </mask>
                                     <g id="Rectangle-3"></g>
-                                    <path fill="none" stroke="#FFFF00" stroke-width="2" id="path-1" d={describeArc(rating)}/>
+                                    <path fill="none" stroke="#FFFF00" stroke-width="2" id="path-1" d={describeArc(finalRating)}/>
                                 </g>
                                 <text id="85%" fontFamily="Rubik-Medium, Rubik" fontSize="11.52" fontWeight="400" letterSpacing="0.192000008" fill="#FFE000">
-                                    <tspan x="22" y="31.76">
-                                        {Number(rating/10).toPrecision(2)}
+                                    <tspan x="18.84" y="31.76">
+                                        85%
                                     </tspan>
                                 </text>
                             </g>
@@ -28,8 +29,12 @@ function MovieRatingIcon(props: any) {
                     </g>
                 </g>
             </svg>
-        </>
+            {
+                props.displayBottomTag ?
+                (<p className="people-liked-p">liked this</p>): <></>
+            }
+        </div>
     );
 }
 
-export default MovieRatingIcon;
+export default PeopleLiked;
