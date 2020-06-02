@@ -4,13 +4,13 @@ import { FavoritesProps } from './types';
 import { Button, makeStyles, createStyles, Theme } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
-import MovieRatingIcon from '../../shared/MovieRatingIcon/MovieRatingIcon';
+import PeopleLikedIcon from '../../shared/PeopleLikedIcon/PeopleLikedIcon';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     favouriteButton: {
       width: 261,
-      height: 227,
+      height: 267,
       display: 'block',
       textAlign: 'left'
     }
@@ -30,9 +30,9 @@ function FanFavourites(props: FavoritesProps) {
           }
         >
           <div className="favorite-detail-container">
-            <span className="movie-title">{movie.title}</span>
+            <p className="movie-title">{movie.title}</p>
             <div className="favorite-icon-details__container">
-              <MovieRatingIcon data={movie.rating}/>
+              <PeopleLikedIcon data={movie.rating}/>
               <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
                 <p>{movie.release_date}</p>
                 <p>{movie.genres}</p>

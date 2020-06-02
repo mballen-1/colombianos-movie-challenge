@@ -1,7 +1,7 @@
 import React from 'react';
 import './SingleMovie.css';
 import { MovieDataProps } from '../../HomePage/RecentRelease/types';
-import MovieRatingIcon from '../MovieRatingIcon/MovieRatingIcon';
+import PeopleLikedIcon from '../PeopleLikedIcon/PeopleLikedIcon';
 
 function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
@@ -13,7 +13,7 @@ function SingleMovie(props: MovieDataProps) {
                 <h3 className="single-movie-title">{data.title}</h3>
                 <div className="single-movie-stats">
                     <div className="single-movie-score">
-                        <MovieRatingIcon data={data.rating} />
+                        <PeopleLikedIcon data={data.rating} />
                     </div>
                     <div>
                         <p className="m0">{data.release_date}</p>

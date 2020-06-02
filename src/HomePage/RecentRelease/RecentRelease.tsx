@@ -1,7 +1,7 @@
 import React from 'react';
 import './RecentRelease.css';
 import { MovieDataProps } from './types';
-import MovieRatingIcon from '../../shared/MovieRatingIcon/MovieRatingIcon';
+import PeopleLikedIcon from '../../shared/PeopleLikedIcon/PeopleLikedIcon';
 
 function RecentRelease(props: MovieDataProps) {
     const data = props.movieData;
@@ -17,7 +17,7 @@ function RecentRelease(props: MovieDataProps) {
                     {data.duration}
                 </div>
                 <div className="release-user-score release-user-score__font">
-                    <MovieRatingIcon data={data.rating} />
+                    <PeopleLikedIcon data={data.rating} />
                     User score
                 </div>
                 <div className="release-overview">

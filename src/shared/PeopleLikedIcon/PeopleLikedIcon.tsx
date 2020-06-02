@@ -1,10 +1,11 @@
 import React from 'react';
-import MovieIconProps from './types';
+import PeopleLikedProps from './types';
+import './PeopleLikedIcon.css'
 
-function MovieRatingIcon(props: MovieIconProps) {
+function PeopleLikedIcon(props: PeopleLikedProps) {
     const finalRating = Number(props.data / 10).toPrecision(3);
     return (
-        <>
+        <div>
             <svg width="45px" height="44px" viewBox="0 0 45 44" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink" className='movie-rating-icon'>
                 <title>Group 5</title>
                 <desc>Created with Sketch.</desc>
@@ -25,7 +26,7 @@ function MovieRatingIcon(props: MovieIconProps) {
                                 </g>
                                 <text id="85%" fontFamily="Rubik-Medium, Rubik" fontSize="11.52" fontWeight="400" letterSpacing="0.192000008" fill="#FFE000">
                                     <tspan x="18.84" y="31.76">
-                                        {finalRating}
+                                        85%
                                     </tspan>
                                 </text>
                             </g>
@@ -33,8 +34,9 @@ function MovieRatingIcon(props: MovieIconProps) {
                     </g>
                 </g>
             </svg>
-        </>
+            <p className="people-liked-p">liked this</p>
+        </div>
     );
 }
 
-export default MovieRatingIcon;
+export default PeopleLikedIcon;
