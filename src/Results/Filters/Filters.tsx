@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Filters.css';
-import FormControl from '@material-ui/core/FormControl';
-import { InputLabel, Select, MenuItem, Theme, createStyles } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 import Sorts from './Sorts/Sorts';
 import { FiltersProps } from './type';
 import Tops from './Tops/Tops';
+import { SingleMovieProp } from '../../shared/SingleMovie/types';
 
 function Filters(props: FiltersProps) {
   const [movies, setMovies] = useState([]);
@@ -14,7 +12,7 @@ function Filters(props: FiltersProps) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  function handleInputSubmit(moviesArr : never[]) {
+  function handleInputSubmit(moviesArr : Array<SingleMovieProp>) {
     props.filtersData.onFiltersInputChange(moviesArr)
   }
 
