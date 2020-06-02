@@ -1,9 +1,8 @@
 import React from 'react';
 import describeArc from './svgUtils.js'
-import MovieIconProps from './types';
 
-function MovieRatingIcon(props: MovieIconProps) {
-    const finalRating = Number(props.data / 10).toPrecision(3);
+function MovieRatingIcon(props: any) {
+    const { data: rating } = props;
     return (
         <>
             <svg width="45px" height="44px" viewBox="0 0 45 44" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink" className='movie-rating-icon'>
@@ -22,8 +21,6 @@ function MovieRatingIcon(props: MovieIconProps) {
                                 <text id="85%" fontFamily="Rubik-Medium, Rubik" fontSize="11.52" fontWeight="400" letterSpacing="0.192000008" fill="#FFE000">
                                     <tspan x="22" y="31.76">
                                         {Number(rating/10).toPrecision(2)}
-                                    <tspan x="18.84" y="31.76">
-                                        {finalRating}
                                     </tspan>
                                 </text>
                             </g>
