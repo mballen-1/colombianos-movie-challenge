@@ -11,8 +11,8 @@ import AverageRating from '../../shared/AverageRating/AverageRating';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     favouriteButton: {
-      width: 261,
-      height: 267,
+      width: 262,
+      height: 268,
       display: 'block',
       textAlign: 'left'
     }
@@ -25,10 +25,10 @@ function FanFavourites(props: FavoritesProps) {
     (movie: SingleMovieProp) => {
       const finalGenres = movie.genres.replace(/\|/gi, ', ');
       return (
-        <Link to={{
-          pathname: `/movie/${movie.movieId}`,
-          state: movie
-        }}>
+        // <Link to={{
+        //   pathname: `/movie/${movie.movieId}`,
+        //   state: movie
+        // }}>
           <div className="single-favorite-container" key={movie.movieId}>
             <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
               style={
@@ -51,16 +51,20 @@ function FanFavourites(props: FavoritesProps) {
               </div>
             </Button>
           </div>
-        </Link>
+        // </Link>
       )
     }
   );
 
   const moreFavorites = (
-    <Button className="more-buttom">
+    <Button style={
+      {
+        paddingRight: 107
+      }
+    }>
       <p className="favorites-see-more">
         See More
-    </p>
+      </p>
       <ArrowDropDownIcon style={
         {
           color: '#ffffff',
@@ -78,9 +82,9 @@ function FanFavourites(props: FavoritesProps) {
       <div className="favorite-container">
         {fanFavorites}
       </div>
-      <div>
+       <div>
         {moreFavorites}
-      </div>
+      </div> 
     </div>
   );
 }

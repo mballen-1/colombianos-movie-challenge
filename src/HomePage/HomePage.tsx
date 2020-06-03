@@ -7,6 +7,7 @@ import Header from '../shared/Header/Header';
 import { TMDB_API, GENRES_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
+import Footer from '../shared/Footer/Footer';
 
 function HomePage() {
 
@@ -147,6 +148,7 @@ function HomePage() {
           <FanFavourites favoritesData={movies}></FanFavourites>
         </>
       }
+      <Footer/>
     </>
   );
 }

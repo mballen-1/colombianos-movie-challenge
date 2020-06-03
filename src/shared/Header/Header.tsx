@@ -20,8 +20,6 @@ function Header(props: HeaderProps) {
     e.preventDefault();
     dataProps.onHeaderInputSubmit();
   }
-
-  console.log(document.location);
   
   return (
     <>

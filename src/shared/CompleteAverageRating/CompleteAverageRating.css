@@ -1,0 +1,22 @@
+.complete-average__display {
+    display: flex;
+    align-items: center;
+    width: 228px;
+    justify-content: space-between;
+}
+
+.complete-avg-rating-p {
+    font-family: 'Karla';
+    font-size: 14.4px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    color: #ffffff;
+}
+
+.complete-rating-p {
+    font-size: 20px;
+    letter-spacing: 0.33px;
+}
