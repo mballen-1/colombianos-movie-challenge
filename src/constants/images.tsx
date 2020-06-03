@@ -39,3 +39,5 @@ export const GENREIMAGES = function findImage(genre: String){
     else
         return 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU';
 }
+
+export const NOTFOUND = require('../images/popcorn.png')

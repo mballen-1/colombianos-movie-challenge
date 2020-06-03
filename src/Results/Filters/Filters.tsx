@@ -4,6 +4,7 @@ import Sorts from './Sorts/Sorts';
 import { FiltersProps } from './type';
 import Tops from './Tops/Tops';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
+import Road from '../../shared/Road/Road';
 
 function Filters(props: FiltersProps) {
   const [movies, setMovies] = useState([]);
@@ -41,21 +42,15 @@ function Filters(props: FiltersProps) {
     onSortInputChange: onSortInputChange
   }
 
-  /*const onTopsInputChange = (tops : string) => {
-    handleInputSubmit(movies);
-    setTopInput(tops);
-  }
-
-  const topsProps = {
-    onTopsInputChange: onTopsInputChange
-  }*/
-
   return (
     <div className="filters-container">
       <h6 className="filter-h6">Display options:</h6>
-      <div>
-        <Sorts sortsData={sortProps}></Sorts>
-      </div>
+      {isLoaded ? 
+        <div>
+          <Sorts sortsData={sortProps}></Sorts>
+        </div>
+        : <Road/>
+      }
     </div>
   )
 }

@@ -5,9 +5,16 @@ import Filters from './Filters/Filters';
 import ResultsList from './ResultsList/ResultsList';
 import { ResultsProps } from './types';
 import { SingleMovieProp } from '../shared/SingleMovie/types';
+import NotFound from './NotFound/Notfound';
 
 function ResultsPage(props: ResultsProps) {
   const [movies, setMovies] = useState(props.resultsData);
+  const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    if(movies.length == 0)
+      setNotFound(true);
+  }, [movies])
 
   const onFiltersInputChange = (moviesArr : Array<SingleMovieProp>) => {
     setMovies(moviesArr);
@@ -20,9 +27,13 @@ function ResultsPage(props: ResultsProps) {
   return (
     <div className="results-container">
         <Filters filtersData={filtersProps} apiUrl={props.apiUrl}/>
-        <ResultsList resultsData={movies}
-                     apiUrl={props.apiUrl}></ResultsList>
-        <Pagination variant="outlined" color="secondary" count={10} />
+        {notFound ? <NotFound/> :
+          <>
+            <ResultsList resultsData={movies}
+                                apiUrl={props.apiUrl}></ResultsList>
+            <Pagination variant="outlined" color="secondary" count={10} />
+          </> 
+        }
     </div>
   );
 }

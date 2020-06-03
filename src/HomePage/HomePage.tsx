@@ -7,6 +7,7 @@ import Header from '../shared/Header/Header';
 import { TMDB_API, GENRES_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
+import Road from '../shared/Road/Road';
 
 function HomePage() {
 
@@ -137,15 +138,20 @@ function HomePage() {
   return (
     <>
       <Header headerData={headerProps} />
-      {renderQueryResults ?
-        <ResultsPage resultsData={movies} apiUrl={resultURL}></ResultsPage> :
+      {isLoaded ?
         <>
-          <RecentRelease movieData={recentRelease}></RecentRelease>
-          <Genres
-            genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
-            genreSelect={genresProps}></Genres>
-          <FanFavourites favoritesData={movies}></FanFavourites>
+        {renderQueryResults ?
+          <ResultsPage resultsData={movies} apiUrl={resultURL}></ResultsPage> :
+          <>
+            <RecentRelease movieData={recentRelease}></RecentRelease>
+            <Genres
+              genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
+              genreSelect={genresProps}></Genres>
+            <FanFavourites favoritesData={movies}></FanFavourites>
+          </>
+        }
         </>
+        : <Road/>
       }
     </>
   );
