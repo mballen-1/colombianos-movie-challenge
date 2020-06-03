@@ -44,11 +44,11 @@ function HomePage() {
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
           setMovies(result);
           if(result.length > 0){
             setRecentRelease(result[0]);
           }
+          setIsLoaded(true);
         },
         (error) => {
           setIsLoaded(true);
@@ -60,7 +60,7 @@ function HomePage() {
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
+          //setIsLoaded(true);
           setGenresOnly(result.genres);
         },
         (error) => {
@@ -83,13 +83,13 @@ function HomePage() {
   }, [genresOnly])
 
   useEffect(() => {
-    if (genreInput != ''){
+    if (genreInput){
       setResultURL(TMDB_API + `?genres=` + `${genreInput}`)
-      fetch(resultURL)
+      fetch(TMDB_API + `?genres=` + `${genreInput}`)
         .then(res => res.json())
         .then(
           (result) => {
-            setIsLoaded(true);
+            //setIsLoaded(true);
             setMovies(result);
             setRenderQueryResults(true)
           },
@@ -103,7 +103,8 @@ function HomePage() {
 
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
-      fetch(TMDB_API + `?limit=${resultsLimit}` + `&title=${headerInputTitle}`)
+      setResultURL(TMDB_API + `?title=${headerInputTitle}`)
+      fetch(TMDB_API + `?title=${headerInputTitle}`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -139,20 +140,20 @@ function HomePage() {
   return (
     <>
       <Header headerData={headerProps} />
-      {isLoaded ?
-        <>
-        {renderQueryResults ?
+      {renderQueryResults ?
           <ResultsPage resultsData={movies} apiUrl={resultURL}></ResultsPage> :
           <>
-            <RecentRelease movieData={recentRelease}></RecentRelease>
-            <Genres
-              genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
-              genreSelect={genresProps}></Genres>
-            <FanFavourites favoritesData={movies}></FanFavourites>
+            {isLoaded ? 
+              <>
+                <RecentRelease movieData={recentRelease}></RecentRelease>
+                <Genres
+                  genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
+                  genreSelect={genresProps}></Genres>
+                <FanFavourites favoritesData={movies}></FanFavourites>
+              </>
+             : <Road/>
+            }
           </>
-        }
-        </>
-        : <Road/>
       }
       <Footer/>
     </>

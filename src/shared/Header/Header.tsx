@@ -33,9 +33,6 @@ function Header(props: HeaderProps) {
         </div>
         <div >
           <form onSubmit={handleInputSubmit}>
-            <Button>
-              <ArrowDropDownIcon style={{ color: 'white' }} />
-            </Button>
             <Button
               onClick={handleInputSubmit}
             >
@@ -55,3 +52,7 @@ function Header(props: HeaderProps) {
 }
 
 export default Header;
+
+/*<Button>
+  <ArrowDropDownIcon style={{ color: 'white' }} />
+</Button>*/
