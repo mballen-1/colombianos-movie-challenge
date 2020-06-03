@@ -58,12 +58,13 @@ p {
 }
 
 .favorite-main-container {
-    margin-top: 60px;
-    margin-left: 126px;
+    padding-top: 60px;
+    padding-left: 126px;
+    background-color: #1f1f1f;
 }
 
 .favorite-detail-container {
-    padding-top: 51%;
+    padding-top: 49%;
     position: relative;
 }
 
