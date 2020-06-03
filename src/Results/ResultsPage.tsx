@@ -62,14 +62,19 @@ function ResultsPage(props: ResultsProps) {
     }
   }
 
-  const onFiltersInputChange = (sort : string, top : string) => {
+  const onSortInputChange = (sort : string) => {
     setIsLoaded(false);
     setSortInput(sort);
+  }
+
+  const onTopsInputChange = (top : string) => {
+    setIsLoaded(false);
     setTopInput(top);
   }
 
   const filtersProps = {
-    onFiltersInputChange: onFiltersInputChange,
+    onSortInputChange: onSortInputChange,
+    onTopsInputChange: onTopsInputChange
   }
 
   const onInputTitleChange = (title: string) => {

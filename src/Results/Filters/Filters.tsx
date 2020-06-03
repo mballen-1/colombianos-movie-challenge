@@ -5,16 +5,25 @@ import { FiltersProps } from './type';
 
 function Filters(props: FiltersProps) {
 
-  function handleInputSubmit(sort : string, top : string) {
-    props.filtersData.onFiltersInputChange(sort, top);
+  function handleInputSortSubmit(sort : string) {
+    props.filtersData.onSortInputChange(sort);
   }
 
-  const onSortInputChange = (sort : string, tops : string) => {
-    handleInputSubmit(sort, tops);
+  const onSortInputChange = (sort : string) => {
+    handleInputSortSubmit(sort);
+  }
+
+  function handleInputTopsSubmit(tops : string) {
+    props.filtersData.onTopsInputChange(tops);
+  }
+
+  const onTopsInputChange = (tops : string) => {
+    handleInputTopsSubmit(tops);
   }
 
   const sortProps = {
-    onSortInputChange: onSortInputChange
+    onSortInputChange: onSortInputChange,
+    onTopsInputChange: onTopsInputChange
   }
 
   return (

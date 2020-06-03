@@ -2,7 +2,8 @@ import { SingleMovieProp } from "../../shared/SingleMovie/types";
 
 export interface FiltersProps {
     filtersData: {
-        onFiltersInputChange : (sort : string, top : string) => void;
+        onSortInputChange : (sort : string) => void;
+        onTopsInputChange : (tops : string) => void;
     }
     apiUrl: String
 }
