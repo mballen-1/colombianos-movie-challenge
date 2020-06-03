@@ -36,11 +36,6 @@ function Sorts(props: SortsProps) {
     props.sortsData.onSortInputChange(sort, top);
   };
 
-  /*function handleInputSubmit(sort: string) {
-    props.sortsData.onSortInputChange(sort);
-    console.log(sort);
-  }*/
-
   return (
     <div className="tops-filter">
       <div>
@@ -75,5 +70,3 @@ function Sorts(props: SortsProps) {
 }
 
 export default Sorts;
-
-//onClick={() => handleInputSubmit(sort)}

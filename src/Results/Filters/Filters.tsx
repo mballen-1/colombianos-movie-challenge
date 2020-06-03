@@ -2,40 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './Filters.css';
 import Sorts from './Sorts/Sorts';
 import { FiltersProps } from './type';
-import Tops from './Tops/Tops';
-import { SingleMovieProp } from '../../shared/SingleMovie/types';
-import Road from '../../shared/Road/Road';
 
 function Filters(props: FiltersProps) {
-  const [movies, setMovies] = useState([]);
-  const [sortInput, setSortInput] = React.useState('');
-  const [topInput, setTopInput] = React.useState('10');
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
-  function handleInputSubmit(moviesArr : Array<SingleMovieProp>) {
-    props.filtersData.onFiltersInputChange(moviesArr)
+  function handleInputSubmit(sort : string, top : string) {
+    props.filtersData.onFiltersInputChange(sort, top);
   }
 
-  useEffect(() => {
-    fetch(props.apiUrl + '&sort=' + `${sortInput}` + '&limit=' + `${topInput}`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setMovies(result);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
-  }, [sortInput, topInput])
-
   const onSortInputChange = (sort : string, tops : string) => {
-    handleInputSubmit(movies);
-    setTopInput(tops);
-    setSortInput(sort);
+    handleInputSubmit(sort, tops);
   }
 
   const sortProps = {
@@ -45,12 +20,7 @@ function Filters(props: FiltersProps) {
   return (
     <div className="filters-container">
       <h6 className="filter-h6">Display options:</h6>
-      {isLoaded ? 
-        <div>
-          <Sorts sortsData={sortProps}></Sorts>
-        </div>
-        : <Road/>
-      }
+      <Sorts sortsData={sortProps}></Sorts>
     </div>
   )
 }
