@@ -20,6 +20,8 @@ function ResultsPage(props: ResultsProps) {
   useEffect(() => {
     if(movies.length == 0)
       setNotFound(true);
+    else
+      setNotFound(false);
   }, [movies])
 
   useEffect(() => {
@@ -34,16 +36,17 @@ function ResultsPage(props: ResultsProps) {
             setIsLoaded(true);
             setError(error);
           }
-        )
-  }, [sortInput, topInput])
+      )
+  }, [sortInput, topInput, props])
 
   const onFiltersInputChange = (sort : string, top : string) => {
+    setIsLoaded(false);
     setSortInput(sort);
     setTopInput(top);
   }
 
   const filtersProps = {
-    onFiltersInputChange: onFiltersInputChange
+    onFiltersInputChange: onFiltersInputChange,
   }
 
   return (

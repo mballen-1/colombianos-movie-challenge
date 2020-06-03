@@ -48,6 +48,7 @@ function Sorts(props: SortsProps) {
             >
             <MenuItem value={'10'}>Top 10</MenuItem>
             <MenuItem value={'100'}>Top 100</MenuItem>
+            <MenuItem value={'1000'}>Top 1000</MenuItem>
             </Select>
         </FormControl>
       </div>
