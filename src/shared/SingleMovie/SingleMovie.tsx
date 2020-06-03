@@ -2,7 +2,7 @@ import React from 'react';
 import './SingleMovie.css';
 import { MovieDataProps } from '../../HomePage/RecentRelease/types';
 import PeopleLiked from '../PeopleLiked/PeopleLiked';
-import AverageRating from '../AverageRating/AverageRating';
+import CompleteAverageRating from '../CompleteAverageRating/CompleteAverageRating';
 
 function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
@@ -24,7 +24,7 @@ function SingleMovie(props: MovieDataProps) {
                         <span className="release-liked-span__width recent-release-score__font single-movie-liked">
                             Users liked this movie
                         </span>
-                        <AverageRating data={data.rating} recentRelease={true} />
+                        <CompleteAverageRating data={data.rating} recentRelease={true}/>
                     </div>
                 </div>
                 <div className="single-movie-overview">

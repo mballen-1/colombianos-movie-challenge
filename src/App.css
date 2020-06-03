@@ -48,6 +48,7 @@
     letter-spacing: 0.33px;
     color: #ffffff;
     text-transform: capitalize;
+    padding-bottom: 2px;
 }
 
 .section-heading {
@@ -94,8 +95,9 @@
 
 .button__opacity::before {
     opacity: 0.68;
-    height: 57%;
+    height: 52%;
     margin-top: 49%;
+    border-radius: 2px;
 }
 
 .m0 {
@@ -104,6 +106,10 @@
 
 .m-l3 {
     margin-left: 3px;
+}
+
+.p-t20 {
+    padding-top: 20px;
 }
 
 h6 {

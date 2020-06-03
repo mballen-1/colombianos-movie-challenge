@@ -8,6 +8,7 @@ import { TMDB_API, GENRES_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
 import Road from '../shared/Road/Road';
+import Footer from '../shared/Footer/Footer';
 
 function HomePage() {
 
@@ -153,6 +154,7 @@ function HomePage() {
         </>
         : <Road/>
       }
+      <Footer/>
     </>
   );
 }
