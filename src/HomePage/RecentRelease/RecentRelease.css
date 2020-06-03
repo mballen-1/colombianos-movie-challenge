@@ -1,6 +1,8 @@
 .release-detail-container {
     height: 512px;
     color: white;
+    background-position: center;
+    background-size: cover;
 }
 
 .release-detail__padding {

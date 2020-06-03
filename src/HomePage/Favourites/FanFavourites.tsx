@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 262,
       height: 268,
       display: 'block',
-      textAlign: 'left'
+      textAlign: 'left',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
     }
   }),
 );
@@ -29,28 +31,28 @@ function FanFavourites(props: FavoritesProps) {
         //   pathname: `/movie/${movie.movieId}`,
         //   state: movie
         // }}>
-          <div className="single-favorite-container" key={movie.movieId}>
-            <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
-              style={
-                {
-                  backgroundImage: `url(${movie.poster_path})`
-                }
+        <div className="single-favorite-container" key={movie.movieId}>
+          <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
+            style={
+              {
+                backgroundImage: `url(${movie.poster_path})`
               }
-            >
-              <div className="favorite-detail-container">
-                <p className="movie-title">{movie.title}</p>
-                <div className="favorite-icon-details__container">
-                  <PeopleLiked data={movie.rating} displayBottomTag={true}/>
-                  <AverageRating data={movie.rating} recentRelease={false}/>
-                  <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
-                    <p>{movie.release_date}</p>
-                    <p>{finalGenres}</p>
-                    <p>{movie.duration}</p>
-                  </div>
+            }
+          >
+            <div className="favorite-detail-container">
+              <p className="movie-title">{movie.title}</p>
+              <div className="favorite-icon-details__container">
+                <PeopleLiked data={movie.rating} displayBottomTag={true} />
+                <AverageRating data={movie.rating} recentRelease={false} />
+                <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
+                  <p>{movie.release_date}</p>
+                  <p>{finalGenres}</p>
+                  <p>{movie.duration}</p>
                 </div>
               </div>
-            </Button>
-          </div>
+            </div>
+          </Button>
+        </div>
         // </Link>
       )
     }
@@ -82,9 +84,9 @@ function FanFavourites(props: FavoritesProps) {
       <div className="favorite-container">
         {fanFavorites}
       </div>
-       <div>
+      <div>
         {moreFavorites}
-      </div> 
+      </div>
     </div>
   );
 }
