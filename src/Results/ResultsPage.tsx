@@ -6,6 +6,8 @@ import ResultsList from './ResultsList/ResultsList';
 import { ResultsProps } from './types';
 import NotFound from './NotFound/Notfound';
 import Road from '../shared/Road/Road';
+import Header from '../shared/Header/Header';
+import { TMDB_API } from '../constants';
 
 function ResultsPage(props: ResultsProps) {
   const [movies, setMovies] = useState(props.resultsData);
@@ -17,6 +19,9 @@ function ResultsPage(props: ResultsProps) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const [headerInputTitle, setheaderInputTitle] = useState('');
+  const [resultURL, setResultURL] = useState(props.apiUrl);
+
   useEffect(() => {
     if(movies.length == 0)
       setNotFound(true);
@@ -25,7 +30,7 @@ function ResultsPage(props: ResultsProps) {
   }, [movies])
 
   useEffect(() => {
-    fetch(props.apiUrl + '&sort=' + `${sortInput}` + '&limit=' + `${topInput}`)
+    fetch(resultURL + '&sort=' + `${sortInput}` + '&limit=' + `${topInput}`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -37,7 +42,25 @@ function ResultsPage(props: ResultsProps) {
             setError(error);
           }
       )
-  }, [sortInput, topInput, props])
+  }, [sortInput, topInput, resultURL])
+
+  const onHeaderInputSubmit = () => {
+    if (headerInputTitle) {
+      setResultURL(TMDB_API + `?title=${headerInputTitle}`)
+      fetch(TMDB_API + `?title=${headerInputTitle}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setMovies(result);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    }
+  }
 
   const onFiltersInputChange = (sort : string, top : string) => {
     setIsLoaded(false);
@@ -49,8 +72,18 @@ function ResultsPage(props: ResultsProps) {
     onFiltersInputChange: onFiltersInputChange,
   }
 
+  const onInputTitleChange = (title: string) => {
+    setheaderInputTitle(title);
+  }
+
+  const headerProps = {
+    onInputTitleChange: onInputTitleChange,
+    onHeaderInputSubmit: onHeaderInputSubmit
+  }
+
   return (
     <div className="results-container">
+        <Header headerData={headerProps} />
         <Filters filtersData={filtersProps} apiUrl={props.apiUrl}/>
         {isLoaded ? 
           <>

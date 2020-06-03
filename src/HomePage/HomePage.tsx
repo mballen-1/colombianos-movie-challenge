@@ -37,7 +37,7 @@ function HomePage() {
 
   const [genreInput, setGenreInput] = useState('');
   const [renderQueryResults, setRenderQueryResults] = useState(false);
-  const [resultURL, setResultURL] = useState('');
+  const [resultURL, setResultURL] = useState(TMDB_API);
 
   useEffect(() => {
     fetch(TMDB_API + `?limit=${resultsLimit}` + `&sort=title&title=2018`)
@@ -139,12 +139,12 @@ function HomePage() {
 
   return (
     <>
-      <Header headerData={headerProps} />
       {renderQueryResults ?
           <ResultsPage resultsData={movies} apiUrl={resultURL}></ResultsPage> :
           <>
             {isLoaded ? 
               <>
+                <Header headerData={headerProps} />
                 <RecentRelease movieData={recentRelease}></RecentRelease>
                 <Genres
                   genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}

@@ -23,7 +23,7 @@ function Sorts(props: SortsProps) {
   const [top, setTop] = React.useState('10');
   
   const handleChangeSortBy = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSort(event.target.value as string);
+   setSort(event.target.value as string);
     
     console.log(sort);
     props.sortsData.onSortInputChange(sort, top);
