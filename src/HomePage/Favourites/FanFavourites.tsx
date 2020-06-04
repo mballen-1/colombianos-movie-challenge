@@ -27,33 +27,35 @@ function FanFavourites(props: FavoritesProps) {
     (movie: SingleMovieProp) => {
       const finalGenres = movie.genres.replace(/\|/gi, ', ');
       return (
-        // <Link to={{
-        //   pathname: `/movie/${movie.movieId}`,
-        //   state: movie
-        // }}>
-        <div className="single-favorite-container" key={movie.movieId}>
-          <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
-            style={
-              {
-                backgroundImage: `url(${movie.poster_path})`
+        <Link to={{
+          pathname: `/movie/${movie.movieId}`,
+          state: movie
+        }}
+          className="movie-anchor"
+        >
+          <div className="single-favorite-container" key={movie.movieId}>
+            <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
+              style={
+                {
+                  backgroundImage: `url(${movie.poster_path})`
+                }
               }
-            }
-          >
-            <div className="favorite-detail-container">
-              <p className="movie-title">{movie.title}</p>
-              <div className="favorite-icon-details__container">
-                <PeopleLiked data={movie.rating} displayBottomTag={true} />
-                <AverageRating data={movie.rating} recentRelease={false} />
-                <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
-                  <p>{movie.release_date}</p>
-                  <p>{finalGenres}</p>
-                  <p>{movie.duration}</p>
+            >
+              <div className="favorite-detail-container">
+                <p className="movie-title">{movie.title}</p>
+                <div className="favorite-icon-details__container">
+                  <PeopleLiked data={movie.rating} displayBottomTag={true} />
+                  <AverageRating data={movie.rating} recentRelease={false} />
+                  <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
+                    <p>{movie.release_date}</p>
+                    <p>{finalGenres}</p>
+                    <p>{movie.duration}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Button>
-        </div>
-        // </Link>
+            </Button>
+          </div>
+        </Link>
       )
     }
   );

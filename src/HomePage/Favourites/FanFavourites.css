@@ -79,3 +79,7 @@ p {
     align-items: center;
     padding-top: 4px;
 }
+
+.movie-anchor {
+    text-decoration: none;
+}
