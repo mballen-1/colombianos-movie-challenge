@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 230,
+      minWidth: 260,
       backgroundColor: 'white',
       opacity: 0.57,
       fontFamily: 'Karla',
@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Sorts(props: SortsProps) {
   const classes = useStyles();
-  const [sort, setSort] = React.useState('Sort By');
-  const [top, setTop] = React.useState('10');
+  const [sort, setSort] = React.useState('sort-by');
+  const [top, setTop] = React.useState('0');
   
   const handleChangeSortBy = (event: React.ChangeEvent<{ value: unknown }>) => {
-   setSort(event.target.value as string);
+    setSort(event.target.value as string);
     
     console.log(event.target.value as string);
     props.sortsData.onSortInputChange(event.target.value as string);
@@ -43,9 +43,12 @@ function Sorts(props: SortsProps) {
             <Select
                 labelId="top-select-label"
                 id="top-select"
+                defaultValue={'0'}
                 value={top}
                 onChange={handleChangeTops}
             >
+
+            <MenuItem value={'0'}>Top Movies</MenuItem>
             <MenuItem value={'10'}>Top 10</MenuItem>
             <MenuItem value={'100'}>Top 100</MenuItem>
             <MenuItem value={'1000'}>Top 1000</MenuItem>
@@ -57,12 +60,15 @@ function Sorts(props: SortsProps) {
             <Select
                 labelId="sorted-select-label"
                 id="sorted-select"
+                defaultValue={'sort-by'}
                 value={sort}
                 onChange={handleChangeSortBy}
             >
-            <MenuItem value={'Sort By'}>Sort By</MenuItem>
+              
+            <MenuItem value={'sort-by'}>Sort By</MenuItem>
             <MenuItem value={'title'}>Title (A-Z)</MenuItem>
-            <MenuItem value={'descending-rating'}>Rating Descending</MenuItem>
+            <MenuItem value={'most-recent'}>Most Recent To Less Recent</MenuItem>
+            <MenuItem value={'less-recent'}>Less Recent To Most Recent</MenuItem>
             </Select>
         </FormControl>
       </div>
@@ -71,3 +77,5 @@ function Sorts(props: SortsProps) {
 }
 
 export default Sorts;
+
+//<MenuItem value={'descending-rating'}>Rating Descending</MenuItem>

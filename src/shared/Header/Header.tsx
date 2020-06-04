@@ -19,6 +19,7 @@ function Header(props: HeaderProps) {
   const handleInputSubmit = (e: FormEvent) => {
     e.preventDefault();
     dataProps.onHeaderInputSubmit();
+    window.scrollTo(0,0);
   }
   
   return (

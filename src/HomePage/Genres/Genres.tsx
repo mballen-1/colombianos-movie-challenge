@@ -7,6 +7,7 @@ function Genres(props: GenresProps) {
 
   function handleInputSubmit(genre: string) {
     props.genreSelect.onGenreInputChange(genre);
+    window.scrollTo(0,0);
   }
 
   const genreElements = props.genresData.map(

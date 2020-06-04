@@ -125,6 +125,7 @@ function HomePage() {
   }
 
   const onGenreInputChange = (genre: string) => {
+    setIsLoaded(false);
     setGenreInput(genre);
   }
 

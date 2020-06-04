@@ -13,8 +13,8 @@ function ResultsPage(props: ResultsProps) {
   const [movies, setMovies] = useState(props.resultsData);
   const [notFound, setNotFound] = useState(false);
 
-  const [sortInput, setSortInput] = React.useState('');
-  const [topInput, setTopInput] = React.useState('10');
+  const [sortInput, setSortInput] = React.useState('sort-by');
+  const [topInput, setTopInput] = React.useState('0');
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,14 +23,15 @@ function ResultsPage(props: ResultsProps) {
   const [resultURL, setResultURL] = useState(props.apiUrl);
 
   useEffect(() => {
-    if(movies.length == 0)
+    if(movies.length === 0)
       setNotFound(true);
     else
       setNotFound(false);
   }, [movies])
 
-  useEffect(() => {
-    fetch(resultURL + '&sort=' + `${sortInput}` + '&limit=' + `${topInput}`)
+  function getSortUrl(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
+    fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&sortByTitle=' + `${sortByTitle}` + 
+                      '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -41,11 +42,22 @@ function ResultsPage(props: ResultsProps) {
             setIsLoaded(true);
             setError(error);
           }
-      )
+        )
+    }
+
+  useEffect(() => {
+    if(topInput!=='0' && sortInput==='title')
+        getSortUrl('rating', 'true', 'true', topInput);
+    else if(topInput!=='0' && sortInput!=='title')
+        getSortUrl('rating', 'false', 'true', topInput);
+    else if(topInput==='0' && sortInput==='title')
+        getSortUrl('title', 'true', 'false', '10');
+    else
+        getSortUrl('', 'false', 'false', '10')
+
   }, [sortInput, topInput, resultURL])
 
   const onHeaderInputSubmit = () => {
-    if (headerInputTitle) {
       setResultURL(TMDB_API + `?title=${headerInputTitle}`)
       fetch(TMDB_API + `?title=${headerInputTitle}`)
         .then(res => res.json())
@@ -59,7 +71,6 @@ function ResultsPage(props: ResultsProps) {
             setError(error);
           }
         )
-    }
   }
 
   const onSortInputChange = (sort : string) => {
