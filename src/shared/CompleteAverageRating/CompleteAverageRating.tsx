@@ -12,7 +12,7 @@ const StyledRating = withStyles({
 })(Rating);
 
 function CompleteAverageRating(props: AverageRatingProps) {
-    const finalRating = Number(props.data / 10).toPrecision(2);
+    const finalRating = Number(props.data).toPrecision(2);
     return (
         <div className="complete-average__display recent-release-score__font">
             <StyledRating value={Number(finalRating)} readOnly name="half-rating-read" precision={0.5}/>

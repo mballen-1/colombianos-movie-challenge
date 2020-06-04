@@ -4,7 +4,7 @@ import LikedCircle from './LikedCircle';
 import {PeopleLikedProps} from './types';
 
 function PeopleLiked(props: PeopleLikedProps) {
-    const finalRating = Number(Number(props.data).toPrecision(3));
+    const finalRating = Number(Number(props.data).toPrecision(2));
     return (
         <div className="people-liked-container">
             <LikedCircle data={finalRating}></LikedCircle>

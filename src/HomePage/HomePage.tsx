@@ -45,7 +45,7 @@ function HomePage() {
       .then(
         (result) => {
           setMovies(result);
-          if(result.length > 0){
+          if (result.length > 0) {
             setRecentRelease(result[0]);
           }
           setIsLoaded(true);
@@ -83,7 +83,7 @@ function HomePage() {
   }, [genresOnly])
 
   useEffect(() => {
-    if (genreInput){
+    if (genreInput) {
       setResultURL(TMDB_API + `?genres=` + `${genreInput}`)
       fetch(TMDB_API + `?genres=` + `${genreInput}`)
         .then(res => res.json())
@@ -141,22 +141,22 @@ function HomePage() {
   return (
     <>
       {renderQueryResults ?
-          <ResultsPage resultsData={movies} apiUrl={resultURL}></ResultsPage> :
-          <>
-            {isLoaded ? 
-              <>
-                <Header headerData={headerProps} />
-                <RecentRelease movieData={recentRelease}></RecentRelease>
-                <Genres
-                  genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
-                  genreSelect={genresProps}></Genres>
-                <FanFavourites favoritesData={movies}></FanFavourites>
-              </>
-             : <Road/>
-            }
-          </>
+        <ResultsPage resultsData={movies} apiUrl={resultURL}/> :
+        <>
+          {isLoaded ?
+            <>
+              <Header headerData={headerProps} />
+              <RecentRelease movieData={recentRelease} />
+              <Genres
+                genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
+                genreSelect={genresProps} />
+              <FanFavourites favoritesData={movies} />
+            </>
+            : <Road />
+          }
+        </>
       }
-      <Footer/>
+      <Footer />
     </>
   );
 }

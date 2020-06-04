@@ -1,4 +1,29 @@
-.movie-graph-wrapper {
+.movie-result-wrapper {
     width: 800px;
     height: 300px;
+    margin-left: 184px;
+}
+
+svg>g>g>g>text {
+    fill: #8abdf3;
+}
+
+.movie-result-synopsis {
+    min-height: 148px;
+    background-color: #1f1f1f;
+}
+
+.movie-result-cast {
+    height: 476px;
+}
+
+.movie-result-overview-p {
+    font-family: 'Karla';
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    color: #ffffff;
 }
