@@ -3,6 +3,7 @@ import './SingleMovie.css';
 import { MovieDataProps } from '../../HomePage/RecentRelease/types';
 import PeopleLiked from '../PeopleLiked/PeopleLiked';
 import CompleteAverageRating from '../CompleteAverageRating/CompleteAverageRating';
+import { Button } from '@material-ui/core';
 
 function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
@@ -10,7 +11,7 @@ function SingleMovie(props: MovieDataProps) {
     const finalGenres = data.genres.replace(/\|/gi, ', ');
     return (
         <div className="single-movie-container">
-            <img src={backgroundUrl} width="183px" height="139px" alt='single-movie-background' className='single-movie-img'></img>
+            <img src={backgroundUrl} width="183px" height="127px" alt='single-movie-background' className='single-movie-img'></img>
             <div className="single-movie-detail__font">
                 <h3 className="single-movie-title">{data.title}</h3>
                 <div className="single-movie-basic-data__padding">

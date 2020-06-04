@@ -40,7 +40,7 @@ function HomePage() {
   const [resultURL, setResultURL] = useState(TMDB_API);
 
   useEffect(() => {
-    fetch(TMDB_API + `?limit=${resultsLimit}` + `&sort=title&title=2018`)
+    fetch(TMDB_API + `?limit=${resultsLimit}`  + '&title=2018&sortPriority=rating&sortByRating=true')
       .then(res => res.json())
       .then(
         (result) => {

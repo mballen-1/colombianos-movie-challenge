@@ -104,10 +104,11 @@ function ResultsPage(props: ResultsProps) {
         {isLoaded ? 
           <>
             {notFound ? <NotFound/> :
-              <>
+              <div className="movies-results-container">
+                <h6 className="showing-h6">Showing results</h6>
                 <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
                 <Pagination variant="outlined" color="secondary" count={10} />
-              </> 
+              </div> 
             }
           </>
           : <Road/>
