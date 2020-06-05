@@ -8,6 +8,7 @@ import NotFound from './NotFound/Notfound';
 import Road from '../shared/Road/Road';
 import Header from '../shared/Header/Header';
 import { TMDB_API } from '../constants';
+import { withStyles } from '@material-ui/core/styles';
 
 function ResultsPage(props: ResultsProps) {
   const [movies, setMovies] = useState(props.resultsData);

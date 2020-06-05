@@ -9,6 +9,7 @@ function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
     const backgroundUrl = data.poster_path;
     const finalGenres = data.genres.replace(/\|/gi, ', ');
+
     return (
         <div className="single-movie-container">
             <img src={backgroundUrl} width="183px" height="127px" alt='single-movie-background' className='single-movie-img'></img>

@@ -39,6 +39,8 @@ function HomePage() {
   const [renderQueryResults, setRenderQueryResults] = useState(false);
   const [resultURL, setResultURL] = useState(TMDB_API);
 
+  window.scrollTo(0,0);
+
   useEffect(() => {
     fetch(TMDB_API + `?limit=${resultsLimit}`  + '&title=2018&sortPriority=rating&sortByRating=true')
       .then(res => res.json())
