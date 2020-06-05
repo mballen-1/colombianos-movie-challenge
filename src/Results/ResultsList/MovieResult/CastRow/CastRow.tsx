@@ -17,7 +17,7 @@ function CastRow(castProps: CastRowProps) {
   if (cast.length < 6) {
     cast.map((cast: Cast) => {
       beatifulPeople.push(
-        <div className="single-cast-container">
+        <div className="single-cast-container" key={cast.cast_id}>
           <img width="160px" height="183px" src={getBackgroundUrlSafe(cast.profile_path)} />
           <p className="single-cast-name" >{cast.name}</p>
           <p className="single-cast-character">{cast.character}</p>
@@ -70,7 +70,7 @@ function CastRow(castProps: CastRowProps) {
     <>
       <h4 className="section-heading section-heading__font">Cast</h4>
       {cast && beatifulPeople.length > 0 ?
-        <Carousel interval={5000} className="cast-carousel__padding">
+        <Carousel interval={5000} className="cast-carousel__padding" navButtonsAlwaysVisible={true}>
           {beatifulPeople}
         </Carousel> :
         <Road />
