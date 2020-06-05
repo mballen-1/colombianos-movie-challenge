@@ -43,3 +43,6 @@ export const GENREIMAGES = function findImage(genre: String){
 export const NOTFOUND = require('../images/popcorn.png')
 
 export const IMAGE_NOT_FOUND = require('../images/image-not-found.png')
+
+
+export const USER_NOT_FOUND = require('../images/user-not-found.jpg')
