@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { YEARLY_RATINGS } from '../../../constants/index'
+import { YEARLY_RATINGS, CAST_API } from '../../../constants/index'
 import BumpGraph from './GraphComponent';
 import './MovieResult.css';
 import Header from '../../../shared/Header/Header';
 import Footer from '../../../shared/Footer/Footer';
 import RecentRelease from '../../../HomePage/RecentRelease/RecentRelease';
+import Road from '../../../shared/Road/Road';
+import { CastResponse } from './types';
+import CastRow from './CastRow/CastRow';
 
 function MovieResult(props: any) {
-  console.log('props', props);
   const {
     location: {
       state: {
@@ -28,7 +30,6 @@ function MovieResult(props: any) {
     },
   } = props;
 
-  console.log(props)
   const [graphData, setData] = useState({
     id: '',
     data: []
@@ -57,7 +58,36 @@ function MovieResult(props: any) {
           console.log(error);
         }
       )
+    fetch(CAST_API + `${id}`)
+      .then(res => res.json())
+      .then(
+        (result :CastResponse) => {
+          setIsLoaded(true);
+          setCast(result.cast);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+
   }, [id, title])
+
+  const initialCast = [ 
+      {
+        cast_id: 0,
+        character: '',
+        name: '',
+        profile_path: ''
+      }
+  ];
+
+  const [headerInputTitle, setheaderInputTitle] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(null);
+  const [cast, setCast] = useState(initialCast);
+
+  console.log(cast);
 
   const movie = {
     budget,
@@ -74,24 +104,32 @@ function MovieResult(props: any) {
 
   return (
     <>
-      {/* <Header></Header> */}
-      <RecentRelease movieData={movie} />
-      <div className="movie-result-cast">
-        <h4 className="section-heading section-heading__font">Cast</h4>
-      </div>
-      <div className="movie-result-synopsis">
-        <h4 className="section-heading section-heading__font">Synopsis</h4>
-        <p className="movie-result-overview-p">
-          {overview}
-        </p>
-      </div>
-      <div>
-        <h4 className="section-heading section-heading__font">Ratings Over time</h4>
-        <div className="movie-result-wrapper">
-          <BumpGraph data={[graphData]} className="movie-result-wrapper" />
-        </div>
-      </div>
-      <Footer></Footer>
+      {
+        isLoaded ?
+          (
+            <>
+              {/* <Header></Header> */}
+              <RecentRelease movieData={movie} />
+              <div className="movie-result-cast">
+                <CastRow castList={cast}/>
+              </div>
+              <div className="movie-result-synopsis">
+                <h4 className="section-heading section-heading__font">Synopsis</h4>
+                <p className="movie-result-overview-p">
+                  {overview}
+                </p>
+              </div>
+              <div>
+                <h4 className="section-heading section-heading__font">Ratings Over time</h4>
+                <div className="movie-result-wrapper">
+                  <BumpGraph data={[graphData]} className="movie-result-wrapper" />
+                </div>
+              </div>
+              <Footer></Footer>
+            </>
+          ) : <Road />
+      }
+
     </>
   );
 }

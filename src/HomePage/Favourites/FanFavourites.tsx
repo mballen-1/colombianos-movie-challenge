@@ -32,6 +32,7 @@ function FanFavourites(props: FavoritesProps) {
           state: movie
         }}
           className="movie-anchor"
+          key={movie.movieId}
         >
           <div className="single-favorite-container" key={movie.movieId}>
             <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}

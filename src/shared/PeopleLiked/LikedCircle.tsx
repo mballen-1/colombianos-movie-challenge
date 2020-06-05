@@ -21,8 +21,8 @@ function LikedCircle(props: LikedCircleProps) {
                                     <path fill="none" stroke="#FFFF00" strokeWidth="2" id="path-1" d={describeArc(likedRating)}/>
                                 </g>
                                 <text id="85%" fontFamily="Rubik-Medium, Rubik" fontSize="11.52" fontWeight="400" letterSpacing="0.192000008" fill="#FFE000">
-                                    <tspan x="18.84" y="31.76">
-                                        {likedRating}
+                                    <tspan x="16.84" y="31.76">
+                                        {likedRating + '%'}
                                     </tspan>
                                 </text>
                             </g>
