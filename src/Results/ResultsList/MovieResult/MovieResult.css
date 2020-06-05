@@ -26,4 +26,8 @@ svg>g>g>g>text {
     line-height: normal;
     letter-spacing: 0.3px;
     color: #ffffff;
+    padding-right: 172px;
+    padding-left: 189px;
+    padding-bottom: 76px;
+    text-align: justify;
 }
