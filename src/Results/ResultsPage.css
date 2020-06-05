@@ -1,30 +1,34 @@
 .results-container {
-  color: white;
-  background-color: #1f1f1f;
+    color: white;
+    background-color: #1f1f1f;
 }
 
-.showing-h6{
-  margin: 0;
-  width: 176px;
-  color: #356aa1;
-  font-family: Karla;
-  text-align: end;
-  border: none;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 0.27px;
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
+.showing-h6 {
+    margin: 0;
+    width: 176px;
+    color: #356aa1;
+    font-family: Karla;
+    text-align: end;
+    border: none;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.27px;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.movies-results-pagination{
-  margin-top: 30px;
-  margin-bottom: 15px;
-  display: inline-block;
+.movies-results-pagination {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.MuiPaginationItem-root {
+    color: 'white';
 }

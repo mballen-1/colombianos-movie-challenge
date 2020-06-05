@@ -14,13 +14,20 @@ function setImage(poster_path: string){
 
 function RecentRelease(props: MovieDataProps) {
     const data = props.movieData;
+    const recentRelease = props.recentRelease;
     const finalGenres = data.genres.replace(/\|/gi, ', ');
     const backgroundUrl = setImage(data.poster_path);
 
     return (
-        <div className="release-detail-container" style={{ backgroundImage: `url(${backgroundUrl})` }} >
+        <div className={`release-detail-container  ${!recentRelease ? 'recent-release__filter' : ''}`} 
+            style={
+                { 
+                    backgroundImage: `url(${backgroundUrl})`,
+                }
+                    } >
             <div className="release-detail__padding release-detail__text">
-                <h6 className="recent-release__font recent-release__tag">Recent release</h6>
+                {recentRelease ? 
+                    <h6 className="recent-release__font recent-release__tag">Recent release</h6> : <></>}
                 <h1>{data.title}</h1>
                 <div className="recent-release__font">
                     {data.release_date + '  | '}

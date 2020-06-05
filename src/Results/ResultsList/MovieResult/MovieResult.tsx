@@ -36,7 +36,7 @@ function MovieResult(props: any) {
     data: []
   })
 
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 
   useEffect(() => {
     fetch(`${YEARLY_RATINGS}/${id}`)
@@ -64,7 +64,7 @@ function MovieResult(props: any) {
     fetch(CAST_API + `${id}`)
       .then(res => res.json())
       .then(
-        (result :CastResponse) => {
+        (result: CastResponse) => {
           setIsLoaded(true);
           setCast(result.cast);
         },
@@ -76,13 +76,13 @@ function MovieResult(props: any) {
 
   }, [id, title])
 
-  const initialCast = [ 
-      {
-        cast_id: 0,
-        character: '',
-        name: '',
-        profile_path: ''
-      }
+  const initialCast = [
+    {
+      cast_id: 0,
+      character: '',
+      name: '',
+      profile_path: ''
+    }
   ];
 
   const [headerInputTitle, setheaderInputTitle] = useState('');
@@ -140,16 +140,19 @@ function MovieResult(props: any) {
 
   return (
     <>
-      { renderQueryResults ?
-        <ResultsPage resultsData={movies} apiUrl={resultURL}/> :
+      {renderQueryResults ?
+        <ResultsPage resultsData={movies} apiUrl={resultURL} /> :
         <>
-          { isLoaded ?
+          {isLoaded ?
             (
               <>
-                <Header headerData={headerProps}/>
-                <RecentRelease movieData={movie} />
+                <Header headerData={headerProps} />
+                <RecentRelease
+                  movieData={movie}
+                  recentRelease={false}
+                />
                 <div className="movie-result-cast">
-                  <CastRow castList={cast}/>
+                  <CastRow castList={cast} />
                 </div>
                 <div className="movie-result-synopsis">
                   <h4 className="section-heading section-heading__font">Synopsis</h4>

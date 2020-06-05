@@ -8,8 +8,19 @@ import NotFound from './NotFound/Notfound';
 import Road from '../shared/Road/Road';
 import Header from '../shared/Header/Header';
 import { TMDB_API } from '../constants';
-import { withStyles, makeStyles, createStyles, Theme} from '@material-ui/core/styles';
-import { colors } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles(
+  (theme) =>
+    createStyles({
+      root: {
+        '& > *': {
+          fill: 'red',
+        }
+      }
+    })
+);
 
 function ResultsPage(props: ResultsProps) {
   const [movies, setMovies] = useState(props.resultsData);
@@ -25,10 +36,10 @@ function ResultsPage(props: ResultsProps) {
   const [resultURL, setResultURL] = useState(props.apiUrl);
 
   const [currentURL, setCurrentURL] = useState(props.apiUrl);
-  const[page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if(movies.length === 0)
+    if (movies.length === 0)
       setNotFound(true);
     else
       setNotFound(false);
@@ -36,66 +47,66 @@ function ResultsPage(props: ResultsProps) {
 
   function getSortUrl(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
     setCurrentURL(resultURL + '&sortPriority=' + `${sortPriority}` + '&sortByTitle=' + `${sortByTitle}` + '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
-    fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&sortByTitle=' + `${sortByTitle}` + 
-                      '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setMovies(result);
-            setIsLoaded(true);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
+    fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&sortByTitle=' + `${sortByTitle}` +
+      '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setMovies(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }
 
   function getSortUrlRecentRelease(sortPriority: string, year: String, sortByRating: string, limit: string) {
     setCurrentURL(resultURL + '&sortPriority=' + `${sortPriority}` + '&title=' + `${year}` + '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
-    fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&title=' + `${year}` + 
-                      '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setMovies(result);
-            setIsLoaded(true);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
+    fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&title=' + `${year}` +
+      '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setMovies(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }
 
   useEffect(() => {
     fetch(currentURL + '&page=' + `${page}`)
-    .then(res => res.json())
-        .then(
-          (result) => {
-            setMovies(result);
-            setIsLoaded(true);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
-  },[currentURL, page]);
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setMovies(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [currentURL, page]);
 
   useEffect(() => {
-    if(topInput!=='0' && sortInput==='title')
-        getSortUrl('rating', 'true', 'true', topInput);
-    else if(topInput!=='0' && sortInput==='most-recent')
+    if (topInput !== '0' && sortInput === 'title')
+      getSortUrl('rating', 'true', 'true', topInput);
+    else if (topInput !== '0' && sortInput === 'most-recent')
       getSortUrlRecentRelease('rating', '2018', 'true', topInput);
-    else if(topInput!=='0' && sortInput!=='title')
-        getSortUrl('rating', 'false', 'true', topInput);
-    else if(topInput==='0' && sortInput==='title')
-        getSortUrl('title', 'true', 'false', '10');
-    else if(topInput==='0' && sortInput==='most-recent')
+    else if (topInput !== '0' && sortInput !== 'title')
+      getSortUrl('rating', 'false', 'true', topInput);
+    else if (topInput === '0' && sortInput === 'title')
+      getSortUrl('title', 'true', 'false', '10');
+    else if (topInput === '0' && sortInput === 'most-recent')
       getSortUrlRecentRelease('title', '2018', 'false', '10');
     else
-        getSortUrl('', 'false', 'false', '10')
+      getSortUrl('', 'false', 'false', '10')
 
   }, [sortInput, topInput, resultURL])
 
@@ -117,13 +128,13 @@ function ResultsPage(props: ResultsProps) {
       )
   }
 
-  const onSortInputChange = (sort : string) => {
+  const onSortInputChange = (sort: string) => {
     setIsLoaded(false);
     setPage(1)
     setSortInput(sort);
   }
 
-  const onTopsInputChange = (top : string) => {
+  const onTopsInputChange = (top: string) => {
     setIsLoaded(false);
     setPage(1)
     setTopInput(top);
@@ -144,35 +155,30 @@ function ResultsPage(props: ResultsProps) {
   }
 
   const handleOnChange = (pageValue: number) => {
-    if(pageValue!=page){
-      window.scrollTo(0,0);
+    if (pageValue != page) {
+      window.scrollTo(0, 0);
       setIsLoaded(false);
       setPage(pageValue);
     }
   };
 
-  const StyledPagination = withStyles({
-    root: {
-      fontFamily: 'Karla',
-      colorInheritCurrent: 'green'
-    },
-  })(Pagination);
+  const classes = useStyles();
 
-return (
+  return (
     <div className="results-container">
-        <Header headerData={headerProps} />
-        <Filters filtersData={filtersProps} apiUrl={props.apiUrl}/>
-        {isLoaded ? 
-          <>
-            {notFound ? <NotFound/> :
-              <div className="movies-results-container">
-                <h6 className="showing-h6">Showing results</h6>
-                <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
-              </div> 
-            }
-            <StyledPagination  className='movies-results-pagination'  color={'primary'} count={20} onChange={(e, p)=>handleOnChange(p)} page={page}/>
-          </>
-          : <Road/>
+      <Header headerData={headerProps} />
+      <Filters filtersData={filtersProps} apiUrl={props.apiUrl} />
+      {isLoaded ?
+        <>
+          {notFound ? <NotFound /> :
+            <div className="movies-results-container">
+              <h6 className="showing-h6">Showing results</h6>
+              <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
+            </div>
+          }
+          <Pagination className={`movies-results-pagination ${classes.root}`} color={'primary'} count={20} onChange={(e, p) => handleOnChange(p)} page={page} />
+        </>
+        : <Road />
       }
     </div>
   );
