@@ -150,7 +150,10 @@ function HomePage() {
           {isLoaded ?
             <>
               <Header headerData={headerProps} />
-              <RecentRelease movieData={recentRelease} />
+              <RecentRelease 
+                movieData={recentRelease} 
+                recentRelease={true}
+                />
               <Genres
                 genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
                 genreSelect={genresProps} />

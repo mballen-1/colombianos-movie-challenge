@@ -11,10 +11,12 @@ svg>g>g>g>text {
 .movie-result-synopsis {
     min-height: 148px;
     background-color: #1f1f1f;
+    padding-top: 30px;
 }
 
 .movie-result-cast {
-    height: 476px;
+    height: 480px;
+    padding-top: 80px;
 }
 
 .movie-result-overview-p {
@@ -30,4 +32,8 @@ svg>g>g>g>text {
     padding-left: 189px;
     padding-bottom: 76px;
     text-align: justify;
+}
+
+.movie-result-graphic {
+    padding-top: 80px;
 }

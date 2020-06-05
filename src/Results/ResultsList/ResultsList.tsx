@@ -6,7 +6,11 @@ import { ResultsProps } from '../types';
 
 function ResultsList(props: ResultsProps) {
   const resultsRenderList = props.resultsData.map((result:SingleMovieProp) => 
-      <SingleMovie movieData={result} key={result.movieId}/>
+      <SingleMovie 
+        movieData={result} 
+        key={result.movieId}
+        recentRelease={false}
+        />
   );
   return (
     <div className="results-container">
