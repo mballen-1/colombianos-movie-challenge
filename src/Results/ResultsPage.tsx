@@ -81,7 +81,6 @@ function ResultsPage(props: ResultsProps) {
             setError(error);
           }
         )
-
   },[currentURL, page]);
 
   useEffect(() => {
@@ -144,9 +143,11 @@ function ResultsPage(props: ResultsProps) {
   }
 
   const handleOnChange = (pageValue: number) => {
-    setIsLoaded(false);
-    console.log(pageValue);
-    setPage(pageValue);
+    if(pageValue!=page){
+      window.scrollTo(0,0);
+      setIsLoaded(false);
+      setPage(pageValue);
+    }
   };
 
   const StyledPagination = withStyles({
@@ -157,23 +158,23 @@ function ResultsPage(props: ResultsProps) {
   })(Pagination);
 
 return (
-  <div className="results-container">
-      <Header headerData={headerProps} />
-      <Filters filtersData={filtersProps} apiUrl={props.apiUrl}/>
-      {isLoaded ? 
-        <>
-          {notFound ? <NotFound/> :
-            <div className="movies-results-container">
-              <h6 className="showing-h6">Showing results</h6>
-              <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
-              <StyledPagination  className='movies-results-pagination'  color={'primary'} count={500} onChange={(e, p)=>handleOnChange(p)}/>
-            </div> 
-          }
-        </>
-        : <Road/>
-    }
-  </div>
-);
+    <div className="results-container">
+        <Header headerData={headerProps} />
+        <Filters filtersData={filtersProps} apiUrl={props.apiUrl}/>
+        {isLoaded ? 
+          <>
+            {notFound ? <NotFound/> :
+              <div className="movies-results-container">
+                <h6 className="showing-h6">Showing results</h6>
+                <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
+              </div> 
+            }
+            <StyledPagination  className='movies-results-pagination'  color={'primary'} count={20} onChange={(e, p)=>handleOnChange(p)} page={page}/>
+          </>
+          : <Road/>
+      }
+    </div>
+  );
 }
 
 export default ResultsPage;
