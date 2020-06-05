@@ -28,7 +28,9 @@ function Filters(props: FiltersProps) {
 
   return (
     <div className="filters-container">
+      <div>
       <h6 className="filter-h6">Display options:</h6>
+      </div>
       <Sorts sortsData={sortProps}></Sorts>
     </div>
   )
