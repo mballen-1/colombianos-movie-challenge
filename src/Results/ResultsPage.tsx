@@ -102,6 +102,7 @@ function ResultsPage(props: ResultsProps) {
   const onHeaderInputSubmit = () => {
     setPage(1)
     setResultURL(TMDB_API + `?title=${headerInputTitle}`)
+    setIsLoaded(false);
     fetch(TMDB_API + `?title=${headerInputTitle}`)
       .then(res => res.json())
       .then(

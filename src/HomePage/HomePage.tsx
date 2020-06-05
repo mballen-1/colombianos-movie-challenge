@@ -106,6 +106,7 @@ function HomePage() {
 
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
+      setIsLoaded(false);
       setResultURL(TMDB_API + `?title=${headerInputTitle}`)
       fetch(TMDB_API + `?title=${headerInputTitle}`)
         .then(res => res.json())
