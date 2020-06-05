@@ -4,7 +4,7 @@ import './PeopleLiked.css';
 import {LikedCircleProps} from './types';
 
 function LikedCircle(props: LikedCircleProps) {
-    const finalRating = Number(props.data).toPrecision(2);
+    const likedRating = props.data
     return (
         <div>
             <svg width="45px" height="44px" viewBox="0 0 45 44" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -18,11 +18,11 @@ function LikedCircle(props: LikedCircleProps) {
                                         <use xlinkHref="#path-1"></use>
                                     </mask>
                                     <g id="Rectangle-3"></g>
-                                    <path fill="none" stroke="#FFFF00" strokeWidth="2" id="path-1" d={describeArc(finalRating)}/>
+                                    <path fill="none" stroke="#FFFF00" strokeWidth="2" id="path-1" d={describeArc(likedRating)}/>
                                 </g>
                                 <text id="85%" fontFamily="Rubik-Medium, Rubik" fontSize="11.52" fontWeight="400" letterSpacing="0.192000008" fill="#FFE000">
                                     <tspan x="18.84" y="31.76">
-                                        85%
+                                        {likedRating}
                                     </tspan>
                                 </text>
                             </g>

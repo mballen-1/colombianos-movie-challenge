@@ -14,7 +14,7 @@ export default function describeArc(degrees) {
     const radius = 20.16;
     const startAngle = 0;
 
-    const endAngle = (degrees * 359) / 50;
+    const endAngle = (degrees * 359) / 100;
     var start = polarToCartesian(x, y, radius, endAngle);
     var end = polarToCartesian(x, y, radius, startAngle);
 

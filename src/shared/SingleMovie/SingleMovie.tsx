@@ -22,7 +22,7 @@ function SingleMovie(props: MovieDataProps) {
                 </div>
                 <div className="single-movie-stats">
                     <div className="single-movie-score">
-                        <PeopleLiked data={data.rating} displayBottomTag={false} />
+                        <PeopleLiked data={data.likedRating} displayBottomTag={false} />
                         <span className="release-liked-span__width recent-release-score__font single-movie-liked">
                             Users liked this movie
                         </span>

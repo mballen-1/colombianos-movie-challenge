@@ -44,7 +44,7 @@ function FanFavourites(props: FavoritesProps) {
               <div className="favorite-detail-container">
                 <p className="movie-title">{movie.title}</p>
                 <div className="favorite-icon-details__container">
-                  <PeopleLiked data={movie.rating} displayBottomTag={true} />
+                  <PeopleLiked data={movie.likedRating} displayBottomTag={true} />
                   <AverageRating data={movie.rating} recentRelease={false} />
                   <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
                     <p>{movie.release_date}</p>

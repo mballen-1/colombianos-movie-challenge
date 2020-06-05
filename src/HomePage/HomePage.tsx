@@ -21,7 +21,8 @@ function HomePage() {
     overview: "",
     budget: 0,
     movieId: 0,
-    rating: 0
+    rating: 0,
+    likedRating: 100
   }
 
   const initialValue = [{ name: '', backgroundPath: '' }];

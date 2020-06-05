@@ -19,7 +19,8 @@ function MovieResult(props: any) {
         rating,
         release_date,
         title,
-        duration
+        duration,
+        likedRating
       }
     },
     match: {
@@ -67,7 +68,8 @@ function MovieResult(props: any) {
     rating,
     release_date,
     title,
-    duration
+    duration,
+    likedRating
   }
 
   return (
