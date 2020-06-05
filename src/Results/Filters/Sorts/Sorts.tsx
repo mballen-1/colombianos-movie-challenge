@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Sorts.css';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { MenuItem, FormControl, Select, InputLabel } from '@material-ui/core';
+import { MenuItem, FormControl, Select } from '@material-ui/core';
 import { SortsProps } from './types';
 
 const useStyles = makeStyles((theme: Theme) =>

@@ -8,7 +8,8 @@ import NotFound from './NotFound/Notfound';
 import Road from '../shared/Road/Road';
 import Header from '../shared/Header/Header';
 import { TMDB_API } from '../constants';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles, createStyles, Theme} from '@material-ui/core/styles';
+import { colors } from '@material-ui/core';
 
 function ResultsPage(props: ResultsProps) {
   const [movies, setMovies] = useState(props.resultsData);
@@ -23,6 +24,9 @@ function ResultsPage(props: ResultsProps) {
   const [headerInputTitle, setheaderInputTitle] = useState('');
   const [resultURL, setResultURL] = useState(props.apiUrl);
 
+  const [currentURL, setCurrentURL] = useState(props.apiUrl);
+  const[page, setPage] = useState(1);
+
   useEffect(() => {
     if(movies.length === 0)
       setNotFound(true);
@@ -31,6 +35,7 @@ function ResultsPage(props: ResultsProps) {
   }, [movies])
 
   function getSortUrl(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
+    setCurrentURL(resultURL + '&sortPriority=' + `${sortPriority}` + '&sortByTitle=' + `${sortByTitle}` + '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
     fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&sortByTitle=' + `${sortByTitle}` + 
                       '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
         .then(res => res.json())
@@ -47,6 +52,7 @@ function ResultsPage(props: ResultsProps) {
   }
 
   function getSortUrlRecentRelease(sortPriority: string, year: String, sortByRating: string, limit: string) {
+    setCurrentURL(resultURL + '&sortPriority=' + `${sortPriority}` + '&title=' + `${year}` + '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
     fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&title=' + `${year}` + 
                       '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
         .then(res => res.json())
@@ -61,6 +67,21 @@ function ResultsPage(props: ResultsProps) {
           }
         )
   }
+
+  useEffect(() => {
+    fetch(currentURL + '&page=' + `${page}`)
+    .then(res => res.json())
+        .then(
+          (result) => {
+            setMovies(result);
+            setIsLoaded(true);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+  },[currentURL, page]);
 
   useEffect(() => {
     if(topInput!=='0' && sortInput==='title')
@@ -79,28 +100,31 @@ function ResultsPage(props: ResultsProps) {
   }, [sortInput, topInput, resultURL])
 
   const onHeaderInputSubmit = () => {
-      setResultURL(TMDB_API + `?title=${headerInputTitle}`)
-      fetch(TMDB_API + `?title=${headerInputTitle}`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setMovies(result);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
+    setPage(1)
+    setResultURL(TMDB_API + `?title=${headerInputTitle}`)
+    fetch(TMDB_API + `?title=${headerInputTitle}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setMovies(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }
 
   const onSortInputChange = (sort : string) => {
     setIsLoaded(false);
+    setPage(1)
     setSortInput(sort);
   }
 
   const onTopsInputChange = (top : string) => {
     setIsLoaded(false);
+    setPage(1)
     setTopInput(top);
   }
 
@@ -118,7 +142,22 @@ function ResultsPage(props: ResultsProps) {
     onHeaderInputSubmit: onHeaderInputSubmit
   }
 
-  return (
+  const handleOnChange = (pageValue: number) => {
+    if(pageValue!=page){
+      window.scrollTo(0,0);
+      setIsLoaded(false);
+      setPage(pageValue);
+    }
+  };
+
+  const StyledPagination = withStyles({
+    root: {
+      fontFamily: 'Karla',
+      colorInheritCurrent: 'green'
+    },
+  })(Pagination);
+
+return (
     <div className="results-container">
         <Header headerData={headerProps} />
         <Filters filtersData={filtersProps} apiUrl={props.apiUrl}/>
@@ -128,9 +167,9 @@ function ResultsPage(props: ResultsProps) {
               <div className="movies-results-container">
                 <h6 className="showing-h6">Showing results</h6>
                 <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
-                <Pagination variant="outlined" color="secondary" count={10} />
               </div> 
             }
+            <StyledPagination  className='movies-results-pagination'  color={'primary'} count={20} onChange={(e, p)=>handleOnChange(p)} page={page}/>
           </>
           : <Road/>
       }
@@ -139,3 +178,5 @@ function ResultsPage(props: ResultsProps) {
 }
 
 export default ResultsPage;
+
+//<Pagination className={classes.formControl} color={'primary'} count={10}/>
