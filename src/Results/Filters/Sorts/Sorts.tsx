@@ -68,7 +68,6 @@ function Sorts(props: SortsProps) {
             <MenuItem value={'sort-by'}>Sort By</MenuItem>
             <MenuItem value={'title'}>Title (A-Z)</MenuItem>
             <MenuItem value={'most-recent'}>Most Recent To Less Recent</MenuItem>
-            <MenuItem value={'less-recent'}>Less Recent To Most Recent</MenuItem>
             </Select>
         </FormControl>
       </div>

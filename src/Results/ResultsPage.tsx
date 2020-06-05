@@ -44,15 +44,35 @@ function ResultsPage(props: ResultsProps) {
             setError(error);
           }
         )
-    }
+  }
+
+  function getSortUrlRecentRelease(sortPriority: string, year: String, sortByRating: string, limit: string) {
+    fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&title=' + `${year}` + 
+                      '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setMovies(result);
+            setIsLoaded(true);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+  }
 
   useEffect(() => {
     if(topInput!=='0' && sortInput==='title')
         getSortUrl('rating', 'true', 'true', topInput);
+    else if(topInput!=='0' && sortInput==='most-recent')
+      getSortUrlRecentRelease('rating', '2018', 'true', topInput);
     else if(topInput!=='0' && sortInput!=='title')
         getSortUrl('rating', 'false', 'true', topInput);
     else if(topInput==='0' && sortInput==='title')
         getSortUrl('title', 'true', 'false', '10');
+    else if(topInput==='0' && sortInput==='most-recent')
+      getSortUrlRecentRelease('title', '2018', 'false', '10');
     else
         getSortUrl('', 'false', 'false', '10')
 
