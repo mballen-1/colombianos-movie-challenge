@@ -1,14 +1,20 @@
-import React from 'react';
+import React , { useEffect, useState } from 'react';
 import './SingleMovie.css';
 import { MovieDataProps } from '../../HomePage/RecentRelease/types';
 import PeopleLiked from '../PeopleLiked/PeopleLiked';
 import CompleteAverageRating from '../CompleteAverageRating/CompleteAverageRating';
+import { IMAGE_NOT_FOUND } from '../../constants/images';
 import { Button } from '@material-ui/core';
 
 function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
-    const backgroundUrl = data.poster_path;
+    const [backgroundUrl, setBackgroundUrl] = useState(data.poster_path);
     const finalGenres = data.genres.replace(/\|/gi, ', ');
+
+    useEffect(() => {
+        if(data.poster_path == "")
+            setBackgroundUrl(IMAGE_NOT_FOUND);
+    },[data]);
 
     return (
         <div className="single-movie-container">

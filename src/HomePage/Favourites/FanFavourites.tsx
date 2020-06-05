@@ -7,6 +7,7 @@ import { SingleMovieProp } from '../../shared/SingleMovie/types';
 import { Link } from 'react-router-dom';
 import PeopleLiked from '../../shared/PeopleLiked/PeopleLiked';
 import AverageRating from '../../shared/AverageRating/AverageRating';
+import { IMAGE_NOT_FOUND } from '../../constants/images';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,11 +22,19 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+function setImage(poster_path: string){
+  if (poster_path=="")
+   return IMAGE_NOT_FOUND;
+  else
+    return poster_path;
+}
+
 function FanFavourites(props: FavoritesProps) {
   const classes = useStyles();
   const fanFavorites = props.favoritesData.map(
     (movie: SingleMovieProp) => {
       const finalGenres = movie.genres.replace(/\|/gi, ', ');
+      const backgroundUrl = setImage(movie.poster_path);
       return (
         <Link to={{
           pathname: `/movie/${movie.movieId}`,
@@ -38,7 +47,7 @@ function FanFavourites(props: FavoritesProps) {
             <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
               style={
                 {
-                  backgroundImage: `url(${movie.poster_path})`
+                  backgroundImage: `url(${backgroundUrl})`
                 }
               }
             >
