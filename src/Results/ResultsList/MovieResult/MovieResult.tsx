@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { YEARLY_RATINGS, CAST_API } from '../../../constants/index'
+import { YEARLY_RATINGS, CAST_API, TMDB_API } from '../../../constants/index'
 import BumpGraph from './GraphComponent';
 import './MovieResult.css';
 import Header from '../../../shared/Header/Header';
@@ -8,6 +8,7 @@ import RecentRelease from '../../../HomePage/RecentRelease/RecentRelease';
 import Road from '../../../shared/Road/Road';
 import { CastResponse } from './types';
 import CastRow from './CastRow/CastRow';
+import ResultsPage from '../../ResultsPage';
 
 function MovieResult(props: any) {
   const {
@@ -34,6 +35,8 @@ function MovieResult(props: any) {
     id: '',
     data: []
   })
+
+  window.scrollTo(0,0);
 
   useEffect(() => {
     fetch(`${YEARLY_RATINGS}/${id}`)
@@ -102,34 +105,70 @@ function MovieResult(props: any) {
     likedRating
   }
 
+  const [resultURL, setResultURL] = useState(TMDB_API);
+  const [movies, setMovies] = useState([]);
+  const [renderQueryResults, setRenderQueryResults] = useState(false);
+
+  const onHeaderInputSubmit = () => {
+    if (headerInputTitle) {
+      setIsLoaded(false);
+      setResultURL(TMDB_API + `?title=${headerInputTitle}`)
+      fetch(TMDB_API + `?title=${headerInputTitle}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setMovies(result);
+            setRenderQueryResults(true)
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    }
+  }
+
+  const onInputTitleChange = (title: string) => {
+    setheaderInputTitle(title);
+  }
+
+  const headerProps = {
+    onInputTitleChange: onInputTitleChange,
+    onHeaderInputSubmit: onHeaderInputSubmit
+  }
+
   return (
     <>
-      {
-        isLoaded ?
-          (
-            <>
-              {/* <Header></Header> */}
-              <RecentRelease movieData={movie} />
-              <div className="movie-result-cast">
-                <CastRow castList={cast}/>
-              </div>
-              <div className="movie-result-synopsis">
-                <h4 className="section-heading section-heading__font">Synopsis</h4>
-                <p className="movie-result-overview-p">
-                  {overview}
-                </p>
-              </div>
-              <div>
-                <h4 className="section-heading section-heading__font">Ratings Over time</h4>
-                <div className="movie-result-wrapper">
-                  <BumpGraph data={[graphData]} className="movie-result-wrapper" />
+      { renderQueryResults ?
+        <ResultsPage resultsData={movies} apiUrl={resultURL}/> :
+        <>
+          { isLoaded ?
+            (
+              <>
+                <Header headerData={headerProps}/>
+                <RecentRelease movieData={movie} />
+                <div className="movie-result-cast">
+                  <CastRow castList={cast}/>
                 </div>
-              </div>
-              <Footer></Footer>
-            </>
-          ) : <Road />
+                <div className="movie-result-synopsis">
+                  <h4 className="section-heading section-heading__font">Synopsis</h4>
+                  <p className="movie-result-overview-p">
+                    {overview}
+                  </p>
+                </div>
+                <div>
+                  <h4 className="section-heading section-heading__font">Ratings Over time</h4>
+                  <div className="movie-result-wrapper">
+                    <BumpGraph data={[graphData]} className="movie-result-wrapper" />
+                  </div>
+                </div>
+                <Footer></Footer>
+              </>
+            ) : <Road />
+          }
+        </>
       }
-
     </>
   );
 }
