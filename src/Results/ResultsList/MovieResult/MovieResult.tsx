@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { YEARLY_RATINGS, CAST_API, TMDB_API } from '../../../constants/index'
 import BumpGraph from './GraphComponent';
 import './MovieResult.css';
-import Header from '../../../shared/Header/Header';
+import Header2 from '../../../shared/Header/Header2';
 import Footer from '../../../shared/Footer/Footer';
 import RecentRelease from '../../../HomePage/RecentRelease/RecentRelease';
 import Road from '../../../shared/Road/Road';
@@ -146,7 +146,7 @@ function MovieResult(props: any) {
           {isLoaded ?
             (
               <>
-                <Header headerData={headerProps} />
+                <Header2 headerData={headerProps} />
                 <RecentRelease
                   movieData={movie}
                   recentRelease={false}
