@@ -19,7 +19,7 @@ function RecentRelease(props: MovieDataProps) {
                     {data.duration}
                 </div>
                 <div className="release-user-score release-user-score__font">
-                    <PeopleLiked data={data.rating} displayBottomTag={false} />
+                    <PeopleLiked data={data.likedRating} displayBottomTag={false} />
                     <span className="release-liked-span recent-release-score__font">Users liked this movie</span>
                     <CompleteAverageRating data={data.rating} recentRelease={true}/>
                 </div>
