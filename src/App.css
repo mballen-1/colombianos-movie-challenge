@@ -97,7 +97,7 @@
 .button__opacity::before {
     opacity: 0.85;
     height: 52%;
-    margin-top: 49%;
+    margin-top: 50%;
     border-radius: 2px;
 }
 

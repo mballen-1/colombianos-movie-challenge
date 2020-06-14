@@ -8,19 +8,8 @@ import NotFound from './NotFound/Notfound';
 import Road from '../shared/Road/Road';
 import Header from '../shared/Header/Header';
 import { TMDB_API } from '../constants';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core';
 
-
-const useStyles = makeStyles(
-  (theme) =>
-    createStyles({
-      root: {
-        '& > *': {
-          fill: 'red',
-        }
-      }
-    })
-);
 
 function ResultsPage(props: ResultsProps) {
   const [movies, setMovies] = useState(props.resultsData);
@@ -162,8 +151,6 @@ function ResultsPage(props: ResultsProps) {
     }
   };
 
-  const classes = useStyles();
-
   return (
     <div className="results-container">
       <Header headerData={headerProps} />
@@ -176,7 +163,11 @@ function ResultsPage(props: ResultsProps) {
               <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
             </div>
           }
-          <Pagination className={`movies-results-pagination ${classes.root}`} color={'primary'} count={20} onChange={(e, p) => handleOnChange(p)} page={page} />
+          <Pagination 
+            className={`movies-results-pagination`}
+            color={'primary'} 
+            count={20} 
+            onChange={(e, p) => handleOnChange(p)} page={page} />
         </>
         : <Road />
       }

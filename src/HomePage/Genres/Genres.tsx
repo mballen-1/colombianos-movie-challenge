@@ -15,8 +15,8 @@ function Genres(props: GenresProps) {
 
   for (let i = 0; i < 18; i += 6) {
     genreElements.push(
-      <div className='genres-container'>
-        <div key={Math.random()}>
+      <div className='genres-container' key={Math.random()}>
+        <div key={props.genresData[i].name}>
           <Button className="single-genre single-genre__font"
             style={
               {
@@ -32,7 +32,7 @@ function Genres(props: GenresProps) {
             </span>
           </Button>
         </div>
-        <div key={Math.random()}>
+        <div key={props.genresData[i + 1].name}>
           <Button className="single-genre single-genre__font"
             style={
               {
@@ -48,7 +48,7 @@ function Genres(props: GenresProps) {
             </span>
           </Button>
         </div>
-        <div key={Math.random()}>
+        <div key={props.genresData[i + 2].name}>
           <Button className="single-genre single-genre__font"
             style={
               {
@@ -64,7 +64,7 @@ function Genres(props: GenresProps) {
             </span>
           </Button>
         </div>
-        <div key={Math.random()}>
+        <div key={props.genresData[i + 3].name}>
           <Button className="single-genre single-genre__font"
             style={
               {
@@ -80,7 +80,7 @@ function Genres(props: GenresProps) {
             </span>
           </Button>
         </div>
-        <div key={Math.random()}>
+        <div key={props.genresData[i + 4].name}>
           <Button className="single-genre single-genre__font"
             style={
               {
@@ -96,7 +96,7 @@ function Genres(props: GenresProps) {
             </span>
           </Button>
         </div>
-        <div key={Math.random()}>
+        <div key={props.genresData[i + 5].name}>
           <Button className="single-genre single-genre__font"
             style={
               {

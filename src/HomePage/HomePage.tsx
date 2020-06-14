@@ -43,7 +43,7 @@ function HomePage() {
   window.scrollTo(0,0);
 
   useEffect(() => {
-    fetch(TMDB_API + `?limit=${resultsLimit}`  + '&title=2018&sortPriority=rating&sortByRating=true')
+    fetch(TMDB_API + `?limit=${resultsLimit}&title=2018&sortPriority=rating&sortByRating=true`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -74,7 +74,7 @@ function HomePage() {
   }, [resultsLimit])
 
   useEffect(() => {
-    if (genres.length == 1)
+    if (genres.length === 1)
       genresOnly.map((g) => setGenres(r =>
         [...r,
         {
@@ -87,8 +87,8 @@ function HomePage() {
 
   useEffect(() => {
     if (genreInput) {
-      setResultURL(TMDB_API + `?genres=` + `${genreInput}`)
-      fetch(TMDB_API + `?genres=` + `${genreInput}`)
+      setResultURL(TMDB_API + `?genres=${genreInput}`)
+      fetch(TMDB_API + `?genres=${genreInput}`)
         .then(res => res.json())
         .then(
           (result) => {

@@ -6,7 +6,7 @@ import CompleteAverageRating from '../../shared/CompleteAverageRating/CompleteAv
 import { IMAGE_NOT_FOUND } from '../../constants/images';
 
 function setImage(poster_path: string){
-    if (poster_path=="")
+    if (poster_path === "")
      return IMAGE_NOT_FOUND;
     else
       return poster_path;
@@ -17,6 +17,7 @@ function RecentRelease(props: MovieDataProps) {
     const recentRelease = props.recentRelease;
     const finalGenres = data.genres.replace(/\|/gi, ', ');
     const backgroundUrl = setImage(data.poster_path);
+    console.log(data.overview.length);
 
     return (
         <div className={`release-detail-container  ${!recentRelease ? 'recent-release__filter' : ''}`} 

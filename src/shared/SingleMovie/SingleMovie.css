@@ -8,11 +8,9 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
-
     width: 960px;
-    height: 189px;
+    min-height: 189px;
     border: solid 1px rgba(94, 94, 94, 0.5);
-
     background-color: black;
 }
 
