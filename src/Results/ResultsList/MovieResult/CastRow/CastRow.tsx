@@ -18,7 +18,7 @@ function CastRow(castProps: CastRowProps) {
     cast.map((cast: Cast) => {
       beatifulPeople.push(
         <div className="single-cast-container" key={cast.cast_id}>
-          <img width="160px" height="183px" src={getBackgroundUrlSafe(cast.profile_path)} />
+          <img width="160px" height="183px" src={getBackgroundUrlSafe(cast.profile_path)} alt='cast-profile' />
           <p className="single-cast-name" >{cast.name}</p>
           <p className="single-cast-character">{cast.character}</p>
         </div>
@@ -30,27 +30,27 @@ function CastRow(castProps: CastRowProps) {
         <>
           <div className="cast-row__display">
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i].profile_path)} />
+              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i].name}</p>
               <p className="single-cast-character">{cast[i].character}</p>
             </div>
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 1].profile_path)} />
+              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 1].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i + 1].name}</p>
               <p className="single-cast-character">{cast[i + 1].character}</p>
             </div>
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 2].profile_path)} />
+              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 2].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i + 2].name}</p>
               <p className="single-cast-character">{cast[i + 2].character}</p>
             </div>
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 3].profile_path)} />
+              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 3].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i + 3].name}</p>
               <p className="single-cast-character">{cast[i + 3].character}</p>
             </div>
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 4].profile_path)} />
+              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 4].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i + 4].name}</p>
               <p className="single-cast-character">{cast[i + 4].character}</p>
             </div>

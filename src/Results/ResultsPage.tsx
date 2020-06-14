@@ -8,7 +8,6 @@ import NotFound from './NotFound/Notfound';
 import Road from '../shared/Road/Road';
 import Header from '../shared/Header/Header';
 import { TMDB_API } from '../constants';
-import { withStyles } from '@material-ui/core';
 
 
 function ResultsPage(props: ResultsProps) {
@@ -35,9 +34,9 @@ function ResultsPage(props: ResultsProps) {
   }, [movies])
 
   function getSortUrl(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
-    setCurrentURL(resultURL + '&sortPriority=' + `${sortPriority}` + '&sortByTitle=' + `${sortByTitle}` + '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
-    fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&sortByTitle=' + `${sortByTitle}` +
-      '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
+    const url = `${resultURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
+    setCurrentURL(url);
+    fetch(url)
       .then(res => res.json())
       .then(
         (result) => {
@@ -52,9 +51,8 @@ function ResultsPage(props: ResultsProps) {
   }
 
   function getSortUrlRecentRelease(sortPriority: string, year: String, sortByRating: string, limit: string) {
-    setCurrentURL(resultURL + '&sortPriority=' + `${sortPriority}` + '&title=' + `${year}` + '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
-    fetch(resultURL + '&sortPriority=' + `${sortPriority}` + '&title=' + `${year}` +
-      '&sortByRating=' + `${sortByRating}` + '&limit=' + `${limit}`)
+    setCurrentURL(`${resultURL} &sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`)
+    fetch(`${resultURL}&sortPriority=${sortPriority}&title= ${year}&sortByRating=${sortByRating}&limit=${limit}`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -101,14 +99,14 @@ function ResultsPage(props: ResultsProps) {
 
   const onHeaderInputSubmit = () => {
     setPage(1)
-    setResultURL(TMDB_API + `?title=${headerInputTitle}`)
+    setResultURL(`${TMDB_API }?title=${headerInputTitle}`)
     setIsLoaded(false);
     fetch(TMDB_API + `?title=${headerInputTitle}`)
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
           setMovies(result);
+          setIsLoaded(true);
         },
         (error) => {
           setIsLoaded(true);
@@ -143,14 +141,14 @@ function ResultsPage(props: ResultsProps) {
     onHeaderInputSubmit: onHeaderInputSubmit
   }
 
-  const handleOnChange = (pageValue: number) => {
+  const handlePaginationOnChange = (pageValue: number) => {
     if (pageValue != page) {
       window.scrollTo(0, 0);
       setIsLoaded(false);
       setPage(pageValue);
     }
   };
-
+  console.log('movies', movies);
   return (
     <div className="results-container">
       <Header headerData={headerProps} />
@@ -167,7 +165,7 @@ function ResultsPage(props: ResultsProps) {
             className={`movies-results-pagination`}
             color={'primary'} 
             count={20} 
-            onChange={(e, p) => handleOnChange(p)} page={page} />
+            onChange={(e, p) => handlePaginationOnChange(p)} page={page} />
         </>
         : <Road />
       }
@@ -176,5 +174,3 @@ function ResultsPage(props: ResultsProps) {
 }
 
 export default ResultsPage;
-
-//<Pagination className={classes.formControl} color={'primary'} count={10}/>

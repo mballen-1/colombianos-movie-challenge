@@ -63,7 +63,6 @@ function HomePage() {
       .then(res => res.json())
       .then(
         (result) => {
-          //setIsLoaded(true);
           setGenresOnly(result.genres);
         },
         (error) => {
@@ -92,7 +91,6 @@ function HomePage() {
         .then(res => res.json())
         .then(
           (result) => {
-            //setIsLoaded(true);
             setMovies(result);
             setRenderQueryResults(true)
           },
@@ -107,14 +105,14 @@ function HomePage() {
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
       setIsLoaded(false);
-      setResultURL(TMDB_API + `?title=${headerInputTitle}`)
+      setResultURL(`${TMDB_API}?title=${headerInputTitle}`)
       fetch(TMDB_API + `?title=${headerInputTitle}`)
         .then(res => res.json())
         .then(
           (result) => {
-            setIsLoaded(true);
             setMovies(result);
-            setRenderQueryResults(true)
+            setIsLoaded(true);
+            setRenderQueryResults(true);
           },
           (error) => {
             setIsLoaded(true);
