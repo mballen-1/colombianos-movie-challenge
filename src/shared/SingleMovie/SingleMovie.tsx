@@ -12,7 +12,7 @@ function SingleMovie(props: MovieDataProps) {
     const finalGenres = data.genres.replace(/\|/gi, ', ');
 
     useEffect(() => {
-        if(data.poster_path == "")
+        if(data.poster_path === "")
             setBackgroundUrl(IMAGE_NOT_FOUND);
     },[data]);
 

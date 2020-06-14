@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function setImage(poster_path: string){
-  if (poster_path=="")
+  if (poster_path === "")
    return IMAGE_NOT_FOUND;
   else
     return poster_path;

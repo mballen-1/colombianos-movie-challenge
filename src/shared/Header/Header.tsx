@@ -1,7 +1,6 @@
 import React, { FormEvent } from 'react';
 import './Header.css';
 import SearchIcon from '@material-ui/icons/Search';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { Button } from '@material-ui/core';
 import { HeaderProps } from './types';
 import { CustomInputEvent } from '../types';

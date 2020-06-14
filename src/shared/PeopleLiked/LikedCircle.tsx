@@ -4,7 +4,7 @@ import './PeopleLiked.css';
 import {LikedCircleProps} from './types';
 
 function LikedCircle(props: LikedCircleProps) {
-    const likedRating = props.data
+    const likedRating = props.data ? props.data : 100;
     return (
         <div>
             <svg width="45px" height="44px" viewBox="0 0 45 44" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink">
