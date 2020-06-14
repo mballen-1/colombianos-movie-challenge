@@ -1,0 +1,6 @@
+.tops-filter{
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    display:inline-flex;
+}

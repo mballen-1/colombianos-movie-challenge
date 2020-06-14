@@ -1,24 +1,55 @@
-import React from 'react';
+import React , { useEffect, useState } from 'react';
 import './SingleMovie.css';
 import { MovieDataProps } from '../../HomePage/RecentRelease/types';
-import MovieRatingIcon from '../MovieRatingIcon/MovieRatingIcon';
+import PeopleLiked from '../PeopleLiked/PeopleLiked';
+import CompleteAverageRating from '../CompleteAverageRating/CompleteAverageRating';
+import { IMAGE_NOT_FOUND } from '../../constants/images';
+import { Link } from 'react-router-dom';
 
 function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
-    const backgroundUrl = data.poster_path;
+    const [backgroundUrl, setBackgroundUrl] = useState(data.poster_path);
+    const finalGenres = data.genres.replace(/\|/gi, ', ');
+
+    useEffect(() => {
+        if(data.poster_path === "")
+            setBackgroundUrl(IMAGE_NOT_FOUND);
+    },[data]);
+
     return (
         <div className="single-movie-container">
-            <img src={backgroundUrl} width="183px" height="139px" alt='single-movie-background' className='single-movie-img'></img>
+            <Link to={{
+                        pathname: `/movie/
+                        ${data.movieId}`,
+                        state: data
+                        }}
+                className="movie-anchor"
+                key={data.movieId}
+            >
+                <img src={backgroundUrl} width="183px" height="127px" alt='single-movie-background' className='single-movie-img'></img>
+            </Link>
             <div className="single-movie-detail__font">
-                <h3 className="single-movie-title">{data.title}</h3>
+                <Link to={{
+                            pathname: `/movie/${data.movieId}`,
+                            state: data
+                            }}
+                    className="movie-anchor"
+                    key={data.movieId}
+                >
+                    <h3 className="single-movie-title">{data.title}</h3>
+                </Link>
+                <div className="single-movie-basic-data__padding">
+                    <span>{data.release_date}</span> | 
+                    <span className="m-l3">{finalGenres} </span>
+                    <span>{data.duration}</span>
+                </div>
                 <div className="single-movie-stats">
                     <div className="single-movie-score">
-                        <MovieRatingIcon data={data.rating} />
-                    </div>
-                    <div>
-                        <p className="m0">{data.release_date}</p>
-                        <p className="m0">{data.genres} </p>
-                        <p className="m0">{data.duration}</p>
+                        <PeopleLiked data={data.likedRating} displayBottomTag={false} />
+                        <span className="release-liked-span__width recent-release-score__font single-movie-liked">
+                            Users liked this movie
+                        </span>
+                        <CompleteAverageRating data={data.rating} recentRelease={true}/>
                     </div>
                 </div>
                 <div className="single-movie-overview">
@@ -30,3 +61,4 @@ function SingleMovie(props: MovieDataProps) {
 }
 
 export default SingleMovie;
+//<img src={backgroundUrl} width="183px" height="127px" alt='single-movie-background' className='single-movie-img'></img>

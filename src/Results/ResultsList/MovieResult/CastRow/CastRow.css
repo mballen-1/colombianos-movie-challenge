@@ -1,0 +1,40 @@
+.cast-row__display {
+    display: flex;
+}
+
+.single-cast-container {
+    margin-left: 40px;
+    margin-right: 40px;
+    width: 160px;
+}
+
+.cast-carousel__padding {
+    padding-left: 152px;
+}
+
+.single-cast-name {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0.27px;
+    color: white;
+    text-align: left;
+}
+
+.single-cast-character {
+    width: 121px;
+    height: 37px;
+    font-family: 'Rubik';
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.21;
+    letter-spacing: -0.37px;
+    color: #ffffff;
+    text-align: left;
+}
+
+.CarouselItem {
+    padding-bottom: 15px;
+}

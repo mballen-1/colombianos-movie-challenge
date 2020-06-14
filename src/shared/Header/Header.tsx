@@ -1,7 +1,6 @@
 import React, { FormEvent } from 'react';
 import './Header.css';
 import SearchIcon from '@material-ui/icons/Search';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { Button } from '@material-ui/core';
 import { HeaderProps } from './types';
 import { CustomInputEvent } from '../types';
@@ -19,9 +18,8 @@ function Header(props: HeaderProps) {
   const handleInputSubmit = (e: FormEvent) => {
     e.preventDefault();
     dataProps.onHeaderInputSubmit();
+    window.scrollTo(0,0);
   }
-
-  console.log(document.location);
   
   return (
     <>
@@ -35,9 +33,6 @@ function Header(props: HeaderProps) {
         </div>
         <div >
           <form onSubmit={handleInputSubmit}>
-            <Button>
-              <ArrowDropDownIcon style={{ color: 'white' }} />
-            </Button>
             <Button
               onClick={handleInputSubmit}
             >
@@ -57,3 +52,7 @@ function Header(props: HeaderProps) {
 }
 
 export default Header;
+
+/*<Button>
+  <ArrowDropDownIcon style={{ color: 'white' }} />
+</Button>*/

@@ -1,0 +1,43 @@
+.people-rating-p {
+    font-family: 'Karla';
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.25px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.recent-release-flex {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.recent-release-score__font {
+    font-family: 'Karla';
+    font-size: 14.4px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.24px;
+    color: #ffffff;
+}
+
+.recent-release-score__width {
+    width: 104px;
+}
+
+.average-span__margin {
+    margin-right: 5px;
+}
+
+.average-rating__display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+}

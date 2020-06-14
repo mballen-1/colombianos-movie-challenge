@@ -1,0 +1,20 @@
+.not-found-container{
+    height: 1000px;
+    background-color: #1f1f1f;
+}
+
+.not-found{
+    font-family: Rubik;
+    opacity: 0.57;
+    color: white;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.67px;
+    font-size: 40px;
+    padding-top: 100px;
+}
+
+.notfound-img{
+    padding-top: 50px;
+}

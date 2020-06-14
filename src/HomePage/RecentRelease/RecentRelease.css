@@ -1,28 +1,12 @@
-h6 {
-    border-bottom: 4px solid #479aef;
-    margin-bottom: 0;
-    width: 100px;
-}
-
-h1 {
-    font-weight: bold;
-    margin: 6px 0;
-    font-family: 'Rubik';
-    font-size: 60px;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 1px;
-    color: #ffffff;
-}
-
 .release-detail-container {
     height: 512px;
     color: white;
+    background-position: center;
+    background-size: cover;
 }
 
 .release-detail__padding {
-    padding: 156px 0 0 330px;
+    padding: 148px 0 0 345px;
 }
 
 .release-detail__text {
@@ -36,14 +20,14 @@ h1 {
 .release-detail-container:before {
     content: '';
     position: absolute;
-    top: 156px;
+    top: 116px;
     right: 0;
     left: 307px;
     bottom: 0;
-    opacity: 0.71;
+    opacity: 0.85;
     background-color: #060912;
-    width: 762px;
-    height: 302px;
+    width: 822px;
+    height: 371px;
 }
 
 .release-synopsis {
@@ -100,4 +84,13 @@ h1 {
 
 .recent-release__tag {
     color: #a1c4e7;
+}
+
+.release-liked-span {
+    width: 83px;
+    margin-right: 30px;
+}
+
+.recent-release__filter {
+    backdrop-filter: blur(8px);
 }

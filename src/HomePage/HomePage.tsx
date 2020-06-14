@@ -4,9 +4,11 @@ import RecentRelease from './RecentRelease/RecentRelease';
 import FanFavourites from './Favourites/FanFavourites';
 import Genres from './Genres/Genres';
 import Header from '../shared/Header/Header';
-import { TMDB_API, GENRES_API, MOVIES_BY_GENRE_API } from '../constants';
+import { TMDB_API, GENRES_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
+import Road from '../shared/Road/Road';
+import Footer from '../shared/Footer/Footer';
 
 function HomePage() {
 
@@ -19,15 +21,9 @@ function HomePage() {
     overview: "",
     budget: 0,
     movieId: 0,
-    rating: 0
+    rating: 0,
+    likedRating: 100
   }
-
-  const mockGenre = [
-    {
-      name: "Comedy",
-      backgroundPath: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXm8Wq1Wq4usW2gRvdoMk3MJx3wSaIXpJKjx_q7iEYD_1hhca8&usqp=CAU"
-    }
-  ]
 
   const initialValue = [{ name: '', backgroundPath: '' }];
 
@@ -42,28 +38,31 @@ function HomePage() {
 
   const [genreInput, setGenreInput] = useState('');
   const [renderQueryResults, setRenderQueryResults] = useState(false);
+  const [resultURL, setResultURL] = useState(TMDB_API);
+
+  window.scrollTo(0,0);
 
   useEffect(() => {
-    fetch(TMDB_API + `?limit=${resultsLimit}` + `&sort=title&title=2018`)
+    fetch(TMDB_API + `?limit=${resultsLimit}&title=2018&sortPriority=rating&sortByRating=true`)
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
           setMovies(result);
-          if(result.length > 0){
+          if (result.length > 0) {
             setRecentRelease(result[0]);
           }
+          setIsLoaded(true);
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       )
+
     fetch(GENRES_API)
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
           setGenresOnly(result.genres);
         },
         (error) => {
@@ -71,10 +70,10 @@ function HomePage() {
           setError(error);
         }
       )
-  }, [])
+  }, [resultsLimit])
 
   useEffect(() => {
-    if (genres.length == 1)
+    if (genres.length === 1)
       genresOnly.map((g) => setGenres(r =>
         [...r,
         {
@@ -83,15 +82,15 @@ function HomePage() {
         }
         ]
       ))
-  })
+  }, [genresOnly])
 
   useEffect(() => {
-    if (genreInput != '')
-      fetch(MOVIES_BY_GENRE_API + `${genreInput}`)
+    if (genreInput) {
+      setResultURL(TMDB_API + `?genres=${genreInput}`)
+      fetch(TMDB_API + `?genres=${genreInput}`)
         .then(res => res.json())
         .then(
           (result) => {
-            setIsLoaded(true);
             setMovies(result);
             setRenderQueryResults(true)
           },
@@ -100,17 +99,20 @@ function HomePage() {
             setError(error);
           }
         )
-  }, [genreInput])
+    }
+  }, [genreInput, resultURL])
 
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
-      fetch(TMDB_API + `?limit=${resultsLimit}` + `&title=${headerInputTitle}`)
+      setIsLoaded(false);
+      setResultURL(`${TMDB_API}?title=${headerInputTitle}`)
+      fetch(TMDB_API + `?title=${headerInputTitle}`)
         .then(res => res.json())
         .then(
           (result) => {
-            setIsLoaded(true);
             setMovies(result);
-            setRenderQueryResults(true)
+            setIsLoaded(true);
+            setRenderQueryResults(true);
           },
           (error) => {
             setIsLoaded(true);
@@ -125,6 +127,7 @@ function HomePage() {
   }
 
   const onGenreInputChange = (genre: string) => {
+    setIsLoaded(false);
     setGenreInput(genre);
   }
 
@@ -139,17 +142,26 @@ function HomePage() {
 
   return (
     <>
-      <Header headerData={headerProps} />
       {renderQueryResults ?
-        <ResultsPage resultsData={movies}></ResultsPage> :
+        <ResultsPage resultsData={movies} apiUrl={resultURL}/> :
         <>
-          <RecentRelease movieData={recentRelease}></RecentRelease>
-          <Genres
-            genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
-            genreSelect={genresProps}></Genres>
-          <FanFavourites favoritesData={movies}></FanFavourites>
+          {isLoaded ?
+            <>
+              <Header headerData={headerProps} />
+              <RecentRelease 
+                movieData={recentRelease} 
+                recentRelease={true}
+                />
+              <Genres
+                genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
+                genreSelect={genresProps} />
+              <FanFavourites favoritesData={movies} />
+            </>
+            : <Road />
+          }
         </>
       }
+      <Footer />
     </>
   );
 }

@@ -50,6 +50,7 @@ p {
     line-height: 1.08;
     letter-spacing: 0.2px;
     color: #e8eaff;
+    text-transform: capitalize;
 }
 
 .favourite-detail__break {
@@ -57,18 +58,19 @@ p {
 }
 
 .favorite-main-container {
-    margin-top: 60px;
-    margin-left: 126px;
+    padding-top: 60px;
+    padding-left: 126px;
+    background-color: #1f1f1f;
 }
 
 .favorite-detail-container {
-    padding-top: 38%;
+    padding-top: 46%;
     position: relative;
 }
 
 .favorites-see-more {
     height: 20px;
-    color: #ffe000;
+    color: #479aef;
     position: 'relative';
 }
 
@@ -76,4 +78,8 @@ p {
     display: flex;
     align-items: center;
     padding-top: 4px;
+}
+
+.movie-anchor {
+    text-decoration: none;
 }
