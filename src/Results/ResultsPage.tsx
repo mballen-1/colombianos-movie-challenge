@@ -148,7 +148,6 @@ function ResultsPage(props: ResultsProps) {
       setPage(pageValue);
     }
   };
-  console.log('movies', movies);
   return (
     <div className="results-container">
       <Header headerData={headerProps} />
