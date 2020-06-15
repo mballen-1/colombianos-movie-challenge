@@ -1,0 +1,16 @@
+.see-more__display {
+    display: inline;
+}
+
+.see-more__hide {
+    display: none;
+}
+
+.see-more-span {
+    font-weight: bold;
+    color: #479aef;
+}
+
+.see-more-span:hover {
+    cursor: pointer;
+}

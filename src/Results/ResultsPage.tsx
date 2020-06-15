@@ -33,39 +33,6 @@ function ResultsPage(props: ResultsProps) {
       setNotFound(false);
   }, [movies])
 
-  function getSortUrl(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
-    const url = `${resultURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
-    setCurrentURL(url);
-    fetch(url)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setMovies(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }
-
-  function getSortUrlRecentRelease(sortPriority: string, year: String, sortByRating: string, limit: string) {
-    setCurrentURL(`${resultURL} &sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`)
-    fetch(`${resultURL}&sortPriority=${sortPriority}&title= ${year}&sortByRating=${sortByRating}&limit=${limit}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setMovies(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }
-
   useEffect(() => {
     fetch(currentURL + '&page=' + `${page}`)
       .then(res => res.json())
@@ -97,9 +64,42 @@ function ResultsPage(props: ResultsProps) {
 
   }, [sortInput, topInput, resultURL])
 
+  function getSortUrl(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
+    const url = `${resultURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
+    setCurrentURL(url);
+    fetch(url)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setMovies(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }
+
+  function getSortUrlRecentRelease(sortPriority: string, year: String, sortByRating: string, limit: string) {
+    setCurrentURL(`${resultURL} &sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`)
+    fetch(`${resultURL}&sortPriority=${sortPriority}&title= ${year}&sortByRating=${sortByRating}&limit=${limit}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setMovies(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  } 
+
   const onHeaderInputSubmit = () => {
-    setPage(1)
-    setResultURL(`${TMDB_API }?title=${headerInputTitle}`)
+    setPage(1);
+    setResultURL(`${TMDB_API }?title=${headerInputTitle}`);
     setIsLoaded(false);
     fetch(TMDB_API + `?title=${headerInputTitle}`)
       .then(res => res.json())
@@ -117,13 +117,13 @@ function ResultsPage(props: ResultsProps) {
 
   const onSortInputChange = (sort: string) => {
     setIsLoaded(false);
-    setPage(1)
+    setPage(1);
     setSortInput(sort);
   }
 
   const onTopsInputChange = (top: string) => {
     setIsLoaded(false);
-    setPage(1)
+    setPage(1);
     setTopInput(top);
   }
 
@@ -148,7 +148,6 @@ function ResultsPage(props: ResultsProps) {
       setPage(pageValue);
     }
   };
-  console.log('movies', movies);
   return (
     <div className="results-container">
       <Header headerData={headerProps} />

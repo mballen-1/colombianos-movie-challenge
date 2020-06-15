@@ -5,6 +5,7 @@ import PeopleLiked from '../PeopleLiked/PeopleLiked';
 import CompleteAverageRating from '../CompleteAverageRating/CompleteAverageRating';
 import { IMAGE_NOT_FOUND } from '../../constants/images';
 import { Link } from 'react-router-dom';
+import SeeMoreLess from '../SeeMoreLess/SeeMoreLess';
 
 function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
@@ -53,7 +54,7 @@ function SingleMovie(props: MovieDataProps) {
                     </div>
                 </div>
                 <div className="single-movie-overview">
-                    {data.overview}
+                    <SeeMoreLess overview={data.overview}/>
                 </div>
             </div>
         </div>
@@ -61,4 +62,3 @@ function SingleMovie(props: MovieDataProps) {
 }
 
 export default SingleMovie;
-//<img src={backgroundUrl} width="183px" height="127px" alt='single-movie-background' className='single-movie-img'></img>
