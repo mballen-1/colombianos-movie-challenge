@@ -5,6 +5,7 @@ import PeopleLiked from '../../shared/PeopleLiked/PeopleLiked';
 import CompleteAverageRating from '../../shared/CompleteAverageRating/CompleteAverageRating';
 import { IMAGE_NOT_FOUND } from '../../constants/images';
 import { Link } from 'react-router-dom';
+import SeeMoreLess from '../../shared/SeeMoreLess/SeeMoreLess';
 
 function setImage(poster_path: string) {
     if (poster_path === "")
@@ -19,55 +20,6 @@ function RecentRelease(props: MovieDataProps) {
     const recentRelease = props.recentRelease;
     const finalGenres = data.genres.replace(/\|/gi, ', ');
     const backgroundUrl = setImage(data.poster_path);
-
-    const [propsOverview, setPropsOverview] = useState(data.overview);
-    const [overviewIsTooLong, setOverviewIsTooLong] = useState(false);
-    const [overviewFirstPart, setOverviewFirstPart] = useState(data.overview);
-    const [overviewSecondPart, setOverviewSecondPart] = useState('');
-    const [displaySecondPart, setDisplaySecondPart] = useState(false);
-
-    useEffect(() => {
-        setPropsOverview(data.overview);
-        const newOverview = data.overview;
-        setOverviewIsTooLong(newOverview.length > 205);
-        if (newOverview.length > 205) {
-            setOverviewFirstPart(newOverview.slice(0, 205));
-            const secondPartLength = newOverview.length - 205;
-            setOverviewSecondPart(newOverview.slice(-secondPartLength));
-            setDisplaySecondPart(true);
-        }
-    }, [data.overview]);
-
-    const displayElementClass = 'release-element__display';
-    const hideElementClass = 'release-element__hide';
-
-    const toggleDisplaySecondPart = () => {
-        setDisplaySecondPart(!displaySecondPart);
-    }
-
-    const overviewRender =
-        overviewIsTooLong ?
-            (<p>
-                {overviewFirstPart}
-                <span
-                    className={displaySecondPart ? displayElementClass + ' release-see-more-span' : hideElementClass}
-                    onClick={toggleDisplaySecondPart}
-                >
-                    ...see more
-                </span>
-                <span className={displaySecondPart ? hideElementClass : displayElementClass}>
-                    {overviewSecondPart}
-                </span>
-                <span
-                    className={displaySecondPart ? hideElementClass : displayElementClass + ' release-see-more-span'}
-                    onClick={toggleDisplaySecondPart}
-                >
-                    see less...
-                    </span>
-            </p>)
-            : (<p>
-                {propsOverview}
-            </p>);
 
     return (
         <div className={`release-detail-container  ${!recentRelease ? 'recent-release__filter' : ''}`}
@@ -97,7 +49,8 @@ function RecentRelease(props: MovieDataProps) {
                     <CompleteAverageRating data={data.rating} recentRelease={true} />
                 </div>
                 <div className="release-overview">
-                    {overviewRender}
+                    {/* {overviewRender} */}
+                    <SeeMoreLess overview={data.overview}/>
                 </div>
             </div>
         </div>

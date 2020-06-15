@@ -24,15 +24,11 @@ function Sorts(props: SortsProps) {
   
   const handleChangeSortBy = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSort(event.target.value as string);
-    
-    console.log(event.target.value as string);
     props.sortsData.onSortInputChange(event.target.value as string);
   };
 
   const handleChangeTops = (event: React.ChangeEvent<{ value: unknown }>) => {
     setTop(event.target.value as string);
-    
-    console.log(event.target.value as string);
     props.sortsData.onTopsInputChange(event.target.value as string);
   };
 

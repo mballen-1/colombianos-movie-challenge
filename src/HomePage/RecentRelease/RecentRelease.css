@@ -94,20 +94,3 @@
 .recent-release__filter {
     backdrop-filter: blur(8px);
 }
-
-.release-element__display {
-    display: inline;
-}
-
-.release-element__hide {
-    display: none;
-}
-
-.release-see-more-span {
-    font-weight: bold;
-    color: #479aef;
-}
-
-.release-see-more-span:hover {
-    cursor: pointer;
-}

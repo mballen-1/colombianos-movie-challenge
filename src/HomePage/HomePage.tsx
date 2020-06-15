@@ -47,12 +47,11 @@ function HomePage() {
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
-            setMovies(result);
+          setMovies(result);
           if (result.length > 0 ) {
             setRecentRelease(result[0]);
           }
-          
+          setIsLoaded(true);          
         },
         (error) => {
           setIsLoaded(true);

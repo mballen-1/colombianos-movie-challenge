@@ -92,8 +92,6 @@ function MovieResult(props: any) {
   const [error, setError] = useState(null);
   const [cast, setCast] = useState(initialCast);
 
-  console.log(cast);
-
   const movie = {
     budget,
     genres,
