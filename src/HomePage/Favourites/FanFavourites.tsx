@@ -45,11 +45,7 @@ function FanFavourites(props: FavoritesProps) {
         >
           <div className="single-favorite-container" key={movie.movieId}>
             <Button className={`${classes.favouriteButton} movie-element__opacity button__opacity`}
-              style={
-                {
-                  backgroundImage: `url(${backgroundUrl})`
-                }
-              }
+              style={{ backgroundImage: `url(${backgroundUrl})`}}
             >
               <div className="favorite-detail-container">
                 <p className="movie-title">{movie.title}</p>

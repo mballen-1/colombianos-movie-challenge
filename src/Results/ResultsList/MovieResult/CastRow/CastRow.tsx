@@ -14,6 +14,7 @@ function CastRow(castProps: CastRowProps) {
 
   const cast = castProps.castList;
   let beatifulPeople = [];
+  console.log('cast.length', cast.length);
   if (cast.length < 6) {
     cast.map((cast: Cast) => {
       beatifulPeople.push(

@@ -48,11 +48,8 @@ function HomePage() {
       .then(
         (result) => {
           setIsLoaded(true);
-          if(movies === []) {
             setMovies(result);
-          }
-          const recentReleaseAlreadySetted = recentRelease === mockReleaseData; 
-          if (result.length > 0 &&  !recentReleaseAlreadySetted) {
+          if (result.length > 0 ) {
             setRecentRelease(result[0]);
           }
           

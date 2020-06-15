@@ -6,14 +6,14 @@
 }
 
 .release-detail__padding {
-    padding: 148px 0 0 345px;
+    padding: 132px 0 0 345px;
 }
 
 .release-detail__text {
     text-align: left;
     position: relative;
     width: 752px;
-    height: 302px;
+    height: 340px;
     z-index: 1;
 }
 
@@ -101,4 +101,13 @@
 
 .release-element__hide {
     display: none;
+}
+
+.release-see-more-span {
+    font-weight: bold;
+    color: #479aef;
+}
+
+.release-see-more-span:hover {
+    cursor: pointer;
 }
