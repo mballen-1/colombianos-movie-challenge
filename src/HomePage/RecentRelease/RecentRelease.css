@@ -94,3 +94,11 @@
 .recent-release__filter {
     backdrop-filter: blur(8px);
 }
+
+.release-element__display {
+    display: inline;
+}
+
+.release-element__hide {
+    display: none;
+}

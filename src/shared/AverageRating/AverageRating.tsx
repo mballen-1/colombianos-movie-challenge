@@ -4,7 +4,7 @@ import AverageRatingProps from './types';
 import SingleStar from './SingleStar';
 
 function AverageRating(props: AverageRatingProps) {
-    const finalRating = Number(props.data * 10).toPrecision(2);
+    const finalRating = Number(props.data).toPrecision(2);
     return (
         <div className={props.recentRelease ? 'recent-release-flex' : 'average-rating__display'}>
             <SingleStar/>

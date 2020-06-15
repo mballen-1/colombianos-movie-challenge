@@ -42,23 +42,27 @@ function HomePage() {
 
   window.scrollTo(0,0);
 
-  useEffect(() => {
+  useEffect(() => {    
     fetch(TMDB_API + `?limit=${resultsLimit}&title=2018&sortPriority=rating&sortByRating=true`)
       .then(res => res.json())
       .then(
         (result) => {
-          setMovies(result);
-          if (result.length > 0) {
+          setIsLoaded(true);
+          if(movies === []) {
+            setMovies(result);
+          }
+          const recentReleaseAlreadySetted = recentRelease === mockReleaseData; 
+          if (result.length > 0 &&  !recentReleaseAlreadySetted) {
             setRecentRelease(result[0]);
           }
-          setIsLoaded(true);
+          
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       )
-
+      
     fetch(GENRES_API)
       .then(res => res.json())
       .then(
@@ -140,6 +144,8 @@ function HomePage() {
     onHeaderInputSubmit: onHeaderInputSubmit
   }
 
+  const validGenre = (item: any) => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX'
+
   return (
     <>
       {renderQueryResults ?
@@ -153,7 +159,7 @@ function HomePage() {
                 recentRelease={true}
                 />
               <Genres
-                genresData={genres.filter(item => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX')}
+                genresData={genres.filter(item => validGenre(item))}
                 genreSelect={genresProps} />
               <FanFavourites favoritesData={movies} />
             </>
