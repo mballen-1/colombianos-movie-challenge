@@ -29,7 +29,7 @@ function SingleMovie(props: MovieDataProps) {
             >
                 <img src={backgroundUrl} width="183px" height="127px" alt='single-movie-background' className='single-movie-img'></img>
             </Link>
-            <div className="single-movie-detail__font">
+            <div className="single-movie-detail__font single-movie-detail__container">
                 <Link to={{
                             pathname: `/movie/${data.movieId}`,
                             state: data
