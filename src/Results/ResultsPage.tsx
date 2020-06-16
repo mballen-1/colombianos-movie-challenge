@@ -50,23 +50,30 @@ function ResultsPage(props: ResultsProps) {
 
   useEffect(() => {
     if (topInput !== '0' && sortInput === 'title')
-      getSortUrl('rating', 'true', 'true', topInput);
+      requestSortedMovies('rating', 'true', 'true', topInput);
+
     else if (topInput !== '0' && sortInput === 'most-recent')
-      getSortUrlRecentRelease('rating', '2018', 'true', topInput);
+      requestSortedRecentMovies('rating', '2018', 'true', topInput);
+
     else if (topInput !== '0' && sortInput !== 'title')
-      getSortUrl('rating', 'false', 'true', topInput);
+      requestSortedMovies('rating', 'false', 'true', topInput);
+
     else if (topInput === '0' && sortInput === 'title')
-      getSortUrl('title', 'true', 'false', '10');
+      requestSortedMovies('title', 'true', 'false', '10');
+
     else if (topInput === '0' && sortInput === 'most-recent')
-      getSortUrlRecentRelease('title', '2018', 'false', '10');
+      requestSortedRecentMovies('title', '2018', 'false', '10');
+
     else
-      getSortUrl('', 'false', 'false', '10')
+      requestSortedMovies('', 'false', 'false', '10')
 
-  }, [sortInput, topInput, resultURL])
+  }, [sortInput, topInput])
 
-  function getSortUrl(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
+  function requestSortedMovies(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
     const url = `${resultURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
-    setCurrentURL(url);
+    if(url != currentURL){
+      setCurrentURL(url);
+    }
     fetch(url)
       .then(res => res.json())
       .then(
@@ -81,8 +88,12 @@ function ResultsPage(props: ResultsProps) {
       )
   }
 
-  function getSortUrlRecentRelease(sortPriority: string, year: String, sortByRating: string, limit: string) {
-    setCurrentURL(`${resultURL} &sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`)
+  function requestSortedRecentMovies(sortPriority: string, year: String, sortByRating: string, limit: string) {
+    const url = `${resultURL} &sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`;
+    if (url != currentURL){
+      setCurrentURL(url);
+    }
+    
     fetch(`${resultURL}&sortPriority=${sortPriority}&title= ${year}&sortByRating=${sortByRating}&limit=${limit}`)
       .then(res => res.json())
       .then(
@@ -95,11 +106,11 @@ function ResultsPage(props: ResultsProps) {
           setError(error);
         }
       )
-  } 
+  }
 
   const onHeaderInputSubmit = () => {
     setPage(1);
-    setResultURL(`${TMDB_API }?title=${headerInputTitle}`);
+    setResultURL(`${TMDB_API}?title=${headerInputTitle}`);
     setIsLoaded(false);
     fetch(TMDB_API + `?title=${headerInputTitle}`)
       .then(res => res.json())
@@ -148,6 +159,7 @@ function ResultsPage(props: ResultsProps) {
       setPage(pageValue);
     }
   };
+
   return (
     <div className="results-container">
       <Header headerData={headerProps} />
@@ -160,10 +172,10 @@ function ResultsPage(props: ResultsProps) {
               <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
             </div>
           }
-          <Pagination 
+          <Pagination
             className={`movies-results-pagination`}
-            color={'primary'} 
-            count={20} 
+            color={'primary'}
+            count={20}
             onChange={(e, p) => handlePaginationOnChange(p)} page={page} />
         </>
         : <Road />

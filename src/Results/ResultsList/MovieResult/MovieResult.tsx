@@ -45,7 +45,7 @@ function MovieResult(props: any) {
         (result) => {
           if (result && result.ratings) {
             let data = result.ratings.reduce((acc: any, curr: any) => (
-              [...acc, { x: curr.year, y: curr.rating / 10 }]
+              [...acc, { x: curr.year, y: curr.rating }]
             ), [])
             const finish = data[0].x
             if (Object.keys(data).length < 5) {

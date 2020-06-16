@@ -28,8 +28,9 @@
 
 .single-movie-img {
     width: 183px;
-    height: 139px;
+    height: 170px;
     margin-right: 18px;
+    background-color: #356aa1;
 }
 
 .single-movie-detail__font {
@@ -41,6 +42,11 @@
     letter-spacing: 0.2px;
     color: #e8eaff;
     line-height: 1.25;
+}
+
+.single-movie-detail__container {
+    width: 759px;
+    height: 156px;
 }
 
 .single-movie-score {
@@ -64,11 +70,6 @@
     width: 22%;
     justify-content: space-between;
     margin-bottom: 10px;
-}
-
-.single-movie-img {
-    height: 170px;
-    background-color: #356aa1;
 }
 
 .single-movie-basic-data__padding {

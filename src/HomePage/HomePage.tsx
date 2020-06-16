@@ -140,6 +140,9 @@ function HomePage() {
     onHeaderInputSubmit: onHeaderInputSubmit
   }
 
+  const onEndpointChange = (endpoint: string) => {
+  } 
+
   const validGenre = (item: any) => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX'
 
   return (
