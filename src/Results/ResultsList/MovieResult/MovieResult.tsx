@@ -141,7 +141,12 @@ function MovieResult(props: any) {
   return (
     <>
       {renderQueryResults ?
-        <ResultsPage resultsData={movies} apiUrl={resultURL} /> :
+        <ResultsPage 
+          resultsData={movies} 
+          apiUrl={resultURL} 
+          onEndpointRequest={() => {console.log()}}
+          isLoaded={true}
+          /> :
         <>
           {isLoaded ?
             (

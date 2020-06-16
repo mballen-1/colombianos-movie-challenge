@@ -11,7 +11,6 @@ import { TMDB_API } from '../constants';
 
 
 function ResultsPage(props: ResultsProps) {
-  const [movies, setMovies] = useState(props.resultsData);
   const [notFound, setNotFound] = useState(false);
 
   const [sortInput, setSortInput] = React.useState('sort-by');
@@ -27,26 +26,15 @@ function ResultsPage(props: ResultsProps) {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (movies.length === 0)
+    if (props.resultsData.length === 0)
       setNotFound(true);
     else
       setNotFound(false);
-  }, [movies])
+  }, [props.resultsData])
 
   useEffect(() => {
-    fetch(currentURL + '&page=' + `${page}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setMovies(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }, [currentURL, page]);
+    props.onEndpointRequest(currentURL + '&page=' + `${page}`);
+  }, [page]);
 
   useEffect(() => {
     if (topInput !== '0' && sortInput === 'title')
@@ -72,58 +60,26 @@ function ResultsPage(props: ResultsProps) {
   function requestSortedMovies(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
     const url = `${resultURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
     if(url != currentURL){
+      props.onEndpointRequest(url);
       setCurrentURL(url);
     }
-    fetch(url)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setMovies(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
   }
 
   function requestSortedRecentMovies(sortPriority: string, year: String, sortByRating: string, limit: string) {
     const url = `${resultURL} &sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`;
     if (url != currentURL){
+      props.onEndpointRequest(url);
       setCurrentURL(url);
     }
-    
-    fetch(`${resultURL}&sortPriority=${sortPriority}&title= ${year}&sortByRating=${sortByRating}&limit=${limit}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setMovies(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
   }
 
   const onHeaderInputSubmit = () => {
     setPage(1);
-    setResultURL(`${TMDB_API}?title=${headerInputTitle}`);
-    setIsLoaded(false);
-    fetch(TMDB_API + `?title=${headerInputTitle}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setMovies(result);
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+    const url = `${TMDB_API}?title=${headerInputTitle}`;
+    if (url != currentURL){
+      props.onEndpointRequest(url);
+      setCurrentURL(url);
+    }
   }
 
   const onSortInputChange = (sort: string) => {
@@ -164,12 +120,17 @@ function ResultsPage(props: ResultsProps) {
     <div className="results-container">
       <Header headerData={headerProps} />
       <Filters filtersData={filtersProps} apiUrl={props.apiUrl} />
-      {isLoaded ?
+      {props.isLoaded ?
         <>
           {notFound ? <NotFound /> :
             <div className="movies-results-container">
               <h6 className="showing-h6">Showing results</h6>
-              <ResultsList resultsData={movies} apiUrl={props.apiUrl}></ResultsList>
+              <ResultsList 
+                resultsData={props.resultsData} 
+                apiUrl={props.apiUrl}
+                onEndpointRequest={() => {console.log()}}
+                isLoaded={true}
+                ></ResultsList>
             </div>
           }
           <Pagination

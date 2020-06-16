@@ -100,7 +100,23 @@ function HomePage() {
           }
         )
     }
-  }, [genreInput, resultURL])
+  }, [genreInput])
+
+  useEffect(() => {
+      setIsLoaded(false);
+      fetch(resultURL)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setMovies(result);
+            setIsLoaded(true);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+  }, [resultURL])
 
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
@@ -140,7 +156,8 @@ function HomePage() {
     onHeaderInputSubmit: onHeaderInputSubmit
   }
 
-  const onEndpointChange = (endpoint: string) => {
+  const onEndpointRequest = (endpoint: string) => {
+    setResultURL(endpoint);
   } 
 
   const validGenre = (item: any) => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX'
@@ -148,7 +165,12 @@ function HomePage() {
   return (
     <>
       {renderQueryResults ?
-        <ResultsPage resultsData={movies} apiUrl={resultURL}/> :
+        <ResultsPage 
+          resultsData={movies} 
+          apiUrl={resultURL}
+          onEndpointRequest={onEndpointRequest}
+          isLoaded={isLoaded}
+          /> :
         <>
           {isLoaded ?
             <>
