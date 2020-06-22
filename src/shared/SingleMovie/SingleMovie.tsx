@@ -11,7 +11,7 @@ function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
     const [backgroundUrl, setBackgroundUrl] = useState(data.poster_path);
     const finalGenres = data.genres.replace(/\|/gi, ', ');
-    const finalDuration = Math.floor(data.runtime / 60) + 'h ' + data.runtime % 60 + 'mins';  
+    const finalDuration = Math.floor(data.runtime / 60) + 'h ' + data.runtime % 60 + ' mins';  
 
     useEffect(() => {
         if(data.poster_path === "")

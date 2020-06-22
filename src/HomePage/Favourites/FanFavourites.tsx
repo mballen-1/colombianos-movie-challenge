@@ -35,7 +35,7 @@ function FanFavourites(props: FavoritesProps) {
     (movie: SingleMovieProp) => {
       const finalGenres = movie.genres.replace(/\|/gi, ', ');
       const backgroundUrl = setImage(movie.poster_path);
-      const finalDuration = Math.floor(movie.runtime / 60) + 'h ' + movie.runtime % 60 + 'mins';  
+      const finalDuration = Math.floor(movie.runtime / 60) + 'h ' + movie.runtime % 60 + ' mins';  
       return (
         <Link to={{
           pathname: `/movie/${movie.movieId}`,

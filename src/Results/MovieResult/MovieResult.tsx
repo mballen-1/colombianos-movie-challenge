@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { YEARLY_RATINGS, CAST_API, TMDB_API } from '../../constants/index'
 import BumpGraph from './GraphComponent';
 import './MovieResult.css';
-import Header2 from '../../shared/Header/Header2';
+import Header from '../../shared/Header/Header';
 import Footer from '../../shared/Footer/Footer';
-import RecentRelease from '../../HomePage/RecentRelease/RecentRelease';
 import Road from '../../shared/Road/Road';
 import { CastResponse } from './types';
 import CastRow from './CastRow/CastRow';
 import ResultsPage from '../ResultsPage';
+import MovieMainContent from './MovieMainContent/MovieMainContent';
 
 function MovieResult(props: any) {
   const {
@@ -151,8 +151,8 @@ function MovieResult(props: any) {
           {isLoaded ?
             (
               <>
-                <Header2 headerData={headerProps} />
-                <RecentRelease
+                <Header headerData={headerProps} />
+                <MovieMainContent
                   movieData={movie}
                   recentRelease={false}
                 />

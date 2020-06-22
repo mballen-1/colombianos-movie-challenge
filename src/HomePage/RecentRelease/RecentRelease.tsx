@@ -20,27 +20,31 @@ function RecentRelease(props: MovieDataProps) {
     const recentRelease = props.recentRelease;
     const finalGenres = data.genres.replace(/\|/gi, ', ');
     const backgroundUrl = setImage(data.poster_path);
-    const finalDuration = Math.floor(data.runtime / 60) + 'h ' + data.runtime % 60 + 'mins';  
+    const finalDuration = Math.floor(data.runtime / 60) + 'h ' + data.runtime % 60 + ' mins';
 
     return (
         <div className={`release-detail-container `}
             style={{ backgroundImage: `url(${backgroundUrl})` }} >
             <div className={`${!recentRelease ? 'recent-release__filter' : ''}`}>
-
             </div>
             <div className="release-detail__padding release-detail__text">
                 {recentRelease ?
                     <h6 className="recent-release__font recent-release__tag">Recent release</h6> : <></>
                 }
                 <Link to={{
-                    pathname: `/movie/${data.movieId}`,
-                    state: data
-                }}
+                        pathname: `/movie/${data.movieId}`,
+                        state: data
+                    }}
                     className="movie-anchor"
                     key={data.movieId}
                 >
-                    <h1>{data.title}</h1>
+                    <h1 className={`${recentRelease ? '' : 'single-result__font'}`}>{data.title}</h1>
                 </Link>
+
+                {!recentRelease?
+                    <img src={`${backgroundUrl}`} width="32%" height="100%"
+                      /> : <></>
+                }
 
                 <div className="recent-release__font">
                     {data.release_date + '  | '}
