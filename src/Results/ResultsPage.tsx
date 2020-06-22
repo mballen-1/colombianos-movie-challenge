@@ -59,7 +59,7 @@ function ResultsPage(props: ResultsProps) {
 
   function requestSortedMovies(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
     const url = `${resultURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
-    if(url != currentURL){
+    if(url !== currentURL){
       props.onEndpointRequest(url);
       setCurrentURL(url);
     }
@@ -67,7 +67,7 @@ function ResultsPage(props: ResultsProps) {
 
   function requestSortedRecentMovies(sortPriority: string, year: String, sortByRating: string, limit: string) {
     const url = `${resultURL} &sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`;
-    if (url != currentURL){
+    if (url !== currentURL){
       props.onEndpointRequest(url);
       setCurrentURL(url);
     }
@@ -76,7 +76,7 @@ function ResultsPage(props: ResultsProps) {
   const onHeaderInputSubmit = () => {
     setPage(1);
     const url = `${TMDB_API}?title=${headerInputTitle}`;
-    if (url != currentURL){
+    if (url !== currentURL){
       props.onEndpointRequest(url);
       setCurrentURL(url);
     }
@@ -109,7 +109,7 @@ function ResultsPage(props: ResultsProps) {
   }
 
   const handlePaginationOnChange = (pageValue: number) => {
-    if (pageValue != page) {
+    if (pageValue !== page) {
       window.scrollTo(0, 0);
       setIsLoaded(false);
       setPage(pageValue);

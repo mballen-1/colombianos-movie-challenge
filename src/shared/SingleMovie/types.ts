@@ -7,6 +7,6 @@ export interface SingleMovieProp {
     rating: number;
     release_date: string;
     title: string;
-    duration: string;
+    runtime: number;
     likedRating: number;
 }

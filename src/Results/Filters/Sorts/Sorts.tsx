@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Sorts.css';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { MenuItem, FormControl, Select } from '@material-ui/core';

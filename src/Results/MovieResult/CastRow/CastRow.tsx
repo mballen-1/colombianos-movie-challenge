@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { CastRowProps } from './types';
 import Carousel from 'react-material-ui-carousel'
 import './CastRow.css';
-import Road from '../../../../shared/Road/Road';
-import { USER_NOT_FOUND } from '../../../../constants/images';
+import Road from '../../../shared/Road/Road';
+import { USER_NOT_FOUND } from '../../../constants/images';
 import { Cast } from '../types';
 
 function CastRow(castProps: CastRowProps) {

@@ -17,7 +17,7 @@ function HomePage() {
     title: '',
     release_date: '',
     genres: "",
-    duration: "",
+    runtime: 0,
     overview: "",
     budget: 0,
     movieId: 0,

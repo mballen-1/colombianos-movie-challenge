@@ -28,6 +28,7 @@
     background-color: #060912;
     width: 822px;
     height: 371px;
+    z-index: 1;
 }
 
 .release-synopsis {
@@ -92,5 +93,9 @@
 }
 
 .recent-release__filter {
+    background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(8px);
+    width: 100%;
+    height: 53.8%;
+    position: absolute;
 }

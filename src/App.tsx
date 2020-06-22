@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import HomePage from './HomePage/HomePage';
 import { Switch, Route } from 'react-router-dom';
-import MovieResult from './Results/ResultsList/MovieResult/MovieResult';
+import MovieResult from './Results/MovieResult/MovieResult';
 import GlobalCss from './GlobalCss';
 
 function App() {

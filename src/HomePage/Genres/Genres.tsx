@@ -140,7 +140,11 @@ function Genres(props: GenresProps) {
     <div className="genres-main-container">
       <h4 className="section-heading section-heading__font">Genres</h4>
       <div className="genres-container">
-        <Carousel navButtonsAlwaysVisible={true}>{genreElements}</Carousel>
+        <Carousel 
+          interval={16000}
+          navButtonsAlwaysVisible={true}>
+            {genreElements}
+        </Carousel>
       </div>
     </div>
   );
