@@ -137,7 +137,7 @@ function Genres(props: GenresProps) {
     )
   );
   return (
-    <div className="genres-main-container">
+    <section className="genres-main-container">
       <h4 className="section-heading section-heading__font">Genres</h4>
       <div className="genres-container">
         <Carousel 
@@ -146,7 +146,7 @@ function Genres(props: GenresProps) {
             {genreElements}
         </Carousel>
       </div>
-    </div>
+    </section>
   );
 }
 

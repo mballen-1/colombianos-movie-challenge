@@ -156,21 +156,21 @@ function MovieResult(props: any) {
                   movieData={movie}
                   recentRelease={false}
                 />
-                <div className="movie-result-cast">
+                <section className="movie-result-cast">
                   <CastRow castList={cast} />
-                </div>
-                <div className="movie-result-synopsis">
+                </section>
+                <section className="movie-result-synopsis">
                   <h4 className="section-heading section-heading__font">Synopsis</h4>
                   <p className="movie-result-overview-p">
                     {overview}
                   </p>
-                </div>
-                <div>
+                </section>
+                <section>
                   <h4 className="section-heading section-heading__font">Ratings Over time</h4>
                   <div className="movie-result-wrapper">
                     <BumpGraph data={[graphData]} className="movie-result-wrapper" />
                   </div>
-                </div>
+                </section>
                 <Footer></Footer>
               </>
             ) : <Road />

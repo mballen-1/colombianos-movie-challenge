@@ -13,10 +13,10 @@ function CastRow(castProps: CastRowProps) {
   }
 
   const cast = castProps.castList;
-  let beatifulPeople = [];
+  let renderedPeople = [];
   if (cast.length < 6) {
     cast.map((cast: Cast) => {
-      beatifulPeople.push(
+      renderedPeople.push(
         <div className="single-cast-container" key={cast.cast_id}>
           <img width="160px" height="183px" src={getBackgroundUrlSafe(cast.profile_path)} alt='cast-profile' />
           <p className="single-cast-name" >{cast.name}</p>
@@ -26,7 +26,7 @@ function CastRow(castProps: CastRowProps) {
     })
   } else {
     for (let i = 0; i < cast.length - 5; i += 5) {
-      beatifulPeople.push(
+      renderedPeople.push(
         <>
           <div className="cast-row__display">
             <div className="single-cast-container">
@@ -69,9 +69,9 @@ function CastRow(castProps: CastRowProps) {
   return (
     <>
       <h4 className="section-heading section-heading__font">Cast</h4>
-      {cast && beatifulPeople.length > 0 ?
-        <Carousel interval={5000} className="cast-carousel__padding" navButtonsAlwaysVisible={true}>
-          {beatifulPeople}
+      {cast && renderedPeople.length > 0 ?
+        <Carousel interval={16000} className="cast-carousel__padding" navButtonsAlwaysVisible={true}>
+          {renderedPeople}
         </Carousel> :
         <Road />
       }

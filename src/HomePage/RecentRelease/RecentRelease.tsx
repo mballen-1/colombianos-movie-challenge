@@ -23,33 +23,25 @@ function RecentRelease(props: MovieDataProps) {
     const finalDuration = Math.floor(data.runtime / 60) + 'h ' + data.runtime % 60 + ' mins';
 
     return (
-        <div className={`release-detail-container `}
+        <section className={`release-detail-container `}
             style={{ backgroundImage: `url(${backgroundUrl})` }} >
-            <div className={`${!recentRelease ? 'recent-release__filter' : ''}`}>
-            </div>
+
             <div className="release-detail__padding release-detail__text">
-                {recentRelease ?
-                    <h6 className="recent-release__font recent-release__tag">Recent release</h6> : <></>
-                }
+                <h6 className="recent-release__font recent-release__tag">Recent release</h6>
                 <Link to={{
-                        pathname: `/movie/${data.movieId}`,
-                        state: data
-                    }}
+                    pathname: `/movie/${data.movieId}`,
+                    state: data
+                }}
                     className="movie-anchor"
                     key={data.movieId}
                 >
-                    <h1 className={`${recentRelease ? '' : 'single-result__font'}`}>{data.title}</h1>
+                    <h1>{data.title}</h1>
                 </Link>
-
-                {!recentRelease?
-                    <img src={`${backgroundUrl}`} width="32%" height="100%"
-                      /> : <></>
-                }
 
                 <div className="recent-release__font">
                     {data.release_date + '  | '}
                     {finalGenres + '  | '}
-                    {finalDuration}
+                    {' ' + finalDuration}
                 </div>
                 <div className="release-user-score release-user-score__font">
                     <PeopleLiked data={data.likedRating} displayBottomTag={false} />
@@ -60,7 +52,7 @@ function RecentRelease(props: MovieDataProps) {
                     <SeeMoreLess overview={data.overview} />
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

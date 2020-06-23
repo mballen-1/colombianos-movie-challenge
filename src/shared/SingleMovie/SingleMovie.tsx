@@ -41,9 +41,9 @@ function SingleMovie(props: MovieDataProps) {
                     <h3 className="single-movie-title">{data.title}</h3>
                 </Link>
                 <div className="single-movie-basic-data__padding">
-                    <span>{data.release_date}</span> | 
-                    <span className="m-l3">{finalGenres} </span>
-                    <span>{finalDuration}</span>
+                    <span>{data.release_date + ' ' }</span> | 
+                    <span className="m-l3">{finalGenres + ' '} </span> | 
+                    <span>{' ' + finalDuration}</span>
                 </div>
                 <div className="single-movie-stats">
                     <div className="single-movie-score">
