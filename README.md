@@ -1,3 +1,6 @@
+Project has been deployed and it's available at: 
+[Muviz app](https://secret-beyond-17324.herokuapp.com)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
