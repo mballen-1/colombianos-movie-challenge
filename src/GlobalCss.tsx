@@ -24,7 +24,7 @@ const GlobalCss = withStyles({
       }
     },
     '.MuiSvgIcon-root': {
-      fill: '#ffffff'
+      // fill: '#ffffff'
     },
     '.MuiInputBase-root': {
       fontFamily: 'Karla'
