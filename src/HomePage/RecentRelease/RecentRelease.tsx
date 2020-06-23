@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './RecentRelease.css';
 import { MovieDataProps } from './types';
 import PeopleLiked from '../../shared/PeopleLiked/PeopleLiked';
@@ -20,14 +20,14 @@ function RecentRelease(props: MovieDataProps) {
     const recentRelease = props.recentRelease;
     const finalGenres = data.genres.replace(/\|/gi, ', ');
     const backgroundUrl = setImage(data.poster_path);
+    const finalDuration = Math.floor(data.runtime / 60) + 'h ' + data.runtime % 60 + ' mins';
 
     return (
-        <div className={`release-detail-container  ${!recentRelease ? 'recent-release__filter' : ''}`}
+        <section className={`release-detail-container `}
             style={{ backgroundImage: `url(${backgroundUrl})` }} >
+
             <div className="release-detail__padding release-detail__text">
-                {recentRelease ?
-                    <h6 className="recent-release__font recent-release__tag">Recent release</h6> : <></>
-                }
+                <h6 className="recent-release__font recent-release__tag">Recent release</h6>
                 <Link to={{
                     pathname: `/movie/${data.movieId}`,
                     state: data
@@ -41,7 +41,7 @@ function RecentRelease(props: MovieDataProps) {
                 <div className="recent-release__font">
                     {data.release_date + '  | '}
                     {finalGenres + '  | '}
-                    {data.duration}
+                    {' ' + finalDuration}
                 </div>
                 <div className="release-user-score release-user-score__font">
                     <PeopleLiked data={data.likedRating} displayBottomTag={false} />
@@ -49,11 +49,10 @@ function RecentRelease(props: MovieDataProps) {
                     <CompleteAverageRating data={data.rating} recentRelease={true} />
                 </div>
                 <div className="release-overview">
-                    {/* {overviewRender} */}
-                    <SeeMoreLess overview={data.overview}/>
+                    <SeeMoreLess overview={data.overview} />
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

@@ -9,6 +9,8 @@ import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
 import Road from '../shared/Road/Road';
 import Footer from '../shared/Footer/Footer';
+import { Button } from '@material-ui/core';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 function HomePage() {
 
@@ -17,7 +19,7 @@ function HomePage() {
     title: '',
     release_date: '',
     genres: "",
-    duration: "",
+    runtime: 0,
     overview: "",
     budget: 0,
     movieId: 0,
@@ -34,31 +36,41 @@ function HomePage() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [headerInputTitle, setheaderInputTitle] = useState('');
-  const [resultsLimit, setResultsLimit] = useState(27);
+  const [resultsLimit, setResultsLimit] = useState(8);
 
   const [genreInput, setGenreInput] = useState('');
   const [renderQueryResults, setRenderQueryResults] = useState(false);
   const [resultURL, setResultURL] = useState(TMDB_API);
 
-  window.scrollTo(0,0);
+  // window.scrollTo(0, 0);
 
-  useEffect(() => {    
-    fetch(TMDB_API + `?limit=${resultsLimit}&title=2018&sortPriority=rating&sortByRating=true`)
+  useEffect(() => {
+    fetch(TMDB_API + `?limit=1&title=2018&sortPriority=rating&sortByRating=true`)
       .then(res => res.json())
       .then(
         (result) => {
-          setMovies(result);
-          if (result.length > 0 ) {
+          if (result.length > 0) {
             setRecentRelease(result[0]);
           }
-          setIsLoaded(true);          
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       )
-      
+    fetch(TMDB_API + `?limit=${resultsLimit}&sortPriority=rating&sortByRating=true`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setMovies(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+
     fetch(GENRES_API)
       .then(res => res.json())
       .then(
@@ -73,7 +85,7 @@ function HomePage() {
   }, [resultsLimit])
 
   useEffect(() => {
-    if (genres.length === 1)
+    if (genres.length === 1 && genresOnly.length > 0)
       genresOnly.map((g) => setGenres(r =>
         [...r,
         {
@@ -103,19 +115,19 @@ function HomePage() {
   }, [genreInput])
 
   useEffect(() => {
-      setIsLoaded(false);
-      fetch(resultURL)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setMovies(result);
-            setIsLoaded(true);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
+    setIsLoaded(false);
+    fetch(resultURL)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setMovies(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }, [resultURL])
 
   const onHeaderInputSubmit = () => {
@@ -158,27 +170,40 @@ function HomePage() {
 
   const onEndpointRequest = (endpoint: string) => {
     setResultURL(endpoint);
-  } 
+  }
 
   const validGenre = (item: any) => item.name !== '' && item.name !== '(no genres listed)' && item.name !== 'IMAX'
+
+  const fetchEightMore = () => {
+    setIsLoaded(false);
+    setResultsLimit(resultsLimit + 8);
+  }
+  const moreFavorites = (
+    <Button onClick={fetchEightMore} id="see-more-button">
+      <span className="home-see-more">
+        See More
+      </span>
+      <ArrowDropDownIcon className="see-more__icon" />
+    </Button>
+  );
 
   return (
     <>
       {renderQueryResults ?
-        <ResultsPage 
-          resultsData={movies} 
+        <ResultsPage
+          resultsData={movies}
           apiUrl={resultURL}
           onEndpointRequest={onEndpointRequest}
           isLoaded={isLoaded}
-          /> :
+        /> :
         <>
           {isLoaded ?
             <>
               <Header headerData={headerProps} />
-              <RecentRelease 
-                movieData={recentRelease} 
+              <RecentRelease
+                movieData={recentRelease}
                 recentRelease={true}
-                />
+              />
               <Genres
                 genresData={genres.filter(item => validGenre(item))}
                 genreSelect={genresProps} />
@@ -188,6 +213,7 @@ function HomePage() {
           }
         </>
       }
+      {moreFavorites}
       <Footer />
     </>
   );

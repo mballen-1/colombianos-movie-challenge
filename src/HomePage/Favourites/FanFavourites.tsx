@@ -2,7 +2,6 @@ import React from 'react';
 import './FanFavourites.css';
 import { FavoritesProps } from './types';
 import { Button, makeStyles, createStyles, Theme } from '@material-ui/core';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { SingleMovieProp } from '../../shared/SingleMovie/types';
 import { Link } from 'react-router-dom';
 import PeopleLiked from '../../shared/PeopleLiked/PeopleLiked';
@@ -35,6 +34,7 @@ function FanFavourites(props: FavoritesProps) {
     (movie: SingleMovieProp) => {
       const finalGenres = movie.genres.replace(/\|/gi, ', ');
       const backgroundUrl = setImage(movie.poster_path);
+      const finalDuration = Math.floor(movie.runtime / 60) + 'h ' + movie.runtime % 60 + ' mins';  
       return (
         <Link to={{
           pathname: `/movie/${movie.movieId}`,
@@ -55,7 +55,7 @@ function FanFavourites(props: FavoritesProps) {
                   <div className="favorite-detail-data favourite-detail__break favorite-detail__font">
                     <p>{movie.release_date}</p>
                     <p>{finalGenres}</p>
-                    <p>{movie.duration}</p>
+                    <p>{finalDuration}</p>
                   </div>
                 </div>
               </div>
@@ -66,34 +66,11 @@ function FanFavourites(props: FavoritesProps) {
     }
   );
 
-  const moreFavorites = (
-    <Button style={
-      {
-        paddingRight: 107
-      }
-    }>
-      <p className="favorites-see-more">
-        See More
-      </p>
-      <ArrowDropDownIcon style={
-        {
-          color: '#ffffff',
-          fontSize: 40,
-          width: '50px',
-          height: '50px',
-          fontFamily: 'Rubik'
-        }} />
-    </Button>
-  );
-
   return (
     <div className="favorite-main-container">
       <h4 className="section-heading section-heading__font">Fan Favorites</h4>
       <div className="favorite-container">
         {fanFavorites}
-      </div>
-      <div>
-        {moreFavorites}
       </div>
     </div>
   );

@@ -68,12 +68,6 @@ p {
     position: relative;
 }
 
-.favorites-see-more {
-    height: 20px;
-    color: #479aef;
-    position: 'relative';
-}
-
 .favorite-icon-details__container {
     display: flex;
     align-items: center;

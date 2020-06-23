@@ -11,6 +11,7 @@ function SingleMovie(props: MovieDataProps) {
     const data = props.movieData;
     const [backgroundUrl, setBackgroundUrl] = useState(data.poster_path);
     const finalGenres = data.genres.replace(/\|/gi, ', ');
+    const finalDuration = Math.floor(data.runtime / 60) + 'h ' + data.runtime % 60 + ' mins';  
 
     useEffect(() => {
         if(data.poster_path === "")
@@ -40,9 +41,9 @@ function SingleMovie(props: MovieDataProps) {
                     <h3 className="single-movie-title">{data.title}</h3>
                 </Link>
                 <div className="single-movie-basic-data__padding">
-                    <span>{data.release_date}</span> | 
-                    <span className="m-l3">{finalGenres} </span>
-                    <span>{data.duration}</span>
+                    <span>{data.release_date + ' ' }</span> | 
+                    <span className="m-l3">{finalGenres + ' '} </span> | 
+                    <span>{' ' + finalDuration}</span>
                 </div>
                 <div className="single-movie-stats">
                     <div className="single-movie-score">

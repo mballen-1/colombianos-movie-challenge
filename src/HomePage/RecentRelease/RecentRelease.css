@@ -28,6 +28,7 @@
     background-color: #060912;
     width: 822px;
     height: 371px;
+    z-index: 1;
 }
 
 .release-synopsis {
@@ -89,8 +90,4 @@
 .release-liked-span {
     width: 83px;
     margin-right: 30px;
-}
-
-.recent-release__filter {
-    backdrop-filter: blur(8px);
 }
