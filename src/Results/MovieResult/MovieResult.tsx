@@ -140,13 +140,13 @@ function MovieResult(props: any) {
 
   return (
     <>
-      {renderQueryResults ?
+      {/* {renderQueryResults ?
         <ResultsPage 
-          resultsData={movies} 
+          movies={movies} 
           apiUrl={resultURL} 
           onEndpointRequest={() => {console.log()}}
           isLoaded={true}
-          /> :
+          /> : */}
         <>
           {isLoaded ?
             (
@@ -176,7 +176,7 @@ function MovieResult(props: any) {
             ) : <Road />
           }
         </>
-      }
+      {/* } */}
     </>
   );
 }

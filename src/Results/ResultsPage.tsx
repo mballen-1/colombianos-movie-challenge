@@ -10,88 +10,124 @@ import Header from '../shared/Header/Header';
 import { TMDB_API } from '../constants';
 
 
-function ResultsPage(props: ResultsProps) {
+function ResultsPage(props: any) {
+  const {
+    location: {
+      state: {
+        headerInputTitle,
+        genreInput
+      }
+    }
+  } = props;
+
   const [notFound, setNotFound] = useState(false);
-
-  const [sortInput, setSortInput] = React.useState('sort-by');
-  const [topInput, setTopInput] = React.useState('0');
-
+  const [sortSelectOption, setSortSelectOption] = React.useState('sort-by');
+  const [topSelectOption, setTopSelectOption] = React.useState('0');
+  const [headerInputTitleProps, setheaderInputTitleProps] = useState(headerInputTitle);
+  const [genreInputProps, setGenreInputProps] = useState(genreInput);
+  const [backendURL, setBackendURL] = useState('');
+  const [page, setPage] = useState(1);
+  const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [headerInputTitle, setheaderInputTitle] = useState('');
-  const [resultURL, setResultURL] = useState(props.apiUrl);
-
-  const [currentURL, setCurrentURL] = useState(props.apiUrl);
-  const [page, setPage] = useState(1);
-
   useEffect(() => {
-    if (props.resultsData.length === 0)
+    if ((!movies || movies.length === 0) && !isLoaded) {
       setNotFound(true);
+    }
     else
       setNotFound(false);
-  }, [props.resultsData])
+  }, [movies])
+
+  const setBackendEndpoint = () => {
+    if (genreInputProps && genreInputProps.length > 0) {
+      setBackendURL(`${TMDB_API}?genres=${genreInputProps}`);
+    } else {
+      if (headerInputTitleProps && headerInputTitleProps.length > 0) {
+        setBackendURL(`${TMDB_API}?title=${headerInputTitleProps}`);
+      }
+    }
+    // setBackendURL(`${TMDB_API}?limit=10&sortPriority=rating&sortByRating=true`);
+  }
 
   useEffect(() => {
-    props.onEndpointRequest(currentURL + '&page=' + `${page}`);
+    setBackendEndpoint();
+  })
+
+  useEffect(() => {
+    setBackendURL(`${backendURL}&page=${page}`);
   }, [page]);
 
   useEffect(() => {
-    if (topInput !== '0' && sortInput === 'title')
-      requestSortedMovies('rating', 'true', 'true', topInput);
+    setIsLoaded(false);
+    fetch(backendURL)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setMovies(result);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [backendURL])
 
-    else if (topInput !== '0' && sortInput === 'most-recent')
-      requestSortedRecentMovies('rating', '2018', 'true', topInput);
+  useEffect(() => {
+    if (topSelectOption !== '0' && sortSelectOption === 'title')
+      requestSortedMovies('rating', 'true', 'true', topSelectOption);
 
-    else if (topInput !== '0' && sortInput !== 'title')
-      requestSortedMovies('rating', 'false', 'true', topInput);
+    else if (topSelectOption !== '0' && sortSelectOption === 'most-recent')
+      requestSortedRecentMovies('rating', '2018', 'true', topSelectOption);
 
-    else if (topInput === '0' && sortInput === 'title')
+    else if (topSelectOption !== '0' && sortSelectOption !== 'title')
+      requestSortedMovies('rating', 'false', 'true', topSelectOption);
+
+    else if (topSelectOption === '0' && sortSelectOption === 'title')
       requestSortedMovies('title', 'true', 'false', '10');
 
-    else if (topInput === '0' && sortInput === 'most-recent')
+    else if (topSelectOption === '0' && sortSelectOption === 'most-recent')
       requestSortedRecentMovies('title', '2018', 'false', '10');
 
     else
       requestSortedMovies('', 'false', 'false', '10')
 
-  }, [sortInput, topInput])
+  }, [sortSelectOption, topSelectOption])
 
   function requestSortedMovies(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
-    const url = `${resultURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
-    if(url !== currentURL){
-      props.onEndpointRequest(url);
-      setCurrentURL(url);
+    const url = `${backendURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
+    if (url !== backendURL) {
+      setBackendURL(url);
     }
   }
 
   function requestSortedRecentMovies(sortPriority: string, year: String, sortByRating: string, limit: string) {
-    const url = `${resultURL} &sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`;
-    if (url !== currentURL){
-      props.onEndpointRequest(url);
-      setCurrentURL(url);
+    const url = `${backendURL}&sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`;
+    if (url !== backendURL) {
+      setBackendURL(url);
     }
   }
 
   const onHeaderInputSubmit = () => {
     setPage(1);
-    const url = `${TMDB_API}?title=${headerInputTitle}`;
-    if (url !== currentURL){
-      props.onEndpointRequest(url);
-      setCurrentURL(url);
+    const url = `${TMDB_API}?title=${headerInputTitleProps}`;
+    setGenreInputProps('');
+    if (url !== backendURL) {
+      setBackendURL(url);
     }
   }
 
   const onSortInputChange = (sort: string) => {
     setIsLoaded(false);
     setPage(1);
-    setSortInput(sort);
+    setSortSelectOption(sort);
   }
 
   const onTopsInputChange = (top: string) => {
     setIsLoaded(false);
     setPage(1);
-    setTopInput(top);
+    setTopSelectOption(top);
   }
 
   const filtersProps = {
@@ -100,7 +136,7 @@ function ResultsPage(props: ResultsProps) {
   }
 
   const onInputTitleChange = (title: string) => {
-    setheaderInputTitle(title);
+    setheaderInputTitleProps(title);
   }
 
   const headerProps = {
@@ -116,21 +152,20 @@ function ResultsPage(props: ResultsProps) {
     }
   };
 
+  console.log('backendURL', backendURL);
+
   return (
     <div className="results-container">
       <Header headerData={headerProps} />
-      <Filters filtersData={filtersProps} apiUrl={props.apiUrl} />
-      {props.isLoaded ?
+      <Filters filtersData={filtersProps} apiUrl={backendURL} />
+      {isLoaded ?
         <>
           {notFound ? <NotFound /> :
             <div className="movies-results-container">
               <h6 className="showing-h6">Showing results</h6>
-              <ResultsList 
-                resultsData={props.resultsData} 
-                apiUrl={props.apiUrl}
-                onEndpointRequest={() => {console.log()}}
-                isLoaded={true}
-                ></ResultsList>
+              <ResultsList
+                movies={movies}
+              ></ResultsList>
             </div>
           }
           <Pagination
