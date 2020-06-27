@@ -32,11 +32,8 @@ function ResultsPage(props: any) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if ((!movies || movies.length === 0) && !isLoaded) {
-      setNotFound(true);
-    }
-    else
-      setNotFound(false);
+    const notFound = (!movies || movies.length === 0) && !isLoaded;
+    setNotFound(notFound);
   }, [movies])
 
   const setBackendEndpoint = () => {
@@ -65,10 +62,10 @@ function ResultsPage(props: any) {
       .then(
         (result) => {
           setMovies(result);
-          setIsLoaded(true);
+          setTimeout(() => setIsLoaded(true), 0);
         },
         (error) => {
-          setIsLoaded(true);
+          // setIsLoaded(true);
           setError(error);
         }
       )
@@ -156,10 +153,10 @@ function ResultsPage(props: any) {
 
   return (
     <div className="results-container">
-      <Header headerData={headerProps} />
-      <Filters filtersData={filtersProps} apiUrl={backendURL} />
       {isLoaded ?
         <>
+          <Header headerData={headerProps} />
+          <Filters filtersData={filtersProps} apiUrl={backendURL} />
           {notFound ? <NotFound /> :
             <div className="movies-results-container">
               <h6 className="showing-h6">Showing results</h6>
@@ -168,11 +165,16 @@ function ResultsPage(props: any) {
               ></ResultsList>
             </div>
           }
-          <Pagination
-            className={`movies-results-pagination`}
-            color={'primary'}
-            count={20}
-            onChange={(e, p) => handlePaginationOnChange(p)} page={page} />
+          {
+            movies.length > 20 ?
+              <Pagination
+                className={`movies-results-pagination`}
+                color={'primary'}
+                count={20}
+                onChange={(e, p) => handlePaginationOnChange(p)} page={page} /> :
+              <></>
+          }
+
         </>
         : <Road />
       }
