@@ -38,9 +38,11 @@ function ResultsPage(props: any) {
 
   const setBackendEndpoint = () => {
     if (genreInputProps && genreInputProps.length > 0) {
+      console.log(1);
       setBackendURL(`${TMDB_API}?genres=${genreInputProps}`);
     } else {
       if (headerInputTitleProps && headerInputTitleProps.length > 0) {
+        console.log(2);
         setBackendURL(`${TMDB_API}?title=${headerInputTitleProps}`);
       }
     }
@@ -48,11 +50,16 @@ function ResultsPage(props: any) {
   }
 
   useEffect(() => {
-    setBackendEndpoint();
+    if (backendURL === '') {
+      setBackendEndpoint();
+    }
   })
 
   useEffect(() => {
-    setBackendURL(`${backendURL}&page=${page}`);
+    console.log('use effect page');
+    // if(backendURL !== '') {
+    //   setBackendURL(`${backendURL}&page=${page}`);
+    // }
   }, [page]);
 
   useEffect(() => {
@@ -62,7 +69,7 @@ function ResultsPage(props: any) {
       .then(
         (result) => {
           setMovies(result);
-          setTimeout(() => setIsLoaded(true), 0);
+          setIsLoaded(true);
         },
         (error) => {
           // setIsLoaded(true);
@@ -72,59 +79,72 @@ function ResultsPage(props: any) {
   }, [backendURL])
 
   useEffect(() => {
-    if (topSelectOption !== '0' && sortSelectOption === 'title')
-      requestSortedMovies('rating', 'true', 'true', topSelectOption);
-
-    else if (topSelectOption !== '0' && sortSelectOption === 'most-recent')
-      requestSortedRecentMovies('rating', '2018', 'true', topSelectOption);
-
-    else if (topSelectOption !== '0' && sortSelectOption !== 'title')
-      requestSortedMovies('rating', 'false', 'true', topSelectOption);
-
-    else if (topSelectOption === '0' && sortSelectOption === 'title')
-      requestSortedMovies('title', 'true', 'false', '10');
-
-    else if (topSelectOption === '0' && sortSelectOption === 'most-recent')
-      requestSortedRecentMovies('title', '2018', 'false', '10');
-
-    else
-      requestSortedMovies('', 'false', 'false', '10')
-
+    console.log('topSelectOption', topSelectOption);
+    if (!topSelectOption) {
+      if (sortSelectOption === 'title')
+        requestSortedMovies('title', 'true', 'false', '10');
+      else if (sortSelectOption === 'most-recent')
+        requestSortedRecentMovies('title', '2018', 'false', '10');
+      else // Default sorting
+        requestSortedMovies('', 'false', 'false', '10')
+    } else {
+      if (sortSelectOption === 'title')
+        requestSortedMovies('rating', 'true', 'true', topSelectOption);
+      else if (sortSelectOption === 'most-recent')
+        requestSortedRecentMovies('rating', '2018', 'true', topSelectOption);
+      else // Default sorting
+        requestSortedMovies('rating', 'false', 'true', topSelectOption);
+    }
   }, [sortSelectOption, topSelectOption])
 
-  function requestSortedMovies(sortPriority: string, sortByTitle: String, sortByRating: string, limit: string) {
-    const url = `${backendURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}`;
-    if (url !== backendURL) {
+  function requestSortedMovies(
+    sortPriority: string,
+    sortByTitle: String,
+    sortByRating: string,
+    limit: string) {
+    const url = `${backendURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
+    if (backendURL != '' && url !== backendURL) {
+      console.log(4);
       setBackendURL(url);
     }
   }
 
-  function requestSortedRecentMovies(sortPriority: string, year: String, sortByRating: string, limit: string) {
-    const url = `${backendURL}&sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}`;
-    if (url !== backendURL) {
+  function requestSortedRecentMovies(
+    sortPriority: string,
+    year: String,
+    sortByRating: string,
+    limit: string) {
+    const url = `${backendURL}&sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
+    if (backendURL != '' && url !== backendURL) {
+      console.log(5);
       setBackendURL(url);
     }
   }
 
   const onHeaderInputSubmit = () => {
-    setPage(1);
-    const url = `${TMDB_API}?title=${headerInputTitleProps}`;
+    const url = `${TMDB_API}?title=${headerInputTitleProps}&page=${page}`;
     setGenreInputProps('');
     if (url !== backendURL) {
+      console.log(6);
+      setPage(1);
       setBackendURL(url);
     }
   }
 
   const onSortInputChange = (sort: string) => {
     setIsLoaded(false);
-    setPage(1);
-    setSortSelectOption(sort);
+    if (sort != sortSelectOption) {
+      setPage(1);
+      setSortSelectOption(sort);
+    }
   }
 
   const onTopsInputChange = (top: string) => {
     setIsLoaded(false);
-    setPage(1);
-    setTopSelectOption(top);
+    if (top != topSelectOption) {
+      setPage(1);
+      setTopSelectOption(top);
+    }
   }
 
   const filtersProps = {
@@ -150,6 +170,9 @@ function ResultsPage(props: any) {
   };
 
   console.log('backendURL', backendURL);
+  const currentResultsHeading =
+    headerInputTitleProps && !genreInputProps ? `${movies.length} results for '${headerInputTitleProps}' search` :
+      `${movies.length} results for '${genreInputProps}' search`;
 
   return (
     <div className="results-container">
@@ -159,14 +182,14 @@ function ResultsPage(props: any) {
           <Filters filtersData={filtersProps} apiUrl={backendURL} />
           {notFound ? <NotFound /> :
             <div className="movies-results-container">
-              <h6 className="showing-h6">Showing results</h6>
+              <h2>{currentResultsHeading}</h2>
               <ResultsList
                 movies={movies}
               ></ResultsList>
             </div>
           }
           {
-            movies.length > 20 ?
+            true ? //Fix this with service info
               <Pagination
                 className={`movies-results-pagination`}
                 color={'primary'}
