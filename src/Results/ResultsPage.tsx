@@ -60,6 +60,7 @@ function ResultsPage(props: any) {
     // if(backendURL !== '') {
     //   setBackendURL(`${backendURL}&page=${page}`);
     // }
+    sendNewRequest();
   }, [page]);
 
   useEffect(() => {
@@ -78,8 +79,7 @@ function ResultsPage(props: any) {
       )
   }, [backendURL])
 
-  useEffect(() => {
-    console.log('topSelectOption', topSelectOption);
+  const sendNewRequest = () => {
     if (!topSelectOption) {
       if (sortSelectOption === 'title')
         requestSortedMovies('title', 'true', 'false', '10');
@@ -95,6 +95,10 @@ function ResultsPage(props: any) {
       else // Default sorting
         requestSortedMovies('rating', 'false', 'true', topSelectOption);
     }
+  }
+
+  useEffect(() => {
+    sendNewRequest();
   }, [sortSelectOption, topSelectOption])
 
   function requestSortedMovies(
