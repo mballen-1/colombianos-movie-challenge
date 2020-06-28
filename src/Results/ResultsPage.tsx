@@ -49,7 +49,6 @@ function ResultsPage(props: any) {
         setBackendURL(defaultTitleEndpoint);
       }
     }
-    // setBackendURL(`${TMDB_API}?limit=10&sortPriority=rating&sortByRating=true`);
   }
 
   useEffect(() => {
@@ -59,7 +58,6 @@ function ResultsPage(props: any) {
   })
 
   useEffect(() => {
-    console.log('use effect page');
     sendNewRequest();
   }, [page]);
 
@@ -84,16 +82,17 @@ function ResultsPage(props: any) {
       if (sortSelectOption === 'title')
         requestSortedMovies('title', 'true', 'false', '10');
       else if (sortSelectOption === 'most-recent')
-        requestSortedRecentMovies('title', '2018', 'false', '10');
+        requestSortedRecentMovies('rating', '2018', 'false', '10');
       else // Default sorting
         requestSortedMovies('', 'false', 'false', '10')
     } else {
+      const finalTopSelectOption = topSelectOption === '0' ? topSelectOption : '10';
       if (sortSelectOption === 'title')
-        requestSortedMovies('rating', 'true', 'true', topSelectOption);
+        requestSortedMovies('title', 'true', 'false', finalTopSelectOption);
       else if (sortSelectOption === 'most-recent')
-        requestSortedRecentMovies('rating', '2018', 'true', topSelectOption);
+        requestSortedRecentMovies('rating', '2018', 'true', finalTopSelectOption);
       else // Default sorting
-        requestSortedMovies('rating', 'false', 'true', topSelectOption);
+        requestSortedMovies('rating', 'false', 'true', finalTopSelectOption);
     }
   }
 
@@ -105,9 +104,10 @@ function ResultsPage(props: any) {
     sortPriority: string,
     sortByTitle: String,
     sortByRating: string,
-    limit: string) {    
+    limit: string) {
     const defaultEnpoint = genreInputProps ? defaultGenreEndpoint : defaultTitleEndpoint;
-    const url = `${defaultEnpoint}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
+    const finalLimit = limit !== '0' ? limit : '10';
+    const url = `${defaultEnpoint}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${finalLimit}&page=${page}`;
     if (backendURL !== '' && url !== backendURL) {
       console.log(4);
       setBackendURL(url);
@@ -119,7 +119,8 @@ function ResultsPage(props: any) {
     year: String,
     sortByRating: string,
     limit: string) {
-    const url = `${defaultTitleEndpoint}&sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
+    const finalLimit = limit !== '0' ? limit : '10';
+    const url = `${defaultTitleEndpoint}&sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${finalLimit}&page=${page}`;
     if (backendURL !== '' && url !== backendURL) {
       console.log(5);
       setBackendURL(url);
