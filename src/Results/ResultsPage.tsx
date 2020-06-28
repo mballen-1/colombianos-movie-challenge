@@ -36,14 +36,17 @@ function ResultsPage(props: any) {
     setNotFound(notFound);
   }, [movies])
 
+  const defaultGenreEndpoint = `${TMDB_API}?genres=${genreInputProps}`;
+  const defaultTitleEndpoint = `${TMDB_API}?title=${headerInputTitleProps}`;
+
   const setBackendEndpoint = () => {
     if (genreInputProps && genreInputProps.length > 0) {
       console.log(1);
-      setBackendURL(`${TMDB_API}?genres=${genreInputProps}`);
+      setBackendURL(defaultGenreEndpoint);
     } else {
       if (headerInputTitleProps && headerInputTitleProps.length > 0) {
         console.log(2);
-        setBackendURL(`${TMDB_API}?title=${headerInputTitleProps}`);
+        setBackendURL(defaultTitleEndpoint);
       }
     }
     // setBackendURL(`${TMDB_API}?limit=10&sortPriority=rating&sortByRating=true`);
@@ -57,9 +60,6 @@ function ResultsPage(props: any) {
 
   useEffect(() => {
     console.log('use effect page');
-    // if(backendURL !== '') {
-    //   setBackendURL(`${backendURL}&page=${page}`);
-    // }
     sendNewRequest();
   }, [page]);
 
@@ -105,8 +105,9 @@ function ResultsPage(props: any) {
     sortPriority: string,
     sortByTitle: String,
     sortByRating: string,
-    limit: string) {
-    const url = `${backendURL}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
+    limit: string) {    
+    const defaultEnpoint = genreInputProps ? defaultGenreEndpoint : defaultTitleEndpoint;
+    const url = `${defaultEnpoint}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
     if (backendURL != '' && url !== backendURL) {
       console.log(4);
       setBackendURL(url);
@@ -118,7 +119,7 @@ function ResultsPage(props: any) {
     year: String,
     sortByRating: string,
     limit: string) {
-    const url = `${backendURL}&sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
+    const url = `${defaultTitleEndpoint}&sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
     if (backendURL != '' && url !== backendURL) {
       console.log(5);
       setBackendURL(url);
@@ -126,7 +127,7 @@ function ResultsPage(props: any) {
   }
 
   const onHeaderInputSubmit = () => {
-    const url = `${TMDB_API}?title=${headerInputTitleProps}&page=${page}`;
+    const url = `${defaultTitleEndpoint}&page=${page}`;
     setGenreInputProps('');
     if (url !== backendURL) {
       console.log(6);
