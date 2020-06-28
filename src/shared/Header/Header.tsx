@@ -52,7 +52,3 @@ function Header(props: HeaderProps) {
 }
 
 export default Header;
-
-/*<Button>
-  <ArrowDropDownIcon style={{ color: 'white' }} />
-</Button>*/

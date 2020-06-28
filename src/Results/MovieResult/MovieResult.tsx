@@ -140,43 +140,35 @@ function MovieResult(props: any) {
 
   return (
     <>
-      {/* {renderQueryResults ?
-        <ResultsPage 
-          movies={movies} 
-          apiUrl={resultURL} 
-          onEndpointRequest={() => {console.log()}}
-          isLoaded={true}
-          /> : */}
-        <>
-          {isLoaded ?
-            (
-              <>
-                <Header headerData={headerProps} />
-                <MovieMainContent
-                  movieData={movie}
-                  recentRelease={false}
-                />
-                <section className="movie-result-cast">
-                  <CastRow castList={cast} />
-                </section>
-                <section className="movie-result-synopsis">
-                  <h4 className="section-heading section-heading__font">Synopsis</h4>
-                  <p className="movie-result-overview-p">
-                    {overview}
-                  </p>
-                </section>
-                <section>
-                  <h4 className="section-heading section-heading__font">Ratings Over time</h4>
-                  <div className="movie-result-wrapper">
-                    <BumpGraph data={[graphData]} className="movie-result-wrapper" />
-                  </div>
-                </section>
-                <Footer></Footer>
-              </>
-            ) : <Road />
-          }
-        </>
-      {/* } */}
+      <>
+        {isLoaded ?
+          (
+            <>
+              <Header headerData={headerProps} />
+              <MovieMainContent
+                movieData={movie}
+                recentRelease={false}
+              />
+              <section className="movie-result-cast">
+                <CastRow castList={cast} />
+              </section>
+              <section className="movie-result-synopsis">
+                <h4 className="section-heading section-heading__font">Synopsis</h4>
+                <p className="movie-result-overview-p">
+                  {overview}
+                </p>
+              </section>
+              <section>
+                <h4 className="section-heading section-heading__font">Ratings Over time</h4>
+                <div className="movie-result-wrapper">
+                  <BumpGraph data={[graphData]} className="movie-result-wrapper" />
+                </div>
+              </section>
+              <Footer></Footer>
+            </>
+          ) : <Road />
+        }
+      </>
     </>
   );
 }

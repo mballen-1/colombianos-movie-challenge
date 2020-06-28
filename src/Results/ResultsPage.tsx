@@ -108,7 +108,7 @@ function ResultsPage(props: any) {
     limit: string) {    
     const defaultEnpoint = genreInputProps ? defaultGenreEndpoint : defaultTitleEndpoint;
     const url = `${defaultEnpoint}&sortPriority=${sortPriority}&sortByTitle=${sortByTitle}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
-    if (backendURL != '' && url !== backendURL) {
+    if (backendURL !== '' && url !== backendURL) {
       console.log(4);
       setBackendURL(url);
     }
@@ -120,7 +120,7 @@ function ResultsPage(props: any) {
     sortByRating: string,
     limit: string) {
     const url = `${defaultTitleEndpoint}&sortPriority=${sortPriority}&title=${year}&sortByRating=${sortByRating}&limit=${limit}&page=${page}`;
-    if (backendURL != '' && url !== backendURL) {
+    if (backendURL !== '' && url !== backendURL) {
       console.log(5);
       setBackendURL(url);
     }
@@ -138,7 +138,7 @@ function ResultsPage(props: any) {
 
   const onSortInputChange = (sort: string) => {
     setIsLoaded(false);
-    if (sort != sortSelectOption) {
+    if (sort !== sortSelectOption) {
       setPage(1);
       setSortSelectOption(sort);
     }
@@ -146,7 +146,7 @@ function ResultsPage(props: any) {
 
   const onTopsInputChange = (top: string) => {
     setIsLoaded(false);
-    if (top != topSelectOption) {
+    if (top !== topSelectOption) {
       setPage(1);
       setTopSelectOption(top);
     }
@@ -154,7 +154,9 @@ function ResultsPage(props: any) {
 
   const filtersProps = {
     onSortInputChange: onSortInputChange,
-    onTopsInputChange: onTopsInputChange
+    onTopsInputChange: onTopsInputChange,
+    sortSelectOption: sortSelectOption,
+    topSelectOption: topSelectOption
   }
 
   const onInputTitleChange = (title: string) => {

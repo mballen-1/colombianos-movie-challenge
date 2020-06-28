@@ -184,13 +184,6 @@ function HomePage(props: any) {
 
   return (
     <>
-      {/* {renderQueryResults ?
-        <ResultsPage
-          resultsData={movies}
-          apiUrl={resultURL}
-          onEndpointRequest={onEndpointRequest}
-          isLoaded={isLoaded}
-        /> : */}
       <>
         {isLoaded ?
           <>
@@ -207,7 +200,6 @@ function HomePage(props: any) {
           : <Road />
         }
       </>
-      {/* } */}
       {moreFavorites}
       <Footer />
     </>

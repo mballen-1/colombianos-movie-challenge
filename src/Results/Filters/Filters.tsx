@@ -23,7 +23,9 @@ function Filters(props: FiltersProps) {
 
   const sortProps = {
     onSortInputChange: onSortInputChange,
-    onTopsInputChange: onTopsInputChange
+    onTopsInputChange: onTopsInputChange,
+    sortSelectOption: props.filtersData.sortSelectOption,
+    topSelectOption: props.filtersData.topSelectOption
   }
 
   return (
