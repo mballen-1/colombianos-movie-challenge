@@ -7,6 +7,7 @@ import Header from '../shared/Header/Header';
 import { TMDB_API, GENRES_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
+import Pagination from '@material-ui/lab/Pagination/Pagination';
 import Road from '../shared/Road/Road';
 import Footer from '../shared/Footer/Footer';
 import { Button } from '@material-ui/core';

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './ResultsPage.css';
-import Pagination from '@material-ui/lab/Pagination';
 import Filters from './Filters/Filters';
 import ResultsList from './ResultsList/ResultsList';
 import { ResultsProps } from './types';
@@ -8,6 +7,8 @@ import NotFound from './NotFound/Notfound';
 import Road from '../shared/Road/Road';
 import Header from '../shared/Header/Header';
 import { TMDB_API } from '../constants';
+import Pagination from '@material-ui/lab/Pagination/Pagination';
+import GlobalCss from '../GlobalCss';
 
 
 function ResultsPage(props: any) {
@@ -186,6 +187,7 @@ function ResultsPage(props: any) {
     <div className="results-container">
       {isLoaded ?
         <>
+          <GlobalCss />
           <Header headerData={headerProps} />
           <Filters filtersData={filtersProps} apiUrl={backendURL} />
           {notFound ? <NotFound /> :
