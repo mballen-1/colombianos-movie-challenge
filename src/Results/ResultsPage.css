@@ -7,10 +7,9 @@
     margin: 0;
     width: 176px;
     color: #356aa1;
-    font-family: Karla;
+    font-family: 'Karla';
     text-align: end;
     border: none;
-    font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -27,8 +26,4 @@
     margin-top: 30px;
     margin-bottom: 15px;
     display: inline-block;
-}
-
-.MuiPaginationItem-root {
-    color: 'white';
 }

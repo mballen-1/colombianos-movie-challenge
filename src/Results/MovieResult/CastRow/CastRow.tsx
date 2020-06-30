@@ -30,27 +30,27 @@ function CastRow(castProps: CastRowProps) {
         <>
           <div className="cast-row__display">
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i].profile_path)} alt="cast-profile"/>
+              <img className={'img-size'} src={getBackgroundUrlSafe(cast[i].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i].name}</p>
               <p className="single-cast-character">{cast[i].character}</p>
             </div>
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 1].profile_path)} alt="cast-profile"/>
+              <img className={'img-size'} src={getBackgroundUrlSafe(cast[i + 1].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i + 1].name}</p>
               <p className="single-cast-character">{cast[i + 1].character}</p>
             </div>
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 2].profile_path)} alt="cast-profile"/>
+              <img className={'img-size'} src={getBackgroundUrlSafe(cast[i + 2].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i + 2].name}</p>
               <p className="single-cast-character">{cast[i + 2].character}</p>
             </div>
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 3].profile_path)} alt="cast-profile"/>
+              <img className={'img-size'} src={getBackgroundUrlSafe(cast[i + 3].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i + 3].name}</p>
               <p className="single-cast-character">{cast[i + 3].character}</p>
             </div>
             <div className="single-cast-container">
-              <img width="160px" height="183px" src={getBackgroundUrlSafe(cast[i + 4].profile_path)} alt="cast-profile"/>
+              <img className={'img-size'} src={getBackgroundUrlSafe(cast[i + 4].profile_path)} alt="cast-profile"/>
               <p className="single-cast-name">{cast[i + 4].name}</p>
               <p className="single-cast-character">{cast[i + 4].character}</p>
             </div>
@@ -70,7 +70,7 @@ function CastRow(castProps: CastRowProps) {
     <>
       <h4 className="section-heading section-heading__font">Cast</h4>
       {cast && renderedPeople.length > 0 ?
-        <Carousel interval={16000} className="cast-carousel__padding" navButtonsAlwaysVisible={true}>
+        <Carousel interval={100000} className="cast-carousel__padding" navButtonsAlwaysVisible={true}>
           {renderedPeople}
         </Carousel> :
         <Road />

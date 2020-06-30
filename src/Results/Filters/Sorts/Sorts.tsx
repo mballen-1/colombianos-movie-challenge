@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Sorts(props: SortsProps) {
   const classes = useStyles();
-  const [sort, setSort] = React.useState('sort-by');
-  const [top, setTop] = React.useState('0');
+  const [sort, setSort] = React.useState(props.sortsData.sortSelectOption);
+  const [top, setTop] = React.useState(props.sortsData.topSelectOption);
   
   const handleChangeSortBy = (event: React.ChangeEvent<{ value: unknown }>) => {
     event.preventDefault();

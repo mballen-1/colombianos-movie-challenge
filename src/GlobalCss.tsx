@@ -8,7 +8,8 @@ const GlobalCss = withStyles({
       color: '#356aa1'
     },
     '.MuiPaginationItem-textPrimary.Mui-selected': {
-      backgroundColor: '#356aa1'
+      backgroundColor: '#356aa1',
+      color:'#ffffff'
     },
     '.MuiInput-underline': {
       border: 'none',
@@ -22,9 +23,6 @@ const GlobalCss = withStyles({
       '&::before': {
         border: 'none'
       }
-    },
-    '.MuiSvgIcon-root': {
-      // fill: '#ffffff'
     },
     '.MuiInputBase-root': {
       fontFamily: 'Karla'

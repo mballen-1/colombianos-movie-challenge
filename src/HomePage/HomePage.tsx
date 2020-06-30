@@ -7,12 +7,14 @@ import Header from '../shared/Header/Header';
 import { TMDB_API, GENRES_API } from '../constants';
 import { GENREIMAGES } from '../constants/images';
 import ResultsPage from '../Results/ResultsPage';
+import Pagination from '@material-ui/lab/Pagination/Pagination';
 import Road from '../shared/Road/Road';
 import Footer from '../shared/Footer/Footer';
 import { Button } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { withRouter } from 'react-router-dom';
 
-function HomePage() {
+function HomePage(props: any) {
 
   const mockReleaseData = {
     poster_path: '',
@@ -41,11 +43,11 @@ function HomePage() {
   const [genreInput, setGenreInput] = useState('');
   const [renderQueryResults, setRenderQueryResults] = useState(false);
   const [resultURL, setResultURL] = useState(TMDB_API);
+  const { history } = props;
 
   // window.scrollTo(0, 0);
-
   useEffect(() => {
-    fetch(TMDB_API + `?limit=1&title=2018&sortPriority=rating&sortByRating=true`)
+    fetch(`${TMDB_API}?limit=1&title=2018&sortPriority=rating&sortByRating=true`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -58,7 +60,7 @@ function HomePage() {
           setError(error);
         }
       )
-    fetch(TMDB_API + `?limit=${resultsLimit}&sortPriority=rating&sortByRating=true`)
+    fetch(`${TMDB_API}?limit=${resultsLimit}&sortPriority=rating&sortByRating=true`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -98,19 +100,16 @@ function HomePage() {
 
   useEffect(() => {
     if (genreInput) {
-      setResultURL(TMDB_API + `?genres=${genreInput}`)
-      fetch(TMDB_API + `?genres=${genreInput}`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setMovies(result);
-            setRenderQueryResults(true)
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
+      setIsLoaded(false);
+      const resultsState = {
+        headerInputTitle: headerInputTitle,
+        genreInput: genreInput
+      }
+      history.push({
+        pathname: '/results',
+        search: '',
+        state: resultsState
+      })
     }
   }, [genreInput])
 
@@ -133,20 +132,15 @@ function HomePage() {
   const onHeaderInputSubmit = () => {
     if (headerInputTitle) {
       setIsLoaded(false);
-      setResultURL(`${TMDB_API}?title=${headerInputTitle}`)
-      fetch(TMDB_API + `?title=${headerInputTitle}`)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setMovies(result);
-            setIsLoaded(true);
-            setRenderQueryResults(true);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
+      const resultsState = {
+        headerInputTitle: headerInputTitle,
+        genreInput: genreInput
+      }
+      history.push({
+        pathname: '/results',
+        search: '',
+        state: resultsState
+      })
     }
   }
 
@@ -183,40 +177,34 @@ function HomePage() {
       <span className="home-see-more">
         See More
       </span>
-      <ArrowDropDownIcon className="see-more__icon" />
+      <ArrowDropDownIcon style={{
+        fill: '#ffffff'
+      }} />
     </Button>
   );
 
   return (
     <>
-      {renderQueryResults ?
-        <ResultsPage
-          resultsData={movies}
-          apiUrl={resultURL}
-          onEndpointRequest={onEndpointRequest}
-          isLoaded={isLoaded}
-        /> :
-        <>
-          {isLoaded ?
-            <>
-              <Header headerData={headerProps} />
-              <RecentRelease
-                movieData={recentRelease}
-                recentRelease={true}
-              />
-              <Genres
-                genresData={genres.filter(item => validGenre(item))}
-                genreSelect={genresProps} />
-              <FanFavourites favoritesData={movies} />
-            </>
-            : <Road />
-          }
-        </>
-      }
+      <>
+        {isLoaded ?
+          <>
+            <Header headerData={headerProps} />
+            <RecentRelease
+              movieData={recentRelease}
+              recentRelease={true}
+            />
+            <Genres
+              genresData={genres.filter(item => validGenre(item))}
+              genreSelect={genresProps} />
+            <FanFavourites favoritesData={movies} />
+          </>
+          : <Road />
+        }
+      </>
       {moreFavorites}
       <Footer />
     </>
   );
 }
 
-export default HomePage;
+export default withRouter(HomePage);

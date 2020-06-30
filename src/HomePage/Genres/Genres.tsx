@@ -13,107 +13,109 @@ function Genres(props: GenresProps) {
 
   let genreElements = [];
 
-  for (let i = 0; i < 18; i += 6) {
-    genreElements.push(
-      <div className='genres-container' key={Math.random()}>
-        <div key={props.genresData[i].name}>
-          <Button className="single-genre single-genre__font"
-            style={
-              {
-                backgroundImage: `url(${props.genresData[i].backgroundPath})`,
-                marginRight: 40,
-                marginBottom: 37
+  if (props.genresData && props.genresData.length) {
+    for (let i = 0; i < 18; i += 6) {
+      genreElements.push(
+        <div className='genres-container' key={Math.random()}>
+          <div key={props.genresData[i].name}>
+            <Button className="single-genre single-genre__font"
+              style={
+                {
+                  backgroundImage: `url(${props.genresData[i].backgroundPath})`,
+                  marginRight: 40,
+                  marginBottom: 37
+                }
               }
-            }
-            onClick={() => handleInputSubmit(props.genresData[i].name)}
-          >
-            <span className="genre-name">
-              {props.genresData[i].name}
-            </span>
-          </Button>
-        </div>
-        <div key={props.genresData[i + 1].name}>
-          <Button className="single-genre single-genre__font"
-            style={
-              {
-                backgroundImage: `url(${props.genresData[i + 1].backgroundPath})`,
-                marginRight: 40,
-                marginBottom: 37
+              onClick={() => handleInputSubmit(props.genresData[i].name)}
+            >
+              <span className="genre-name">
+                {props.genresData[i].name}
+              </span>
+            </Button>
+          </div>
+          <div key={props.genresData[i + 1].name}>
+            <Button className="single-genre single-genre__font"
+              style={
+                {
+                  backgroundImage: `url(${props.genresData[i + 1].backgroundPath})`,
+                  marginRight: 40,
+                  marginBottom: 37
+                }
               }
-            }
-            onClick={() => handleInputSubmit(props.genresData[i + 1].name)}
-          >
-            <span className="genre-name">
-              {props.genresData[i + 1].name}
-            </span>
-          </Button>
-        </div>
-        <div key={props.genresData[i + 2].name}>
-          <Button className="single-genre single-genre__font"
-            style={
-              {
-                backgroundImage: `url(${props.genresData[i + 2].backgroundPath})`,
-                marginRight: 40,
-                marginBottom: 37
+              onClick={() => handleInputSubmit(props.genresData[i + 1].name)}
+            >
+              <span className="genre-name">
+                {props.genresData[i + 1].name}
+              </span>
+            </Button>
+          </div>
+          <div key={props.genresData[i + 2].name}>
+            <Button className="single-genre single-genre__font"
+              style={
+                {
+                  backgroundImage: `url(${props.genresData[i + 2].backgroundPath})`,
+                  marginRight: 40,
+                  marginBottom: 37
+                }
               }
-            }
-            onClick={() => handleInputSubmit(props.genresData[i + 2].name)}
-          >
-            <span className="genre-name">
-              {props.genresData[i + 2].name}
-            </span>
-          </Button>
-        </div>
-        <div key={props.genresData[i + 3].name}>
-          <Button className="single-genre single-genre__font"
-            style={
-              {
-                backgroundImage: `url(${props.genresData[i + 3].backgroundPath})`,
-                marginRight: 40,
-                marginBottom: 37
+              onClick={() => handleInputSubmit(props.genresData[i + 2].name)}
+            >
+              <span className="genre-name">
+                {props.genresData[i + 2].name}
+              </span>
+            </Button>
+          </div>
+          <div key={props.genresData[i + 3].name}>
+            <Button className="single-genre single-genre__font"
+              style={
+                {
+                  backgroundImage: `url(${props.genresData[i + 3].backgroundPath})`,
+                  marginRight: 40,
+                  marginBottom: 37
+                }
               }
-            }
-            onClick={() => handleInputSubmit(props.genresData[i + 3].name)}
-          >
-            <span className="genre-name">
-              {props.genresData[i + 3].name}
-            </span>
-          </Button>
-        </div>
-        <div key={props.genresData[i + 4].name}>
-          <Button className="single-genre single-genre__font"
-            style={
-              {
-                backgroundImage: `url(${props.genresData[i + 4].backgroundPath})`,
-                marginRight: 40,
-                marginBottom: 37
+              onClick={() => handleInputSubmit(props.genresData[i + 3].name)}
+            >
+              <span className="genre-name">
+                {props.genresData[i + 3].name}
+              </span>
+            </Button>
+          </div>
+          <div key={props.genresData[i + 4].name}>
+            <Button className="single-genre single-genre__font"
+              style={
+                {
+                  backgroundImage: `url(${props.genresData[i + 4].backgroundPath})`,
+                  marginRight: 40,
+                  marginBottom: 37
+                }
               }
-            }
-            onClick={() => handleInputSubmit(props.genresData[i + 4].name)}
-          >
-            <span className="genre-name">
-              {props.genresData[i + 4].name}
-            </span>
-          </Button>
-        </div>
-        <div key={props.genresData[i + 5].name}>
-          <Button className="single-genre single-genre__font"
-            style={
-              {
-                backgroundImage: `url(${props.genresData[i + 5].backgroundPath})`,
-                marginRight: 40,
-                marginBottom: 37
+              onClick={() => handleInputSubmit(props.genresData[i + 4].name)}
+            >
+              <span className="genre-name">
+                {props.genresData[i + 4].name}
+              </span>
+            </Button>
+          </div>
+          <div key={props.genresData[i + 5].name}>
+            <Button className="single-genre single-genre__font"
+              style={
+                {
+                  backgroundImage: `url(${props.genresData[i + 5].backgroundPath})`,
+                  marginRight: 40,
+                  marginBottom: 37
+                }
               }
-            }
-            onClick={() => handleInputSubmit(props.genresData[i + 5].name)}
-          >
-            <span className="genre-name">
-              {props.genresData[i + 5].name}
-            </span>
-          </Button>
+              onClick={() => handleInputSubmit(props.genresData[i + 5].name)}
+            >
+              <span className="genre-name">
+                {props.genresData[i + 5].name}
+              </span>
+            </Button>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 
   props.genresData.map(
@@ -140,10 +142,10 @@ function Genres(props: GenresProps) {
     <section className="genres-main-container">
       <h4 className="section-heading section-heading__font">Genres</h4>
       <div className="genres-container">
-        <Carousel 
-          interval={16000}
+        <Carousel
+          interval={100000}
           navButtonsAlwaysVisible={true}>
-            {genreElements}
+          {genreElements}
         </Carousel>
       </div>
     </section>
